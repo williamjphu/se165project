@@ -1,0 +1,260 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"char",
+				"charAt"
+			],
+			[
+				"is",
+				"isEmpty"
+			],
+			[
+				"S",
+				"System"
+			],
+			[
+				"den",
+				"difference"
+			],
+			[
+				"ex",
+				"NumberFormatException"
+			],
+			[
+				"get",
+				"getRandomNumber"
+			],
+			[
+				"ls",
+				"list"
+			],
+			[
+				"arg",
+				"args"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 392.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 392.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/C/Users/shamoun/Desktop/CS151_2018/H.W._1/DataAnalyzer.java",
+		"/C/Users/shamoun/Desktop/CS151_2018/Section#4_Shamoun_Rana_010945389_HW1/H.W._1/Part2/DataAnalyzerTester.java",
+		"/C/Users/shamoun/Desktop/CS151_2018/Section#4_Shamoun_Rana_010945389_HW1/H.W._1/Part1/Calculator.java",
+		"/C/Users/shamoun/Desktop/CS151_2018/Section#4_Shamoun_Rana_010945389_HW1/H.W._1/Part3/RandomStringGenerator.java",
+		"/C/Users/shamoun/Desktop/CS151_2018/Section#4_Shamoun_Rana_010945389_HW1/H.W._1/Part3/RandomStringGeneratorTester.java",
+		"/C/Users/shamoun/Desktop/NewPart3/RandomStringGeneratorTester.java",
+		"/C/Users/shamoun/Desktop/NewPart3/RandomStringGenerator.java",
+		"/C/Users/shamoun/Desktop/CS151_2018/H.W._1/Part3/RandomStringGenerator.java",
+		"/C/Users/shamoun/Desktop/CS151_2018/H.W._1/Part3/RandomStringGeneratorTester.java",
+		"/C/Users/shamoun/Desktop/part_3.zip",
+		"/C/Users/shamoun/Desktop/CS151_2018/H.W._1/DataAnalyzerTester.java",
+		"/C/Users/shamoun/Desktop/CS151_2018/Calculator.java",
+		"/C/Users/shamoun/Desktop/CS151_2018/try.java",
+		"/C/Users/shamoun/Desktop/CS151_2018/test.java",
+		"/C/Users/shamoun/Desktop/CS151_2018/H.W._1/RandomStringGenerator.java",
+		"/C/Ruby_Reddy/team-ruby-red-dy/ORCA/app/controllers/tutorials_controller.rb",
+		"/C/Ruby_Reddy/team-ruby-red-dy/ORCA/config/routes.rb",
+		"/C/Ruby_Reddy/team-ruby-red-dy/ORCA/db/migrate/20161025025845_create_posts.rb",
+		"/C/Ruby_Reddy/team-ruby-red-dy/ORCA/db/test.sqlite3",
+		"/C/Ruby_Reddy/team-ruby-red-dy/ORCA/db/seeds.rb",
+		"/C/Ruby_Reddy/team-ruby-red-dy/ORCA/db/schema.rb",
+		"/C/Ruby_Reddy/team-ruby-red-dy/ORCA/db/development.sqlite3",
+		"/C/Ruby_Reddy/team-ruby-red-dy/ORCA/bin/rails",
+		"/C/Ruby_Reddy/team-ruby-red-dy/ORCA/app/views/tutorials/RoR_Windows_installation.html.erb",
+		"/C/Ruby_Reddy/team-ruby-red-dy/ORCA/app/views/tutorials/index.html.erb",
+		"/C/Ruby_Reddy/team-ruby-red-dy/ORCA/app/views/tutorials/RoR_Windows_Installation.html.erb",
+		"/C/Ruby_Reddy/team-ruby-red-dy/ORCA/app/views/tutorials/RoR_QuickGuid.html.erb",
+		"/C/Ruby_Reddy/team-ruby-red-dy/ORCA/app/views/layouts/mailer.html.erb",
+		"/C/Ruby_Reddy/team-ruby-red-dy/ORCA/app/views/layouts/application.html.erb",
+		"/C/Ruby_Reddy/team-ruby-red-dy/ORCA/app/assets/stylesheets/tutorials.scss",
+		"/C/Ruby_Reddy/team-ruby-red-dy/ORCA/app/views/quiz/index.html.erb",
+		"/C/Ruby_Reddy/team-ruby-red-dy/ORCA/app/controllers/quiz_controller.rb",
+		"/C/Ruby_Reddy/team-ruby-red-dy/ORCA/app/controllers/application_controller.rb",
+		"/C/Ruby_Reddy/team-ruby-red-dy/ORCA/app/views/tutorials/Git_Tutorials_and_Tips.html.erb",
+		"/C/Ruby_Reddy/team-ruby-red-dy/ORCA/app/assets/config/manifest.js",
+		"/C/Ruby_Reddy/team-ruby-red-dy/ORCA/app/mailers/application_mailer.rb",
+		"/C/Ruby_Reddy/team-ruby-red-dy/ORCA/app/controllers/Tutorials_controller.rb",
+		"/C/Ruby_Reddy/team-ruby-red-dy/ORCA/app/views/welcome/index.html.erb",
+		"/C/Ruby_Reddy/team-ruby-red-dy/ORCA/app/assets/stylesheets/application.css",
+		"/C/Ruby_Reddy/team-ruby-red-dy/ORCA/app/views/tutorials/RoR_QuickGuide.html.erb",
+		"/C/Ruby_Reddy/team-ruby-red-dy/ORCA/app/views/tutorials/Ruby_Language.html.erb",
+		"/C/Ruby_Reddy/team-ruby-red-dy/ORCA/app/views/tutorials/Linux_installation.html.erb",
+		"/C/Ruby_Reddy/team-ruby-red-dy/ORCA/app/assets/javascripts/application.js",
+		"/C/Ruby_Reddy/team-ruby-red-dy/ORCA/app/views/contact_us/_form.html.erb",
+		"/C/Ruby_Reddy/team-ruby-red-dy/ORCA/app/views/contact_us/new.html.erb",
+		"/C/Ruby_Reddy/team-ruby-red-dy/ORCA/app/views/quizzes/index.html.erb",
+		"/C/Ruby_Reddy/team-ruby-red-dy/ORCA/app/controllers/contactUs_controller.rb",
+		"/C/Ruby_Reddy/team-ruby-red-dy/ORCA/app/controllers/quizzes_controller.rb",
+		"/C/Ruby_Reddy/team-ruby-red-dy/ORCA/bin/rake",
+		"/C/Ruby_Reddy/team-ruby-red-dy/ORCA/Gemfile.lock",
+		"/C/Ruby_Reddy/team-ruby-red-dy/ORCA/app/helpers/contact_us_helper.rb",
+		"/C/Ruby_Reddy/team-ruby-red-dy/ORCA/app/assets/stylesheets/quizzes.scss",
+		"/C/Ruby_Reddy/team-ruby-red-dy/ORCA/app/assets/images/Quizzes image.png",
+		"/C/Ruby_Reddy/team-ruby-red-dy/ORCA/app/models/application_record.rb",
+		"/C/Ruby_Reddy/team-ruby-red-dy/ORCA/app/views/quizzes/show.html.erb",
+		"/C/Ruby_Reddy/team-ruby-red-dy/ORCA/app/models/question.rb",
+		"/C/Ruby_Reddy/team-ruby-red-dy/ORCA/app/models/title.rb",
+		"/C/Ruby_Reddy/team-ruby-red-dy/ORCA/app/views/contactUs/index.html.erb",
+		"/C/Ruby_Reddy/team-ruby-red-dy/ORCA/app/views/quiz/intro.html.erb",
+		"/C/Ruby_Reddy/team-ruby-red-dy/ORCA/app/views/quiz/start.html.erb",
+		"/C/Ruby_Reddy/team-ruby-red-dy/ORCA/app/models/contactus.rb",
+		"/C/Ruby_Reddy/team-ruby-red-dy/ORCA/app/helpers/welcome_helper.rb",
+		"/C/Ruby_Reddy/team-ruby-red-dy/ORCA/app/controllers/comments_controller.rb",
+		"/C/Ruby_Reddy/team-ruby-red-dy/ORCA/app/controllers/welcome_controller.rb"
+	],
+	"find":
+	{
+		"height": 0.0
+	},
+	"find_in_files":
+	{
+		"height": 90.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "signin.sublime-project",
+	"replace":
+	{
+		"height": 0.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 101.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
