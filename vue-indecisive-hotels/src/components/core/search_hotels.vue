@@ -30,14 +30,7 @@
                     @blur="date = parseDate(dateFormatted)"
                   ></v-text-field>
                   <v-date-picker v-model="date" @input="dateFormatted = formatDate($event)" 
-                    :allowed-dates="allowedIn" no-title actions>
-                    <template slot-scope="{ save, cancel }">
-                      <v-card-actions>
-                        <v-spacer></v-spacer>
-                        <v-btn flat color="primary" @click="cancel">Cancel</v-btn>
-                        <v-btn flat color="primary" @click="save">OK</v-btn>
-                      </v-card-actions>
-                    </template>
+                    :min="allowedIn.min" :max="allowedIn.max" @change="menu = !menu">
                   </v-date-picker>
                 </v-dialog>
               </v-flex>
@@ -56,14 +49,7 @@
                     @blur="date = parseDate(dateFormatted2)"
                   ></v-text-field>
                   <v-date-picker v-model="date2" @input="dateFormatted2 = formatDate($event)"
-                    :allowed-dates="allowedOut" no-title actions>
-                    <template slot-scope="{ save, cancel }">
-                      <v-card-actions>
-                        <v-spacer></v-spacer>
-                        <v-btn flat color="primary" @click="cancel">Cancel</v-btn>
-                        <v-btn flat color="primary" @click="save">OK</v-btn>
-                      </v-card-actions>
-                    </template>
+                    :min="allowedOut.min" :max="allowedOut.max" @change="menu2 = !menu2">
                   </v-date-picker>
                 </v-dialog>
               </v-flex>
@@ -119,7 +105,7 @@
       rooms: 1, // room #
       adults: 1,  // adults #
       children: 0,  // children #
-      allowedIn: null // range for check-in days (1 year from day after current date)
+      allowedIn: {min: null, max: null} // range for check-in days (1 year from day after current date)
     }),
     computed: {
       // range for check-out days (1 day more than check-in day, for up to a year)
@@ -144,6 +130,7 @@
           const temp = this.retrieveDate(this.dateFormatted)
           temp.setDate(temp.getDate() + 1)
           this.dateFormatted2 = this.formatDate(temp.toISOString().substr(0, 10))
+          this.date2 = this.parseDate(this.dateFormatted2)
         }
       }
     },
@@ -177,13 +164,14 @@
       // serves to initialize the check-in and check-out dates
       const minDate = new Date()
       const maxDate = new Date()
-      minDate.setDate(maxDate.getDate() + 1)
       maxDate.setDate(minDate.getDate() + 364)
       const min = minDate.toISOString().substr(0, 10)
       const max = maxDate.toISOString().substr(0, 10)
       this.allowedIn = {min, max}
       this.dateFormatted = this.formatDate(this.allowedIn.min)
       this.dateFormatted2 = this.formatDate(this.allowedOut.min)
+      this.date = this.parseDate(this.dateFormatted)
+      this.date2 = this.parseDate(this.dateFormatted2)
       // calculate the day difference between two Date objects:
       // Math.ceil((maxDate - minDate) / (1000 * 3600 * 24))
     }

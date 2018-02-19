@@ -66,12 +66,97 @@ const actions = {
         }
       )
   },
+  loginWithGoogle ({commit}) {
+    commit('setLoading', true)
+    commit('clearError')
+    var provider = new firebase.auth.GoogleAuthProvider()
+    firebase.auth().signInWithPopup(provider)
+      .then(
+        result => {
+          console.log(result)
+          const newUser = {
+            id: result.user.uid,
+            first: result.additionalUserInfo.profile.given_name,
+            last: result.additionalUserInfo.profile.family_name,
+            paymentInfo: null,
+            bookings: []
+          }
+          commit('setUser', newUser)
+          commit('setLoading', false)
+          console.log(newUser)
+        }
+      )
+      .catch(
+        error => {
+          commit('setLoading', false)
+          commit('setError', error)
+          console.log(error)
+        }
+      )
+  },
+  loginWithFacebook ({commit}) {
+    commit('setLoading', true)
+    commit('clearError')
+    var provider = new firebase.auth.FacebookAuthProvider()
+    firebase.auth().signInWithPopup(provider)
+      .then(
+        result => {
+          console.log(result)
+          const newUser = {
+            id: result.user.uid,
+            first: result.additionalUserInfo.profile.first_name,
+            last: result.additionalUserInfo.profile.last_name,
+            paymentInfo: null,
+            bookings: []
+          }
+          commit('setUser', newUser)
+          commit('setLoading', false)
+          console.log(newUser)
+        }
+      )
+      .catch(
+        error => {
+          commit('setLoading', false)
+          commit('setError', error)
+          console.log(error)
+        }
+      )
+  },
+  loginWithTwitter ({commit}) {
+    commit('setLoading', true)
+    commit('clearError')
+    var provider = new firebase.auth.TwitterAuthProvider()
+    firebase.auth().signInWithPopup(provider)
+      .then(
+        result => {
+          console.log(result)
+          const newUser = {
+            id: result.user.uid,
+            first: result.additionalUserInfo.profile.name,
+            last: result.additionalUserInfo.profile.name,
+            paymentInfo: null,
+            bookings: []
+          }
+          commit('setUser', newUser)
+          commit('setLoading', false)
+          console.log(newUser)
+        }
+      )
+      .catch(
+        error => {
+          commit('setLoading', false)
+          commit('setError', error)
+          console.log(error)
+        }
+      )
+  },
   loginUser ({commit}, payload) {
     commit('setLoading', true)
     commit('clearError')
     firebase.auth().signInWithEmailAndPassword(payload.email, payload.password)
       .then(
         user => {
+          console.log(user)
           const newUser = {
             id: user.uid,
             first: payload.first,
