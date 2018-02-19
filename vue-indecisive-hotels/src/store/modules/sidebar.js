@@ -9,11 +9,9 @@ const state = {
       icon: 'fa-sign-in-alt',
       title: 'Sign In',
       path: 'signin'
-    },
-    {
-      icon: 'fa-sign-out-alt',
-      title: 'Sign Out'
-    },
+    }
+  ],
+  menuItemsUser: [
     {
       icon: 'fa-user',
       title: 'Profile',
@@ -29,6 +27,9 @@ const getters = {
   },
   getMenuItems (state) {
     return state.menuItems
+  },
+  getMenuItemsUser (state) {
+    return state.menuItemsUser
   }
 }
 
