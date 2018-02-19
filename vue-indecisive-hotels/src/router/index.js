@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import AuthGuard from './auth-guard'
 import homepage from '@/components/homepage'
 import profile from '@/components/users/profile'
 import signin from '@/components/users/signin'
@@ -27,7 +28,8 @@ export default new Router({
     {
       path: '/profile',
       name: 'profile',
-      component: profile
+      component: profile,
+      beforeEnter: AuthGuard
     }
   ],
   mode: 'history'
