@@ -6,6 +6,7 @@ import router from './router'
 import Vuetify from 'vuetify'
 import 'vuetify/dist/vuetify.min.css'
 import sidebar from './components/core/sidebar'
+import navigationbar from './components/core/navigationbar'
 import searchHotels from './components/core/search_hotels'
 import alertMsg from './components/core/alert'
 import { store } from './store'
@@ -21,6 +22,7 @@ Vue.use(Vuetify)
 Vue.config.productionTip = false
 
 Vue.component('sidebar', sidebar)
+Vue.component('navigationbar', navigationbar)
 Vue.component('searchHotels', searchHotels)
 Vue.component('app-alert', alertMsg)
 
