@@ -110,6 +110,121 @@
         </v-list> 
         
       </v-card>
+      <br><br><br>
+      <v-card>
+        <v-toolbar color="orange">
+          
+          <v-toolbar-title>Payment Information</v-toolbar-title>
+          <v-spacer></v-spacer>
+          </v-toolbar>
+        <v-list two-line>
+          <v-list-tile>
+          	<v-list-tile-title>Card ending in 1234
+          	</v-list-tile-title>
+          	 <v-dialog v-model="cardDialog" persistent max-width="500px">
+      <v-btn color="orange" dark slot="activator">Edit Card Number</v-btn>
+      <v-card>
+        <v-card-title>
+          <span class="headline">Edit Card Number</span>
+        </v-card-title>
+        <v-card-text>
+          <v-container grid-list-md>
+            <v-layout wrap>
+              <v-flex xs12 sm12>
+                <v-text-field label="New Card Number" required></v-text-field>
+              </v-flex>
+              <v-flex xs12 sm12>
+                <v-text-field label="Confirm New Card Number" hint="example of helper text only on focus"></v-text-field>
+              </v-flex>
+            </v-layout>
+          </v-container>
+          <small>*indicates required field</small>
+        </v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn color="orange" flat @click.native="cardDialog = false">Close</v-btn>
+          <v-btn color="orange" flat @click.native="cardDialog = false">Save</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+        </v-list-tile>
+        </v-list>
+        <v-list two-line>
+          <v-list-tile>
+          	<v-list-tile-title>Expiration: {expiration}
+          	</v-list-tile-title>
+          	<v-dialog v-model="cardExp" persistent max-width="500px">
+      <v-btn color="orange" dark slot="activator">Edit Expiration</v-btn>
+      <v-card>
+        <v-card-title>
+          <span class="headline">Edit Expiration</span>
+        </v-card-title>
+        <v-card-text>
+          <v-container grid-list-md>
+            <v-layout wrap>
+              <v-flex xs12 sm6>
+                <v-select
+                  label="Month"
+                  required
+                  :items="['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']"
+                ></v-select>
+              </v-flex>
+              <v-flex xs12 sm6>
+                <v-select
+                  label="Year"
+                  required
+                  :items="['2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025', '2026', '2027']"
+                ></v-select>
+              </v-flex>
+            </v-layout>
+          </v-container>
+         
+        </v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn color="orange" flat @click.native="cardExp = false">Close</v-btn>
+          <v-btn color="orange" flat @click.native="cardExp = false">Save</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+        </v-list-tile>
+        </v-list> 
+        <v-list two-line>
+          <v-list-tile>
+          	<v-list-tile-title>Card Security Code: Set
+          	</v-list-tile-title>
+          	<v-dialog v-model="cardSecurtyCode" persistent max-width="500px">
+      <v-btn color="orange" dark slot="activator">Edit Security Code</v-btn>
+      <v-card>
+        <v-card-title>
+          <span class="headline">Edit Security Code</span>
+        </v-card-title>
+        <v-card-text>
+          <v-container grid-list-md>
+            <v-layout wrap>
+              <v-flex xs12 sm12>
+                <v-text-field label="New Security Code" required></v-text-field>
+              </v-flex>
+              <v-flex xs12 sm12>
+                <v-text-field label="Confirm New Security Code" ></v-text-field>
+              </v-flex>
+            </v-layout>
+          </v-container>
+         
+        </v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn color="orange" flat @click.native="cardSecurtyCode = false">Close</v-btn>
+          <v-btn color="orange" flat @click.native="cardSecurtyCode = false">Save</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+        </v-list-tile>
+        </v-list> 
+        
+
+        
+      </v-card>
     </v-flex>
   </v-layout>
 </v-container>
@@ -120,7 +235,10 @@
     data: () => ({
       nameDialog: false,
       emailDialog: false,
-      passwordDialog: false
+      passwordDialog: false,
+      cardDialog: false,
+      cardExp: false,
+      cardSecurtyCode: false
     })
   }
 </script>
