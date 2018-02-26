@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import Router from 'vue-router'
+import AuthGuard from './auth-guard'
+import ErrorGuard from './error-guard'
 import homepage from '@/components/homepage'
 import profile from '@/components/users/profile'
 import signin from '@/components/users/signin'
@@ -13,22 +15,26 @@ export default new Router({
     {
       path: '/',
       name: 'homepage',
-      component: homepage
+      component: homepage,
+      beforeEnter: ErrorGuard
     },
     {
       path: '/signup',
       name: 'signup',
-      component: signup
+      component: signup,
+      beforeEnter: ErrorGuard
     },
     {
       path: '/signin',
       name: 'signin',
-      component: signin
+      component: signin,
+      beforeEnter: ErrorGuard
     },
     {
       path: '/profile',
       name: 'profile',
-      component: profile
+      component: profile,
+      beforeEnter: AuthGuard
     }
   ],
   mode: 'history'

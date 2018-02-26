@@ -7,7 +7,9 @@ import router from './router'
 import Vuetify from 'vuetify'
 import 'vuetify/dist/vuetify.min.css'
 import sidebar from './components/core/sidebar'
+import navigationbar from './components/core/navigationbar'
 import searchHotels from './components/core/search_hotels'
+import alertMsg from './components/core/alert'
 import { store } from './store'
 import fontawesome from '@fortawesome/fontawesome'
 import brands from '@fortawesome/fontawesome-free-brands'
@@ -20,24 +22,29 @@ Vue.use(Vuetify)
 Vue.config.productionTip = false
 
 Vue.component('sidebar', sidebar)
+Vue.component('navigationbar', navigationbar)
 Vue.component('searchHotels', searchHotels)
+Vue.component('app-alert', alertMsg)
 
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,
   store,
-  render: h => h(App),
-
+  components: { App },
+  template: '<App/>',
   created () {
-   firebae.initializeApp({
-  	apiKey: 'AIzaSyD7W1ZM-VH_sBjVTfA8wqpcePX-6NzkO1E',
-     authDomain: 'hotelproject-c7a4c.firebaseapp.com',
-     databaseURL: 'https://hotelproject-c7a4c.firebaseio.com',
-     projectId: 'hotelproject-c7a4c',
-     storageBucket: 'hotelproject-c7a4c.appspot.com',
-
-   }
-   )
+    firebase.initializeApp({
+      apiKey: 'AIzaSyD7W1ZM-VH_sBjVTfA8wqpcePX-6NzkO1E',
+      authDomain: 'hotelproject-c7a4c.firebaseapp.com',
+      databaseURL: 'https://hotelproject-c7a4c.firebaseio.com',
+      projectId: 'hotelproject-c7a4c',
+      storageBucket: 'hotelproject-c7a4c.appspot.com'
+    })
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        this.$store.dispatch('autoLogin', user)
+      }
+    })
   }
 })
