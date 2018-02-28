@@ -114,7 +114,7 @@
       <v-card>
         <v-toolbar color="orange">
           
-          <v-toolbar-title>Payment Information</v-toolbar-title>
+          <v-toolbar-title>Card Information</v-toolbar-title>
           <v-spacer></v-spacer>
           </v-toolbar>
         <v-list two-line>
@@ -220,9 +220,65 @@
       </v-card>
     </v-dialog>
         </v-list-tile>
-        </v-list> 
-        
+        </v-list>
+      </v-card>
 
+      <br><br><br>
+      <v-card >
+        <v-toolbar color="orange">
+          
+          <v-toolbar-title>Billing Information</v-toolbar-title>
+          <v-spacer></v-spacer>
+          </v-toolbar>
+        <v-list two-line>
+          <v-list-tile>
+            <v-list-tile-title>Address: {address}
+            
+            </v-list-tile-title>
+            <v-card-text>
+            <br>1 Washington Sq
+            <br>San Jose, CA 95192
+            </v-card-text>
+            
+            
+             <v-dialog v-model="addressDialog" persistent max-width="500px">
+      <v-btn color="orange" dark slot="activator">Edit Address</v-btn>
+      <v-card>
+        <v-card-title>
+          <span class="headline">Edit Address</span>
+        </v-card-title>
+        <v-card-text>
+          <v-container grid-list>
+            <v-layout wrap>
+              <v-flex xs12 sm12>
+                <v-text-field label="Street" required></v-text-field>
+              </v-flex>
+              <v-flex xs12 sm7>
+                <v-text-field label="City"  required></v-text-field>
+              </v-flex>
+              <v-flex xs12 sm5>
+                <v-text-field label="State"  required></v-text-field>
+                <v-flex xs12 sm12>
+                <v-text-field label="Zip"  required></v-text-field>
+              </v-flex>
+              </v-flex>
+            </v-layout>
+          </v-container>
+          
+        </v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn color="orange" flat @click.native="addressDialog = false">Close</v-btn>
+          <v-btn color="orange" flat @click.native="addressDialog = false">Save</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+        </v-list-tile>
+        </v-list>
+        
+    </v-dialog>
+        </v-list-tile>
+        </v-list> 
         
       </v-card>
     </v-flex>
@@ -238,7 +294,8 @@
       passwordDialog: false,
       cardDialog: false,
       cardExp: false,
-      cardSecurtyCode: false
+      cardSecurtyCode: false,
+      addressDialog: false
     })
   }
 </script>
