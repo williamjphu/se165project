@@ -6,7 +6,6 @@ import homepage from '@/components/homepage'
 import profile from '@/components/users/profile'
 import signin from '@/components/users/signin'
 import signup from '@/components/users/signup'
-
 Vue.use(Router)
 
 export default new Router({
