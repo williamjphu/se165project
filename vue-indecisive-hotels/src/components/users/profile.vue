@@ -4,7 +4,7 @@
   <v-layout row>
     <v-flex xs12 sm10 md8 offset-sm1 offset-md2 pa-5>
     
-      <v-card >
+      <v-card style="opacity: 0.7;">
         <v-toolbar dark color="brown darken-2">
           
           <v-toolbar-title>Account Details</v-toolbar-title>
@@ -112,7 +112,7 @@
         
       </v-card>
       <br><br><br>
-      <v-card>
+      <v-card style="opacity: 0.7;">
         <v-toolbar dark color="brown darken-2">
           
           <v-toolbar-title>Card Information</v-toolbar-title>
@@ -225,7 +225,7 @@
       </v-card>
 
       <br><br><br>
-      <v-card >
+      <v-card style="opacity: 0.7;">
         <v-toolbar dark color="brown darken-2">
           
           <v-toolbar-title>Billing Information</v-toolbar-title>
