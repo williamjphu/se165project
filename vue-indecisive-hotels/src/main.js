@@ -10,10 +10,12 @@ import sidebar from './components/core/sidebar'
 import navigationbar from './components/core/navigationbar'
 import searchHotels from './components/core/search_hotels'
 import alertMsg from './components/core/alert'
+import login from './components/users/signin'
 import { store } from './store'
 import fontawesome from '@fortawesome/fontawesome'
 import brands from '@fortawesome/fontawesome-free-brands'
 import { faSpinner } from '@fortawesome/fontawesome-free-solid'
+import FontAwesomeIcon from '@fortawesome/vue-fontawesome'
 
 fontawesome.library.add(brands, faSpinner)
 
@@ -23,8 +25,10 @@ Vue.config.productionTip = false
 
 Vue.component('sidebar', sidebar)
 Vue.component('navigationbar', navigationbar)
-Vue.component('searchHotels', searchHotels)
+Vue.component('search-hotels', searchHotels)
 Vue.component('app-alert', alertMsg)
+Vue.component('login-dialog', login)
+Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 /* eslint-disable no-new */
 new Vue({
