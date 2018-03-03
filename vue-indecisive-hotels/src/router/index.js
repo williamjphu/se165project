@@ -6,6 +6,11 @@ import homepage from '@/components/homepage'
 import profile from '@/components/users/profile'
 import signin from '@/components/users/signin'
 import signup from '@/components/users/signup'
+import contactUs from '@/components/static/contact_us'
+import faqs from '@/components/static/faqs'
+import mybookings from '@/components/bookings/my_bookings'
+import search from '@/components/bookings/search_results'
+
 Vue.use(Router)
 
 export default new Router({
@@ -32,6 +37,30 @@ export default new Router({
       path: '/profile',
       name: 'profile',
       component: profile,
+      beforeEnter: AuthGuard
+    },
+    {
+      path: '/contact',
+      name: 'contact_us',
+      component: contactUs,
+      beforeEnter: ErrorGuard
+    },
+    {
+      path: '/faqs',
+      name: 'faqs',
+      component: faqs,
+      beforeEnter: ErrorGuard
+    },
+    {
+      path: '/search',
+      name: 'search',
+      component: search,
+      beforeEnter: ErrorGuard
+    },
+    {
+      path: '/mybookings',
+      name: 'mybookings',
+      component: mybookings,
       beforeEnter: AuthGuard
     }
   ],

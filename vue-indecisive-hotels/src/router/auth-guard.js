@@ -5,7 +5,7 @@ export default (to, from, next) => {
   if (store.getters.user) {
     next()
   } else {
-    next('/signin')
-    store.dispatch('setError', {message: 'Please sign in first'})
+    next('/signup')
+    store.dispatch('setError', {message: 'Please register or login first'})
   }
 }
