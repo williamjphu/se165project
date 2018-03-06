@@ -1,5 +1,5 @@
 <template>
-  <v-container style="max-width: 1200px" class="py-0 px-0">
+  <v-container style="max-width: 1200px" py-0 px-0>
     <section>
       <video v-bind:style="cinemagraphStyle" muted="muted" loop="loop" autoplay="autoplay" src="https://videos.pond5.com/cinemagraph-nordic-kitchen-3d-rendering-footage-067982190_main_xl.mp4"></video>
       <search-hotels/>
