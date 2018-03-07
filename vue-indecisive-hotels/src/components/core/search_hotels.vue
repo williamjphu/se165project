@@ -82,6 +82,9 @@
           <v-card-actions>
             <v-spacer></v-spacer>
             <v-btn
+              @click ="searchPage"
+            >testing search</v-btn>
+            <v-btn
               flat
               color="primary"
               type="submit"
@@ -158,6 +161,11 @@
           return null
         }
         return new Date(date)
+      },
+
+      searchPage () {
+        console.log('Testing Search')
+        this.$store.dispatch('findPlaces')
       }
     },
     mounted () {

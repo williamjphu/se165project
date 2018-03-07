@@ -13,6 +13,7 @@ import fontawesome from '@fortawesome/fontawesome'
 import brands from '@fortawesome/fontawesome-free-brands'
 import { faSpinner } from '@fortawesome/fontawesome-free-solid'
 import * as firebase from 'firebase'
+import * as googleplaces from 'googleplaces'
 
 fontawesome.library.add(brands, faSpinner)
 
@@ -28,6 +29,7 @@ Vue.component('app-alert', alertMsg)
 new Vue({
   el: '#app',
   router,
+  googleplaces,
   store,
   components: { App },
   template: '<App/>',
