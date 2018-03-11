@@ -1,4 +1,5 @@
- /* eslint-disable */
+import * as googleplaces from 'googleplaces'
+/* eslint-disable */
 const state = {
   longitude: null,
   latitude: null,
@@ -43,7 +44,7 @@ const actions = {
   findPlaces({commit}){
       var assert = require("assert");
       
-      var nearBySearch = new NearBySearch(AIzaSyB_QVILHYo25sC2lWgN2RWXswo8LTFu-ME, 'json')
+      var nearBySearch = NearBySearch(AIzaSyB_QVILHYo25sC2lWgN2RWXswo8LTFu-ME, 'json')
 
       var parameters = {
         location: [40.7127, -74.0059],
