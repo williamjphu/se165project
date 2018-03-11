@@ -1,17 +1,20 @@
 <template>
-  <v-container>
-    <v-layout row align-center wrap>
-      <v-flex d-flex xs12 sm6 md4 offset-sm3 offset-md4>
+  <v-container class="px-0">
+    <!-- CARD layout for search-bar on homepage -->
+    <v-layout row align-center wrap v-if="!bar">
+      <v-flex d-flex xs12 sm10 md6 lg4 offset-sm1 offset-md3 offset-lg4>
         <v-card style="opacity: 0.7;" color="brown darken-1" dark class="text-xs-center">
           <v-container grid-list-xl>
-            <v-form @submit.prevent="submit" ref="form">
+            <v-form>
               <v-layout wrap>
                 <v-flex xs12>
                   <span class="title">BOOK NOW</span>
                 </v-flex>
                 <v-flex xs12>
                   <v-text-field
+                    prepend-icon="room"
                     label="Place"
+                    v-model="location"
                     required
                   ></v-text-field>
                 </v-flex>
@@ -23,6 +26,7 @@
                     width="290px"
                   >
                     <v-text-field
+                      prepend-icon="date_range"
                       required
                       slot="activator"
                       label="Check In"
@@ -42,6 +46,7 @@
                     width="290px"
                   >
                     <v-text-field
+                      prepend-icon="date_range"
                       required
                       slot="activator"
                       label="Check Out"
@@ -53,15 +58,106 @@
                     </v-date-picker>
                   </v-dialog>
                 </v-flex>
+                <v-flex xs12>
+                  <v-select
+                    prepend-icon="vpn_key"
+                    label="Rooms"
+                    v-model="rooms"
+                    :items="[1, 2, 3, 4, 5]"
+                    required
+                  ></v-select>
+                </v-flex>
               </v-layout>
               <v-card-actions>
                 <v-btn
                   light
                   block
                   color="white"
-                  type="submit"
+                  to="search"
                 >Search</v-btn>
               </v-card-actions>
+            </v-form>
+          </v-container>
+        </v-card>
+      </v-flex>
+    </v-layout>
+    <!-- BAR layout for search-bar in results -->
+    <v-layout row align-center wrap v-if="bar">
+      <v-flex d-flex xs12>
+        <v-card class="text-xs-center">
+          <v-container grid-list-xl>
+            <v-form>
+              <v-layout wrap>
+                <v-flex xs12 lg4>
+                  <v-text-field
+                    prepend-icon="room"
+                    label="Place"
+                    v-model="location"
+                    required
+                    solo
+                  ></v-text-field>
+                </v-flex>
+                <v-flex xs12 sm4 md3 lg2>
+                  <v-dialog
+                    v-model="menu"
+                    lazy
+                    full-width
+                    width="290px"
+                  >
+                    <v-text-field
+                      prepend-icon="date_range"
+                      required
+                      slot="activator"
+                      label="Check In"
+                      v-model="dateFormatted"
+                      solo
+                      @blur="date = parseDate(dateFormatted)"
+                    ></v-text-field>
+                    <v-date-picker v-model="date" @input="dateFormatted = formatDate($event)" 
+                      :min="allowedIn.min" :max="allowedIn.max" @change="menu = !menu">
+                    </v-date-picker>
+                  </v-dialog>
+                </v-flex>
+                <v-flex xs12 sm4 md3 lg2>
+                  <v-dialog
+                    v-model="menu2"
+                    lazy
+                    full-width
+                    width="290px"
+                  >
+                    <v-text-field
+                      prepend-icon="date_range"
+                      required
+                      slot="activator"
+                      label="Check Out"
+                      v-model="dateFormatted2"
+                      solo
+                      @blur="date = parseDate(dateFormatted2)"
+                    ></v-text-field>
+                    <v-date-picker v-model="date2" @input="dateFormatted2 = formatDate($event)"
+                      :min="allowedOut.min" :max="allowedOut.max" @change="menu2 = !menu2">
+                    </v-date-picker>
+                  </v-dialog>
+                </v-flex>
+                <v-flex xs12 sm4 md3 lg2>
+                  <v-select
+                    prepend-icon="vpn_key"
+                    label="Rooms"
+                    v-model="rooms"
+                    :items="[1, 2, 3, 4, 5]"
+                    required
+                    solo
+                  ></v-select>
+                </v-flex>
+                <v-flex xs12 md3 lg2>
+                  <v-btn
+                    dark
+                    block
+                    color="brown darken-2"
+                    to="search"
+                  >Search</v-btn>
+                </v-flex>
+              </v-layout>
             </v-form>
           </v-container>
         </v-card>
@@ -72,6 +168,7 @@
 
 <script>
   export default {
+    props: ['bar'],
     data: () => ({
       date: null,   // check-in date picker storage
       date2: null,  // check-out date picker storage
@@ -80,8 +177,7 @@
       menu: false,  // controls if check-in date picker should be displayed
       menu2: false, // controls if check-out date picker should be displayed
       rooms: 1, // room #
-      adults: 1,  // adults #
-      children: 0,  // children #
+      location: null,  // search location
       allowedIn: {min: null, max: null} // range for check-in days (1 year from day after current date)
     }),
     computed: {
