@@ -16,6 +16,7 @@ import fontawesome from '@fortawesome/fontawesome'
 import brands from '@fortawesome/fontawesome-free-brands'
 import { faSpinner } from '@fortawesome/fontawesome-free-solid'
 import FontAwesomeIcon from '@fortawesome/vue-fontawesome'
+import stars from 'vue-star-rating'
 
 fontawesome.library.add(brands, faSpinner)
 
@@ -29,6 +30,7 @@ Vue.component('search-hotels', searchHotels)
 Vue.component('app-alert', alertMsg)
 Vue.component('login-dialog', login)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
+Vue.component('vue-star-rating', stars)
 
 /* eslint-disable no-new */
 new Vue({
