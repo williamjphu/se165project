@@ -16,13 +16,14 @@ import brands from '@fortawesome/fontawesome-free-brands'
 import { faSpinner } from '@fortawesome/fontawesome-free-solid'
 import * as firebase from 'firebase'
 import * as googleplaces from 'googleplaces'
+import * as cors from 'cors'
 import FontAwesomeIcon from '@fortawesome/vue-fontawesome'
 
 fontawesome.library.add(brands, faSpinner)
 
 Vue.use(Vuetify)
-
 Vue.config.productionTip = false
+
 
 Vue.component('sidebar', sidebar)
 Vue.component('navigationbar', navigationbar)
@@ -35,6 +36,7 @@ Vue.component('font-awesome-icon', FontAwesomeIcon)
 new Vue({
   el: '#app',
   router,
+  cors,
   googleplaces,
   store,
   components: { App },

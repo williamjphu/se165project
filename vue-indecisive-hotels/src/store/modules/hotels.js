@@ -1,4 +1,6 @@
 import * as googleplaces from 'googleplaces'
+import * as cors from 'cors'
+/* eslint-disable */
 const state = {
   longitude: null,
   latitude: null,
@@ -41,24 +43,30 @@ const mutations = {
 
 const actions = {
   findPlaces({commit}){
-
     console.log('finding places...')
     var assert = require('assert')
     var googlePlacesReq = require('googleplaces')
     console.log('required')
-    var googlePlacesInstance = new googleplaces()
+    //
+    var googlePlacesInstance = new googleplaces('AIzaSyB_QVILHYo25sC2lWgN2RWXswo8LTFu-ME','json')
     console.log(googlePlacesInstance)
-    // UNFINISHED
-    var nearBySearch = googlePlacesInstance.nearBySearch({'AIzaSyB_QVILHYo25sC2lWgN2RWXswo8LTFu-ME', 'json'}, )
-    console.log('called nearbysearch')
     var parameters = {
       location: [40.7127, -74.0059],
       keyword: "doctor"
     };
-    nearBySearch(parameters, function (error, response) {
-      if (error) throw error;
-      assert.notEqual(response.results.length, 0, 'Place search must not return 0 results');
-    });
+    console.log(googlePlacesInstance.nearBySearch(parameters, function(err, res){
+      if (err){
+        console.log("there's an error");
+      }
+    }))
+    // UNFINISHED
+    //var nearBySearch = googlePlacesInstance.nearBySearch('AIzaSyB_QVILHYo25sC2lWgN2RWXswo8LTFu-ME','json')
+    // console.log(googlePlacesInstance().nearBySearch())
+   
+    // var nearBySearch = googlePlacesInstance.nearBySearch(parameters, function (error, response) {
+    //   if (error) throw error;
+    //   assert.notEqual(response.results.length, 0, 'Place search must not return 0 results');
+    // });
   }
 }
 
