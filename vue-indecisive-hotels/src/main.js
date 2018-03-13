@@ -25,7 +25,6 @@ fontawesome.library.add(brands, faSpinner)
 Vue.use(Vuetify)
 Vue.config.productionTip = false
 
-
 Vue.component('sidebar', sidebar)
 Vue.component('navigationbar', navigationbar)
 Vue.component('search-hotels', searchHotels)
