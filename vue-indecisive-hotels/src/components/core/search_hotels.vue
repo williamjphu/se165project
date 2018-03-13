@@ -1,5 +1,5 @@
 <template>
-  <v-container class="px-0">
+  <v-container px-0>
     <!-- CARD layout for search-bar on homepage -->
     <v-layout row align-center wrap v-if="!bar">
       <v-flex d-flex xs12 sm10 md6 lg4 offset-sm1 offset-md3 offset-lg4>

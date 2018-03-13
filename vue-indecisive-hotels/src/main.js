@@ -18,12 +18,12 @@ import * as firebase from 'firebase'
 import * as googleplaces from 'googleplaces'
 import * as cors from 'cors'
 import FontAwesomeIcon from '@fortawesome/vue-fontawesome'
+import stars from 'vue-star-rating'
 
 fontawesome.library.add(brands, faSpinner)
 
 Vue.use(Vuetify)
 Vue.config.productionTip = false
-
 
 Vue.component('sidebar', sidebar)
 Vue.component('navigationbar', navigationbar)
@@ -31,6 +31,7 @@ Vue.component('search-hotels', searchHotels)
 Vue.component('app-alert', alertMsg)
 Vue.component('login-dialog', login)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
+Vue.component('vue-star-rating', stars)
 
 /* eslint-disable no-new */
 new Vue({
