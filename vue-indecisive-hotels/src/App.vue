@@ -4,6 +4,7 @@
     <navigationbar></navigationbar>
     <v-content>
       <router-view/>
+      <google-map name="searchMap"></google-map>
     </v-content>
     <v-footer fixed app>
       <v-spacer></v-spacer>

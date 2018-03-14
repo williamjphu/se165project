@@ -9,10 +9,13 @@
               <search-filter></search-filter>
             </v-card>
           </v-flex>
-          <v-flex xs12 md9>
+          <v-flex xs12 md9 v-if="!loading">
             <v-card flat>
               <search-card v-for="(hotel, i) in hotels" :key="i" :hotel="hotel"></search-card>
             </v-card>
+          </v-flex>
+          <v-flex xs12 md9 v-if="loading">
+            <v-progress-linear indeterminate color="brown darken-2"></v-progress-linear>
           </v-flex>
         </v-layout>
       </v-container>
@@ -34,19 +37,18 @@
       hotels () {
         var hotels = this.$store.getters.getHotels.concat()
         const sort = this.$store.getters.getSort
-        if (sort === 'Cheapest') {
-          return hotels.sort((a, b) => a.lowestRate - b.lowestRate)
-        } else if (sort === 'Most expensive') {
-          return hotels.sort((a, b) => b.lowestRate - a.lowestRate)
-        } else if (sort === 'Z to A') {
+        if (sort === 'Z to A') {
           return hotels.sort((a, b) => b.name.localeCompare(a.name))
         } else if (sort === 'A to Z') {
           return hotels.sort((a, b) => a.name.localeCompare(b.name))
         } else if (sort === 'Most stars') {
-          return hotels.sort((a, b) => b.stars - a.stars)
+          return hotels.sort((a, b) => b.rating - (a.rating || 0))
         } else {
           return hotels
         }
+      },
+      loading () {
+        return this.$store.getters.locationLoading
       }
     },
     components: {
