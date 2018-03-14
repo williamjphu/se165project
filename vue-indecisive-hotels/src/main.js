@@ -15,8 +15,6 @@ import fontawesome from '@fortawesome/fontawesome'
 import brands from '@fortawesome/fontawesome-free-brands'
 import { faSpinner } from '@fortawesome/fontawesome-free-solid'
 import * as firebase from 'firebase'
-import * as googleplaces from 'googleplaces'
-import * as cors from 'cors'
 import FontAwesomeIcon from '@fortawesome/vue-fontawesome'
 import stars from 'vue-star-rating'
 import googleMap from './components/core/google_map'
@@ -39,8 +37,6 @@ Vue.component('google-map', googleMap)
 new Vue({
   el: '#app',
   router,
-  cors,
-  googleplaces,
   store,
   components: { App },
   template: '<App/>',
