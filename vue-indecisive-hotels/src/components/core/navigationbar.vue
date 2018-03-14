@@ -1,5 +1,5 @@
 <template>
-  <v-container v-bind:style="heightBinder" fluid grid-list-xs class="py-0 px-0">
+  <v-container v-bind:style="heightBinder" fluid grid-list-xs py-0 px-0>
     <v-dialog v-model="showLogin" max-width="350px">
       <login-dialog></login-dialog>
     </v-dialog>

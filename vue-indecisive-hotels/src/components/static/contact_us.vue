@@ -1,10 +1,11 @@
 <template>
-  <v-container style="max-width: 1200px" class="py-0 px-0">
+  <v-container style="max-width: 1200px" py-0 px-0>
     <section>
       <v-container d-flex class="text-xs-center" style="text-shadow: 1px 1px #111111;">
         <v-layout column align-center>
           <v-flex xs12>
             <h3 class="display-3">This is a stub. Please insert your code in here.</h3>
+            <live-chat></live-chat>
           </v-flex>
         </v-layout>
       </v-container>
@@ -13,6 +14,7 @@
 </template>
 
 <script>
+  import liveChat from '@/components/core/live_chat'
   export default {
     data () {
       return {
@@ -21,6 +23,9 @@
     },
     computed: {
       // Any variables that need to be dynamically recomputed go in here
+    },
+    components: {
+      'live-chat': liveChat
     }
   }
 </script>

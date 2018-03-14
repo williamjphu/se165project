@@ -1,5 +1,5 @@
 <template>
-  <v-container class="text-xs-center py-0 px-0">
+  <v-container class="text-xs-center" py-0 px-0>
     <v-layout>
       <v-flex d-flex xs12>
         <v-card>

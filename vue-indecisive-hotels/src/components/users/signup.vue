@@ -1,6 +1,6 @@
 <template>
   <v-container fluid fill-height style="background-image: url(https://www.sanssouci-wien.com/wp-content/uploads/2017/02/sans-souci-wien-lobby_c_gregor-titze-1920x1080.jpg?x57857)">
-  <v-container fluid class="text-xs-center px-0" style="max-width: 1200px">
+  <v-container fluid class="text-xs-center" px-0 style="max-width: 1200px">
     <v-layout>
       <v-flex d-flex xs12 sm6 offset-sm3>
         <v-card style="opacity: 0.95;" color="brown lighten-1">
