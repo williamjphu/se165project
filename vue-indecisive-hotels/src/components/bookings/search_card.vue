@@ -29,7 +29,9 @@
                                 :star-size=15
                                 :show-rating=false
                                 read-only
+                                :max-rating="rating"
                                 inline
+                                active-color="#FFB300"
                                 v-model="rating">
                               </vue-star-rating><br>
                               {{ hotel.vicinity }}

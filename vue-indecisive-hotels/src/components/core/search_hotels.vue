@@ -237,7 +237,7 @@
         const searchQuery = {
           lat: 37.786163522,
           lng: -122.404498382,
-          nights: 1,
+          nights: Math.ceil((new Date(this.date2) - new Date(this.date)) / (1000 * 3600 * 24)),
           rooms: this.rooms
         }
         this.$router.replace('/search')
