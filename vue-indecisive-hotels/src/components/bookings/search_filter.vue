@@ -29,6 +29,9 @@
           </v-expansion-panel-content>
         </v-expansion-panel>
       </v-flex>
+      <v-flex d-flex xs12>
+        <v-btn @click.stop="showMap" block color="brown darken-2" dark>Show Map</v-btn>
+      </v-flex>
     </v-layout>
   </v-container>
 </template>
@@ -44,6 +47,9 @@
       setSort (payload) {
         this.sortMethod = 'Sort from ' + payload
         this.$store.commit('setSort', payload)
+      },
+      showMap () {
+        this.$store.commit('setShowMap', true)
       }
     }
   }

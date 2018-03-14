@@ -19,6 +19,7 @@ import * as googleplaces from 'googleplaces'
 import * as cors from 'cors'
 import FontAwesomeIcon from '@fortawesome/vue-fontawesome'
 import stars from 'vue-star-rating'
+import googleMap from './components/core/google_map'
 
 fontawesome.library.add(brands, faSpinner)
 
@@ -32,6 +33,7 @@ Vue.component('app-alert', alertMsg)
 Vue.component('login-dialog', login)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 Vue.component('vue-star-rating', stars)
+Vue.component('google-map', googleMap)
 
 /* eslint-disable no-new */
 new Vue({

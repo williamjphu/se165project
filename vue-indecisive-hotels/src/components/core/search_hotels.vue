@@ -73,7 +73,7 @@
                   light
                   block
                   color="white"
-                  to="search"
+                  @click="searchPage"
                 >Search</v-btn>
               </v-card-actions>
             </v-form>
@@ -154,24 +154,12 @@
                     dark
                     block
                     color="brown darken-2"
-                    to="search"
+                    @click="searchPage"
                   >Search</v-btn>
                 </v-flex>
               </v-layout>
             </v-form>
           </v-container>
-
-          <v-card-actions>
-            <v-spacer></v-spacer>
-            <v-btn
-              @click ="searchPage"
-            >testing search</v-btn>
-            <v-btn
-              flat
-              color="primary"
-              type="submit"
-            >Search</v-btn>
-          </v-card-actions>
         </v-card>
       </v-flex>
     </v-layout>
@@ -246,8 +234,14 @@
       },
 
       searchPage () {
-        console.log('Testing Search')
-        this.$store.dispatch('findPlaces')
+        const searchQuery = {
+          lat: 37.786163522,
+          lng: -122.404498382,
+          nights: 1,
+          rooms: this.rooms
+        }
+        this.$router.replace('/search')
+        this.$store.dispatch('findPlaces', searchQuery)
       }
     },
     mounted () {
