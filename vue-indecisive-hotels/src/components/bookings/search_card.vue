@@ -37,7 +37,9 @@
                               {{ hotel.vicinity }}
                             </span>
                           </v-flex>
-                          <!-- NOTE: TO ADD MORE STUFF -->
+                          <v-flex xs12 class="text-xs-right">
+                            <v-btn @click.stop="onDetailsClicked" color="brown" dark>More details</v-btn>
+                          </v-flex>
                         </v-layout>
                       </v-container>
                     </v-flex>
@@ -129,6 +131,11 @@
         } else {
           return 'Terrible'
         }
+      }
+    },
+    methods: {
+      onDetailsClicked (event) {
+        this.$emit('hotelSelected', this.hotel)
       }
     }
   }

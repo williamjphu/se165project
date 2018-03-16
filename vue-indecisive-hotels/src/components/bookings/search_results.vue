@@ -1,5 +1,5 @@
 <template>
-  <v-container style="max-width: 1200px" py-0 px-0>
+  <v-container fluid py-0 px-1>
     <search-hotels bar="true" />
     <section>
       <v-container class="text-xs-center" py-0 px-0>
@@ -11,7 +11,7 @@
           </v-flex>
           <v-flex xs12 md9 v-if="!loading">
             <v-card flat>
-              <search-card v-for="(hotel, i) in hotels" :key="i" :hotel="hotel"></search-card>
+              <search-card @hotelSelected="onHotelSelected" v-for="(hotel, i) in hotels" :key="i" :hotel="hotel"></search-card>
             </v-card>
           </v-flex>
           <v-flex xs12 md9 v-if="loading">
@@ -54,6 +54,11 @@
     components: {
       'search-filter': searchFilter,
       'search-card': searchCard
+    },
+    methods: {
+      onHotelSelected (value) {
+        this.$emit('hotelSelected', value)
+      }
     }
   }
 </script>
