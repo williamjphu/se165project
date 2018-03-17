@@ -4,11 +4,13 @@
       <v-container d-flex class="text-xs-center">
         <v-layout row wrap align-center>
           <v-flex xs12>
-            <v-card class="primary--text">
-              <v-card-text class="text-xs-left headline" >
-                <v-icon large left color="primary">help</v-icon> Got a Question ? We've Got Answers.
+            <v-card class="primary--text" color="brown darken-2 flat" >
+              <v-card-text class="text-xs-center headline" style="text-shadow: 1px 1px #111111; color:white;">
+                 Got a Questions  <v-icon x-large left color="white">help</v-icon>  We've Got Answers.
               </v-card-text>
-                <v-card-text class="text-xs-left title">
+              <hr><hr>
+
+                <v-card-text class="text-xs-left title" style="text-shadow: 1px 1px #111111; color: white">
                 To save your time ,We've put answers to the most common inquiries here.Just click on the category and look for your question.
               </v-card-text>
             </v-card>
