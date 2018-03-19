@@ -76,7 +76,7 @@
                   light
                   block
                   color="white"
-                  to="search"
+                  @click="searchPage"
                 >Search</v-btn>
               </v-card-actions>
             </v-form>
@@ -159,7 +159,7 @@
                     dark
                     block
                     color="brown darken-2"
-                    to="search"
+                    @click="searchPage"
                   >Search</v-btn>
                 </v-flex>
               </v-layout>
@@ -239,6 +239,15 @@
           return null
         }
         return new Date(date)
+      },
+      searchPage () {
+        const searchQuery = {
+          location: this.destLocation,
+          nights: Math.ceil((new Date(this.date2) - new Date(this.date)) / (1000 * 3600 * 24)),
+          rooms: this.rooms
+        }
+        this.$router.replace('/search')
+        this.$store.dispatch('findPlaces', searchQuery)
       },
       // get destLocation from autocomplete result
       getDestLocationData (addressData, placeResultData, containerId) {
