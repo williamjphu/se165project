@@ -9,7 +9,7 @@ import signup from '@/components/users/signup'
 import contactUs from '@/components/static/contact_us'
 import faqs from '@/components/static/faqs'
 import mybookings from '@/components/bookings/my_bookings'
-import search from '@/components/bookings/search_results'
+import book from '@/components/bookings/new_booking'
 
 Vue.use(Router)
 
@@ -53,8 +53,8 @@ export default new Router({
     },
     {
       path: '/search',
-      name: 'search',
-      component: search,
+      name: 'book',
+      component: book,
       beforeEnter: ErrorGuard
     },
     {

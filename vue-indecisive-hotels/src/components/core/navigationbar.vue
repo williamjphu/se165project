@@ -1,5 +1,5 @@
 <template>
-  <v-container v-bind:style="heightBinder" fluid grid-list-xs class="py-0 px-0">
+  <v-container v-bind:style="heightBinder" fluid grid-list-xs py-0 px-0>
     <v-dialog v-model="showLogin" max-width="350px">
       <login-dialog></login-dialog>
     </v-dialog>
@@ -22,7 +22,7 @@
                 </v-flex>
               </v-layout>
             </v-flex>
-            <v-flex d-flex justify-center>
+            <v-flex d-flex xs12 justify-center>
               <v-layout row wrap>
                 <v-flex d-flex xs6 v-if="!authenticated">
                   <v-btn flat round block outline color="red darken-1" to="signup">
@@ -35,7 +35,7 @@
                   </v-btn>
                 </v-flex>
                 <v-flex d-flex xs12 v-if="authenticated">
-                  <v-btn flat round block outline color="red darken-1" @click="onLogout">
+                  <v-btn flat round outline color="red darken-1" @click="onLogout">
                     Logout
                   </v-btn>
                 </v-flex>
