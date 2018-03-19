@@ -14,6 +14,7 @@
                   <vuetify-google-autocomplete
                     id="placeCard"
                     label="Adventure location"
+                    placeholder=""
                     prepend-icon="room"
                     types=""
                     required
@@ -93,7 +94,7 @@
                 <v-flex xs12 lg4>
                   <vuetify-google-autocomplete
                     id="placeBar"
-                    label="Adventure location"
+                    placeholder="Adventure location"
                     prepend-icon="room"
                     types=""
                     required
