@@ -99,13 +99,14 @@
     props: ['hotel'],
     computed: {
       discount () {
-        return Math.round((this.originalRate - this.lowestRate) / (this.originalRate) * 100)
+        // Determines the low rate
+        return this.hotel.discount
       },
       originalRate () {
-        return Math.round((this.rating * (921 - 5.1 * (this.hotel.name.length)) + 795) * 0.05)
+        return this.hotel.rounded_price
       },
       lowestRate () {
-        return Math.round((this.rating * (40 - 0.4 * (this.hotel.name.length)) + 18) * 0.8)
+        return (this.originalRate - this.discount / 100 * this.originalRate).toFixed()
       },
       rating () {
         return Math.round(this.hotel.rating || 3)
