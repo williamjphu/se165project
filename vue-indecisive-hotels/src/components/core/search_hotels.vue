@@ -11,12 +11,14 @@
                   <span class="title">BOOK NOW</span>
                 </v-flex>
                 <v-flex xs12>
-                  <v-text-field
+                  <vuetify-google-autocomplete
+                    id="placeCard"
+                    label="Adventure location"
                     prepend-icon="room"
-                    label="Place"
-                    v-model="location"
+                    types=""
                     required
-                  ></v-text-field>
+                    v-on:placechanged="getDestLocationData"
+                  ></vuetify-google-autocomplete>
                 </v-flex>
                 <v-flex xs12>
                   <v-dialog
@@ -89,13 +91,15 @@
             <v-form>
               <v-layout wrap>
                 <v-flex xs12 lg4>
-                  <v-text-field
+                  <vuetify-google-autocomplete
+                    id="placeBar"
+                    label="Adventure location"
                     prepend-icon="room"
-                    label="Place"
-                    v-model="location"
+                    types=""
                     required
                     solo
-                  ></v-text-field>
+                    v-on:placechanged="getDestLocationData"
+                ></vuetify-google-autocomplete>
                 </v-flex>
                 <v-flex xs12 sm4 md3 lg2>
                   <v-dialog
@@ -169,17 +173,20 @@
 <script>
   export default {
     props: ['bar'],
-    data: () => ({
-      date: null,   // check-in date picker storage
-      date2: null,  // check-out date picker storage
-      dateFormatted: null,  // check-in date for textfield
-      dateFormatted2: null, // check-out date for textfield
-      menu: false,  // controls if check-in date picker should be displayed
-      menu2: false, // controls if check-out date picker should be displayed
-      rooms: 1, // room #
-      location: null,  // search location
-      allowedIn: {min: null, max: null} // range for check-in days (1 year from day after current date)
-    }),
+    data () {
+      return {
+        date: null,   // check-in date picker storage
+        date2: null,  // check-out date picker storage
+        dateFormatted: null,  // check-in date for textfield
+        dateFormatted2: null, // check-out date for textfield
+        menu: false,  // controls if check-in date picker should be displayed
+        menu2: false, // controls if check-out date picker should be displayed
+        rooms: 1, // room #
+        destLocation: null,  // trip destLocation
+        radius: null,  // search radius
+        allowedIn: {min: null, max: null} // range for check-in days (1 year from day after current date)
+      }
+    },
     computed: {
       // range for check-out days (1 day more than check-in day, for up to a year)
       allowedOut () {
@@ -231,6 +238,11 @@
           return null
         }
         return new Date(date)
+      },
+      // get destLocation from autocomplete result
+      getDestLocationData (addressData, placeResultData, containerId) {
+        this.destLocation = new window.google.maps.LatLng(
+            {lat: addressData.latitude, lng: addressData.longitude})
       }
     },
     mounted () {

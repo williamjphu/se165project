@@ -16,6 +16,12 @@ import fontawesome from '@fortawesome/fontawesome'
 import brands from '@fortawesome/fontawesome-free-brands'
 import { faSpinner } from '@fortawesome/fontawesome-free-solid'
 import FontAwesomeIcon from '@fortawesome/vue-fontawesome'
+import VuetifyGoogleAutocomplete from 'vuetify-google-autocomplete'
+
+Vue.use(VuetifyGoogleAutocomplete, {
+  // Can also be an object. E.g, for Google Maps Premium API, pass `{ client: <YOUR-CLIENT-ID> }`
+  apiKey: 'AIzaSyBpTKjVXmHXDFoZaoVvACQsWOzIyTJZBeE'
+})
 
 fontawesome.library.add(brands, faSpinner)
 
