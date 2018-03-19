@@ -2,6 +2,7 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import App from './App'
+import * as firebase from 'firebase'
 import router from './router'
 import Vuetify from 'vuetify'
 import 'vuetify/dist/vuetify.min.css'
@@ -14,10 +15,19 @@ import { store } from './store'
 import fontawesome from '@fortawesome/fontawesome'
 import brands from '@fortawesome/fontawesome-free-brands'
 import { faSpinner } from '@fortawesome/fontawesome-free-solid'
-import * as firebase from 'firebase'
 import FontAwesomeIcon from '@fortawesome/vue-fontawesome'
 import stars from 'vue-star-rating'
 import googleMap from './components/core/google_map'
+import VuetifyGoogleAutocomplete from 'vuetify-google-autocomplete'
+
+// Matt's key; different than key used for firebase
+const ourApiKey = 'AIzaSyBpTKjVXmHXDFoZaoVvACQsWOzIyTJZBeE'
+
+// TODO Check if Vue.use is correct way to use this
+Vue.use(VuetifyGoogleAutocomplete, {
+  // Can also be an object. E.g, for Google Maps Premium API, pass `{ client: <YOUR-CLIENT-ID> }`
+  apiKey: ourApiKey
+})
 
 fontawesome.library.add(brands, faSpinner)
 

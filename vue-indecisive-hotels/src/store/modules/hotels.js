@@ -1,9 +1,6 @@
 /* eslint-disable */
 const state = {
-  location: {
-    lat: null,
-    lng: null
-  },
+  location: null,
   showMap: false,
   radius: 1000,
   locationLoading: false,
@@ -13,11 +10,8 @@ const state = {
 }
 
 const getters = {
-  longitude (state) {
-    return state.location.lng
-  },
-  latitude (state) {
-    return state.location.lat
+  location (state) {
+    return state.location
   },
   locationLoading (state) {
     return state.locationLoading
@@ -37,11 +31,8 @@ const getters = {
 }
 
 const mutations = {
-  setLongitude (state, payload) {
-    state.location.lng = payload
-  },
-  setLatitude (state, payload) {
-    state.location.lat = payload
+  setLocation (state, payload) {
+    state.location = payload
   },
   setLocationLoading (state, payload) {
     state.locationLoading = payload
@@ -71,8 +62,7 @@ const actions = {
     console.log(payload)
     commit('setLocationLoading', true)
     commit('clearHotels')
-    commit('setLatitude', payload.lat)
-    commit('setLongitude', payload.lng)
+    commit('setLocation', payload.location)
     console.log(state.location)
     var map = new google.maps.Map(document.getElementById('searchMap'), {
       center: state.location,
