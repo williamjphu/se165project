@@ -1,0 +1,393 @@
+{
+    "faqs": [
+      {
+        "id": 1,
+        "title": "GENERAL INFORMATION",
+        "questions": [
+          {
+            "id": 1,
+            "question": "I.What are the different types and information about hotels and hotel rooms?",
+            "answers": [
+              {
+                "id": 1,
+                "text": "You need to follow these instructions:",
+                "options": [
+                  "Go to Indesive website and enter all the informations you want on “Book Now”, then click “Search”.",
+                  "Now you can see “Deal of the Day”, and you click “Choose Room”.",
+                  "All types of hotels rooms has showed on left side and if you want more informations, you can click on “Show room information”."
+                ]
+              }
+            ]
+          },
+          {
+            "id": 2,
+            "question": "II.Where can I view my rewards?",
+            "answers": [
+              {
+                "id": 1,
+                "text": "You need to follow these instructions:",
+                "options": [
+                  "Click the “myBookings” button on the navigation bar",
+                  "View your reward points are on the top of the screen"
+                ]
+              }
+            ]
+          },
+          {
+            "id": 3,
+            "question": "III.Where can I get information about your company?",
+            "answers": [
+              {
+                "id": 1,
+                "text": "You need to follow these instructions:",
+                "options": [
+                  "Click the “Contact Us” button on the left of navigation bar",
+                  "View our company’s information"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "title": "REGISTRATION AND LOGIN",
+        "questions": [
+          {
+            "id": 1,
+            "question": "I.How do I make an account?",
+            "answers": [
+              {
+                "id": 1,
+                "text": "Please go into Indecisive website and follow these instructions:",
+                "options": [
+                  "Click sign in",
+                  "Click create an account",
+                  "Sign up (quick click by gmail, twitter, facebook, or enter your email address, password, firstname, and lastname)",
+                  "Select create account."
+                ]
+              }
+            ]
+          },
+          {
+            "id": 2,
+            "question": "II.Where do I sign in and out?",
+            "answers": [
+              {
+                "id": 1,
+                "text": "Please go into Indecisive website and follow these instructions:",
+                "options": [
+                  "Click on “Sign in”",
+                  "Choose gmail, twitter, facebook, or your email address.",
+                  "Select “Logout”"
+                ]
+              }
+            ]
+          },
+          {
+            "id": 3,
+            "question": "III.How do I view and edit my account information?",
+            "answers": [
+              {
+                "id": 1,
+                "text": "Please go into Indecisive website and follow these instructions:",
+                "options": [
+                  "Click on “myAccount”",
+                  "Click “edit” on the information you would like to edit",
+                  "Select “Update”"
+                ]
+              }
+            ]
+          },
+          {
+            "id": 4,
+            "question": "IV.How do I view and edit my account information?",
+            "answers": [
+              {
+                "id": 1,
+                "text": "Please log in into Indecisive account on the Indecisive website and follow these instructions:",
+                "options": [
+                  "Click on “myAccount”",
+                  "Choose Account Details, Card Information, or Billing Information.",
+                  "Select view or edit."
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "title": "NEW BOOKING",
+        "questions": [
+          {
+            "id": 1,
+            "question": "I.How do I book a hotel?",
+            "answers": [
+              {
+                "id": 1,
+                "text": "You can find a book hotel by visiting the Indecisive website or following these instructions:",
+                "options": [
+                  "Go to the Indecisive website and enter your destination, date of travel, and rooms.",
+                  "After you click \"Search\" button, you will see many \"Deal of the Day\" and now you can choose any room you want."
+                ]
+              }
+            ]
+          },
+          {
+            "id": 2,
+            "question": "II.I want to change my booking dates. How can I do this?",
+            "answers": [
+              {
+                "id": 1,
+                "text": "",
+                "options": [
+                  "Making a change to your booking may incur a charge. After booking a reservation, you will receive a confirmation email. Included in that email is a link where you can request to amend your booking."
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 4,
+        "title": "RESERVATIONS",
+        "questions": [
+          {
+            "id": 1,
+            "question": "I.Where can I see my current bookings and reservations?",
+            "answers": [
+              {
+                "id": 1,
+                "text": "Please log in into Indecisive account on the Indecisive website and follow these instructions:",
+                "options": [
+                  "Click on myBookings.",
+                  "Choose on Current booking.",
+                  "Select view booking."
+                ]
+              }
+            ]
+          },
+          {
+            "id": 2,
+            "question": "II.How do I view my hotel reservations?",
+            "answers": [
+              {
+                "id": 1,
+                "text": "",
+                "options": [
+                ]
+              }
+            ]
+          },
+          {
+            "id": 3,
+            "question": "III.I lost my confirmation number, how would I retrieve it?",
+            "answers": [
+              {
+                "id": 1,
+                "text": "",
+                "options": [
+                ]
+              }
+            ]
+          },
+          {
+            "id": 4,
+            "question": "IV.Where can I see my recently viewed hotel history?",
+            "answers": [
+              {
+                "id": 1,
+                "text": "Please log in into Indecisive account on the Indecisive website and follow these instructions:",
+                "options": [
+                  "Click on myBookings.",
+                  "Choose view my booking.",
+                  "Select view hotels."
+                ]
+              }
+            ]
+          },
+          {
+            "id": 5,
+            "question": "V.Where can I see my current bookings and reservations?",
+            "answers": [
+              {
+                "id": 1,
+                "text": "Please log in into Indecisive account on the Indecisive website and follow these instructions:",
+                "options": [
+                  "Click on myBookings.",
+                  "Choose on Current booking.",
+                  "Select view booking."
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 5,
+        "title": "CANCELLATION POLICY",
+        "questions": [
+          {
+            "id": 1,
+            "question": "I.What is the cancellation policy and where can I find it?",
+            "answers": [
+              {
+                "id": 1,
+                "text": "",
+                "options": [
+                  "When searching for the hotels, booking conditions will be right under the room type description. To check further, you can also click on the \"Book now\" button which will direct you to the booking form. The cancellation policy/booking conditions link can be found in the middle of every page of the booking form and will also be stated in the confirmation email we send you. Please read this carefully before submitting your booking.",
+                  "**Cancel in 48 hours, fee charge 0% (no keep reward)",
+                  "**Cancel in 1 week, fee charge 50% (no keep reward)",
+                  "**Cancel in 2 weeks, fee charge 90% (but keep the Reward in account)",
+                  "**Cancel in 3 weeks, fee charge 100% (but keep the Reward in account)"
+                ]
+              }
+            ]
+          },
+          {
+            "id": 2,
+            "question": "II.How do I cancel a hotel booking that I have already paid for?",
+            "answers": [
+              {
+                "id": 1,
+                "text": "Please log in into Indecisive account on the Indecisive website and follow these instructions:",
+                "options": [
+                  "Click on myBookings.",
+                  "Choose the booking you wish to cancel.",
+                  "Select “Cancel Room”."
+                ]
+              },
+              {
+                "id": 2,
+                "text": "If you booked without a Indecisive account",
+                "options": [
+                  "Fill out the “Find your booking” form and submit.",
+                  "Select the “Cancel Room” link for the booking you wish to cancel."
+                ]
+              },
+
+              {
+                "id": 3,
+                "text": "★ Good to know:",
+                "options": [
+
+                  "If you don’t see the Cancel Room option or need assistance canceling your booking, please contact Indecisive for help.",
+                  "Indecisive doesn’t charge for cancellations, but the hotel may charge you a cancellation fee(*). Before you cancel your booking, please check the hotel's change and cancellation policies in your confirmation email.",
+                  "We process refunds within 24 hours."
+                ]
+              }
+            ]
+          },
+          {
+            "id": 3,
+            "question": "III.When will I get my refund?",
+            "answers": [
+              {
+                "id": 1,
+                "text": "",
+                "options": [
+                  "If applicable, refunds will immediately be submitted and processed. From the submission/refund date, banks generally take up to 10 business days to process the refund payment and transfer the funds back into a customer's account. It is important to note that some banks can take between 15-30 days or until the next billing cycle. How your reservation is processed will determine what shows on your card statement."
+                ]
+              }
+            ]
+          },
+          {
+            "id": 4,
+            "question": "IV.Do you charge for cancellations?",
+            "answers": [
+              {
+                "id": 1,
+                "text": "",
+                "options": [
+                  "See this question (What is the cancellation policy and where can I find it?)"
+                ]
+              }
+            ]
+
+          },
+          {
+            "id": 5,
+            "question": "V.How do I figure out the correct cancellation date?",
+            "answers": [
+              {
+                "id": 1,
+                "text": "",
+                "options": [
+                  "Cancellation policy dates are calculated based on the start of the day of when you booked the reservation."
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 6,
+        "title": "PAYMENT AND REFUNDS",
+        "questions": [
+          {
+            "id": 1,
+            "question": "I.Will I need a credit card to make a hotel reservation?",
+            "answers": [
+              {
+                "id": 1,
+                "text": "",
+                "options": [
+                  "Yes, we only accept credit cards/debit cards. If you have any questions regarding charges to your credit card, please contact us. "
+                ]
+              }
+            ]
+          },
+          {
+            "id": 2,
+            "question": "II.Will my credit/debit card be charged even if forget to cancel my hotel reservation?",
+            "answers": [
+              {
+                "id": 1,
+                "text": "",
+                "options": [
+                  "Yes, booking a reservation automatically charges to your account. If you would like a refund, please contact us."
+                ]
+              }
+            ]
+          }
+
+        ]
+      },
+      {
+        "id": 7,
+        "title": "CUSTOMER SERVICE",
+        "questions": [
+          {
+            "id": 1,
+            "question": "I.Who can I contact to get an answer to an inquiry?",
+            "answers": [
+              {
+                "id": 1,
+                "text": "",
+                "options": [
+                  "Chat with a representative through our online chat.",
+                  "Contact us by phone at our US numbers 24 hours a day, 7 days a week. You can also email us at  blah@indecisive.com. We will reply within 48 business hours."
+                ]
+              }
+            ]
+          },
+          {
+            "id": 2,
+            "question": "II.Where can I find customer service?",
+            "answers": [
+              {
+                "id": 1,
+                "text": "",
+                "options": [
+                  "Click the “Contact Us” button on the left of navigation bar",
+                  "Scroll down to Customer Service"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+
+    ]
+  }
