@@ -1,5 +1,5 @@
 <template>
-  <v-container class="py-0 px-0">
+  <v-container style="max-width: 1200px" class="py-0 px-0">
     <section>
       <v-container d-flex class="text-xs-center">
         <v-layout row wrap align-center>
