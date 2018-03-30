@@ -47,14 +47,16 @@ const actions = {
             paymentInfo: null,
             bookings: []
           }
-          // const firebaseUser = {
-          //   first: payload.first,
-          //   last: payload.last,
-          //   paymentInfo: null,
-          //   bookings: []
-          // }
-          // firebase.database().ref('users/' + user.uid).set(firebaseUser)
-          commit('setUser', newUser)
+          firebase.database().ref('users/' + user.uid).set(newUser)
+            .then(
+              data => {
+                commit('setUser', newUser)
+              })
+            .catch(
+              error => {
+                console.log(error)
+                commit('setError', error)
+              })
           commit('setLoading', false)
         }
       )
@@ -73,17 +75,32 @@ const actions = {
     firebase.auth().signInWithPopup(provider)
       .then(
         result => {
-          console.log(result)
-          const newUser = {
-            id: result.user.uid,
-            first: result.additionalUserInfo.profile.given_name,
-            last: result.additionalUserInfo.profile.family_name,
-            paymentInfo: null,
-            bookings: []
-          }
-          commit('setUser', newUser)
+          firebase.database().ref('users/').once('value', function (snapshot) {
+            if (snapshot.hasChild(result.user.uid)) {
+              var currUser = snapshot.child(result.user.uid).val()
+              currUser.id = result.user.uid
+              commit('setUser', currUser)
+            } else {
+              const newUser = {
+                id: result.user.uid,
+                first: result.additionalUserInfo.profile.given_name,
+                last: result.additionalUserInfo.profile.family_name,
+                paymentInfo: null,
+                bookings: []
+              }
+              firebase.database().ref('users/' + result.user.uid).set(newUser)
+                .then(
+                  data => {
+                    commit('setUser', newUser)
+                  })
+                .catch(
+                  error => {
+                    console.log(error)
+                    commit('setError', error)
+                  })
+            }
+          })
           commit('setLoading', false)
-          console.log(newUser)
         }
       )
       .catch(
@@ -101,17 +118,32 @@ const actions = {
     firebase.auth().signInWithPopup(provider)
       .then(
         result => {
-          console.log(result)
-          const newUser = {
-            id: result.user.uid,
-            first: result.additionalUserInfo.profile.first_name,
-            last: result.additionalUserInfo.profile.last_name,
-            paymentInfo: null,
-            bookings: []
-          }
-          commit('setUser', newUser)
+          firebase.database().ref('users/').once('value', function (snapshot) {
+            if (snapshot.hasChild(result.user.uid)) {
+              var currUser = snapshot.child(result.user.uid).val()
+              currUser.id = result.user.uid
+              commit('setUser', currUser)
+            } else {
+              const newUser = {
+                id: result.user.uid,
+                first: result.additionalUserInfo.profile.first_name,
+                last: result.additionalUserInfo.profile.last_name,
+                paymentInfo: null,
+                bookings: []
+              }
+              firebase.database().ref('users/' + result.user.uid).set(newUser)
+                .then(
+                  data => {
+                    commit('setUser', newUser)
+                  })
+                .catch(
+                  error => {
+                    console.log(error)
+                    commit('setError', error)
+                  })
+            }
+          })
           commit('setLoading', false)
-          console.log(newUser)
         }
       )
       .catch(
@@ -129,17 +161,32 @@ const actions = {
     firebase.auth().signInWithPopup(provider)
       .then(
         result => {
-          console.log(result)
-          const newUser = {
-            id: result.user.uid,
-            first: result.additionalUserInfo.profile.name,
-            last: result.additionalUserInfo.profile.name,
-            paymentInfo: null,
-            bookings: []
-          }
-          commit('setUser', newUser)
+          firebase.database().ref('users/').once('value', function (snapshot) {
+            if (snapshot.hasChild(result.user.uid)) {
+              var currUser = snapshot.child(result.user.uid).val()
+              currUser.id = result.user.uid
+              commit('setUser', currUser)
+            } else {
+              const newUser = {
+                id: result.user.uid,
+                first: result.additionalUserInfo.profile.name,
+                last: result.additionalUserInfo.profile.name,
+                paymentInfo: null,
+                bookings: []
+              }
+              firebase.database().ref('users/' + result.user.uid).set(newUser)
+                .then(
+                  data => {
+                    commit('setUser', newUser)
+                  })
+                .catch(
+                  error => {
+                    console.log(error)
+                    commit('setError', error)
+                  })
+            }
+          })
           commit('setLoading', false)
-          console.log(newUser)
         }
       )
       .catch(
@@ -156,22 +203,10 @@ const actions = {
     firebase.auth().signInWithEmailAndPassword(payload.email, payload.password)
       .then(
         user => {
-          console.log(user)
-          const newUser = {
-            id: user.uid,
-            first: payload.first,
-            last: payload.last,
-            paymentInfo: null,
-            bookings: []
+          firebase.database().ref('users/').once('value', function (snapshot) {
+            var currUser = snapshot.child(result.user.uid).val()
+            commit('setUser', currUser)
           }
-          // const firebaseUser = {
-          //   first: payload.first,
-          //   last: payload.last,
-          //   paymentInfo: null,
-          //   bookings: []
-          // }
-          // firebase.database().ref('users/' + user.uid).set(firebaseUser)
-          commit('setUser', newUser)
           commit('setLoading', false)
         }
       )
