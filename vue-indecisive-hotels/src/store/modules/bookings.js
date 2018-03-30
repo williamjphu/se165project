@@ -19,7 +19,7 @@ const getters = {
 }
 
 const mutations = {
-  setBooking(state, payload) {
+  setBooking (state, payload) {
     state.booking = payload
   },
   setBookingLoading (state, payload) {
@@ -30,7 +30,7 @@ const mutations = {
   },
   clearBookingError (state, payload) {
     state.bookingError = null
-  },
+  }
 }
 
 const actions = {
@@ -38,20 +38,25 @@ const actions = {
     commit('setBookingLoading', true)
     commit('clearBookingError')
     var database = firebase.database()
-    var hotel = payload.selectedHotel
-    
+    var hotel = {
+      id: payload.selectedHotel.id,
+      name: payload.selectedHotel.name,
+      rating: payload.selectedHotel.rating,
+      icon: payload.selectedHotel.icon,
+      price: payload.selectedHotel.price
+    }
+    console.log('hotel data:', hotel)
     var bookingsRef = database.ref('bookings/' + this.getters.user.id)
-    console.log(bookingsRef)
     bookingsRef.push().set({
-      hotel: "myHotel",
-      payment: "testpayment",
-      startDate: "testStartDate",
-      endDate: "testEndDate",
+      hotel: hotel,
+      payment: 'testpayment',
+      startDate: 'testStartDate',
+      endDate: 'testEndDate',
       rooms: 2,
-      discountModifier: "testDiscount",
-      status: "testStatus",
-      createdAt: "blah",
-      updatedAt: "blah",
+      discountModifier: 'testDiscount',
+      status: 'testStatus',
+      createdAt: 'blah',
+      updatedAt: 'blah'
     })
     .then(
       booking => {
@@ -68,9 +73,8 @@ const actions = {
     )
   },
 
-  retrieveBookings({ commit }, payload){
+  retrieveBookings ({ commit }, payload) {
     commit('setBookingLoading', true)
-    
   }
 }
 
