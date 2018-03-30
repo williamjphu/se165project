@@ -37,6 +37,9 @@ const actions = {
   registerUser ({commit}, payload) {
     commit('setLoading', true)
     commit('clearError')
+
+    var database = firebase.database()
+    
     firebase.auth().createUserWithEmailAndPassword(payload.email, payload.password)
       .then(
         user => {
@@ -47,6 +50,16 @@ const actions = {
             paymentInfo: null,
             bookings: []
           }
+          var usersRef = database.ref('users/' + user.uid)
+          console.log('first: ' + payload.first)
+          console.log('last: ' + payload.last)
+
+          usersRef.set({
+            first: "TestFirst",
+            last: "TestLast",
+            paymentInfo: null,
+            bookings: []
+          })
           // const firebaseUser = {
           //   first: payload.first,
           //   last: payload.last,
@@ -54,6 +67,7 @@ const actions = {
           //   bookings: []
           // }
           // firebase.database().ref('users/' + user.uid).set(firebaseUser)
+          
           commit('setUser', newUser)
           commit('setLoading', false)
         }

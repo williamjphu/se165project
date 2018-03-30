@@ -26,7 +26,7 @@
         </v-stepper-content>
         <v-stepper-content step="4">
           <v-card color="grey lighten-1" class="mb-5" height="200px"></v-card>
-          <v-btn color="brown darken-2" dark @click.stop="currentStep = 1">Finish</v-btn>
+          <v-btn color="brown darken-2" dark @click.stop="currentStep = 1" @click = "bookingCreate">Finish</v-btn>
           <v-btn flat @click.stop="currentStep = 3">Back</v-btn>
         </v-stepper-content>
       </v-stepper-items>
@@ -53,6 +53,11 @@
         this.selectedHotel = value
         console.log(this.selectedHotel)
         this.currentStep = 2
+      },
+      bookingCreate () {
+        console.log('Creating Booking')
+        console.log(this.$store)
+        this.$store.dispatch('createBooking', { selectedHotel: this.selectedHotel })
       }
     }
   }
