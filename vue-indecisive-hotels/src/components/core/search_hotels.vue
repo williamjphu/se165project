@@ -1,5 +1,5 @@
 <template>
-  <v-container px-0>
+  <v-container class="px-0">
     <!-- CARD layout for search-bar on homepage -->
     <v-layout row align-center wrap v-if="!bar">
       <v-flex d-flex xs12 sm10 md6 lg4 offset-sm1 offset-md3 offset-lg4>
@@ -11,12 +11,15 @@
                   <span class="title">BOOK NOW</span>
                 </v-flex>
                 <v-flex xs12>
-                  <v-text-field
+                  <vuetify-google-autocomplete
+                    id="placeCard"
+                    label="Adventure location"
+                    placeholder=""
                     prepend-icon="room"
-                    label="Place"
-                    v-model="location"
+                    types=""
                     required
-                  ></v-text-field>
+                    v-on:placechanged="getDestLocationData"
+                  ></vuetify-google-autocomplete>
                 </v-flex>
                 <v-flex xs12>
                   <v-dialog
@@ -89,13 +92,15 @@
             <v-form>
               <v-layout wrap>
                 <v-flex xs12 lg4>
-                  <v-text-field
+                  <vuetify-google-autocomplete
+                    id="placeBar"
+                    placeholder="Adventure location"
                     prepend-icon="room"
-                    label="Place"
-                    v-model="location"
+                    types=""
                     required
                     solo
-                  ></v-text-field>
+                    v-on:placechanged="getDestLocationData"
+                ></vuetify-google-autocomplete>
                 </v-flex>
                 <v-flex xs12 sm4 md3 lg2>
                   <v-dialog
@@ -169,17 +174,20 @@
 <script>
   export default {
     props: ['bar'],
-    data: () => ({
-      date: null,   // check-in date picker storage
-      date2: null,  // check-out date picker storage
-      dateFormatted: null,  // check-in date for textfield
-      dateFormatted2: null, // check-out date for textfield
-      menu: false,  // controls if check-in date picker should be displayed
-      menu2: false, // controls if check-out date picker should be displayed
-      rooms: 1, // room #
-      location: null,  // search location
-      allowedIn: {min: null, max: null} // range for check-in days (1 year from day after current date)
-    }),
+    data () {
+      return {
+        date: null,   // check-in date picker storage
+        date2: null,  // check-out date picker storage
+        dateFormatted: null,  // check-in date for textfield
+        dateFormatted2: null, // check-out date for textfield
+        menu: false,  // controls if check-in date picker should be displayed
+        menu2: false, // controls if check-out date picker should be displayed
+        rooms: 1, // room #
+        destLocation: null,  // trip destLocation
+        radius: null,  // search radius
+        allowedIn: {min: null, max: null} // range for check-in days (1 year from day after current date)
+      }
+    },
     computed: {
       // range for check-out days (1 day more than check-in day, for up to a year)
       allowedOut () {
@@ -232,16 +240,19 @@
         }
         return new Date(date)
       },
-
       searchPage () {
         const searchQuery = {
-          lat: 37.786163522,
-          lng: -122.404498382,
+          location: this.destLocation,
           nights: Math.ceil((new Date(this.date2) - new Date(this.date)) / (1000 * 3600 * 24)),
           rooms: this.rooms
         }
         this.$router.replace('/search')
         this.$store.dispatch('findPlaces', searchQuery)
+      },
+      // get destLocation from autocomplete result
+      getDestLocationData (addressData, placeResultData, containerId) {
+        this.destLocation = new window.google.maps.LatLng(
+            {lat: addressData.latitude, lng: addressData.longitude})
       }
     },
     mounted () {

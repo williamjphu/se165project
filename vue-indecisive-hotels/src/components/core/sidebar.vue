@@ -26,6 +26,7 @@
         value="true"
         to="signin"
         v-if="!authenticated"
+        @click="visible = !visible"
       >
         <v-list-tile-action>
           <font-awesome-icon size="lg" color="black" icon="sign-in-alt"/>
@@ -38,6 +39,7 @@
         value="true"
         to="signup"
         v-if="!authenticated"
+        @click="visible = !visible"
       >
         <v-list-tile-action>
           <font-awesome-icon size="lg" color="black" icon="user-plus"/>
@@ -90,6 +92,7 @@
     },
     methods: {
       onLogout () {
+        this.$router.push('/')
         this.$store.dispatch('logout')
         this.$store.commit('setShowSidebar', false)
       }

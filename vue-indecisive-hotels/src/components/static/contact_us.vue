@@ -5,7 +5,6 @@
         <v-layout column align-center>
           <v-flex xs12>
             <h3 class="display-3">This is a stub. Please insert your code in here.</h3>
-            <live-chat></live-chat>
           </v-flex>
         </v-layout>
       </v-container>
@@ -14,7 +13,6 @@
 </template>
 
 <script>
-  import liveChat from '@/components/core/live_chat'
   export default {
     data () {
       return {
@@ -23,9 +21,6 @@
     },
     computed: {
       // Any variables that need to be dynamically recomputed go in here
-    },
-    components: {
-      'live-chat': liveChat
     }
   }
 </script>

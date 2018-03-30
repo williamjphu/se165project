@@ -1,6 +1,6 @@
 {
   "name": "vue-indecisive-hotels",
-  "version": "1.0.0",
+  "version": "0.3.0",
   "description": "SE 165 project based on hotels.com",
   "author": "Quang Duy Luong <qdluong.se@gmail.com>",
   "private": true,
@@ -21,6 +21,7 @@
     "vue-router": "^3.0.1",
     "vue-star-rating": "^1.5.1",
     "vuetify": "^1.0.11",
+    "vuetify-google-autocomplete": "^2.0.0-Alpha.8",
     "vuex": "^3.0.1"
   },
   "devDependencies": {

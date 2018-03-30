@@ -44,9 +44,7 @@
 
 <style scoped>
   .google-map {
-    width: 800px;
-    height: 600px;
-    margin: 0 auto;
-    background: gray;
+    min-height: 600px;
+    min-width: 360px;
   }
 </style>
