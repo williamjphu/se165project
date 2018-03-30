@@ -70,8 +70,18 @@
                     <v-flex xs12 pb-2>
                       <v-text-field
                         prepend-icon="person"
-                        label="Full name"
-                        v-model="name"
+                        label="First name"
+                        v-model="firstName"
+                        :rules="nameRules"
+                        required
+                        solo
+                      ></v-text-field>
+                    </v-flex>
+                    <v-flex xs12 pb-2>
+                      <v-text-field
+                        prepend-icon="person"
+                        label="Last name"
+                        v-model="lastName"
                         :rules="nameRules"
                         required
                         solo
@@ -134,7 +144,8 @@
   export default {
     data: () => ({
       valid: true,
-      name: '',
+      firstName: '',
+      lastName: '',
       password: '',
       password2: '',
       passwordVisible: true,
@@ -181,8 +192,7 @@
       },
       submit () {
         if (this.$refs.form.validate()) {
-          console.log({ email: this.email })
-          this.$store.dispatch('registerUser', { email: this.email, password: this.password })
+          this.$store.dispatch('registerUser', { email: this.email, password: this.password, first: this.firstName, last: this.lastName })
         }
       },
       clear () {

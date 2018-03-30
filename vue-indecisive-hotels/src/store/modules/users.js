@@ -204,10 +204,10 @@ const actions = {
       .then(
         user => {
           firebase.database().ref('users/').once('value', function (snapshot) {
-            var currUser = snapshot.child(result.user.uid).val()
+            var currUser = snapshot.child(user.uid).val()
             commit('setUser', currUser)
-          }
-          commit('setLoading', false)
+            commit('setLoading', false)
+          })
         }
       )
       .catch(
