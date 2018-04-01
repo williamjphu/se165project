@@ -18,8 +18,8 @@
           <hotel-details :data="selectedHotel" @bookClicked="onHotelBooked" @backClicked="currentStep = 1"></hotel-details>
         </v-stepper-content>
         <v-stepper-content step="3">
-          <v-card color="grey lighten-1" class="mb-5" height="200px"></v-card>
-          <v-btn color="brown darken-2" dark @click.stop="currentStep = 4">Continue</v-btn>
+          <payment-details></payment-details>
+          <v-btn v-if="$store.getters.user !== null && $store.getters.user !== undefined" color="brown darken-2" dark @click.stop="currentStep = 4">Continue</v-btn>
           <v-btn flat @click.stop="currentStep = 2">Back</v-btn>
         </v-stepper-content>
         <v-stepper-content step="4">
@@ -35,6 +35,7 @@
 <script>
   import searchResults from './search_results'
   import hotelDetails from './hotel_details'
+  import paymentDetails from './payment_details'
   export default {
     data () {
       return {
@@ -45,7 +46,8 @@
     },
     components: {
       'search-page': searchResults,
-      'hotel-details': hotelDetails
+      'hotel-details': hotelDetails,
+      'payment-details': paymentDetails
     },
     methods: {
       onHotelSelected (value) {

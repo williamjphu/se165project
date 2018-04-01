@@ -38,25 +38,16 @@ const actions = {
     commit('setBookingLoading', true)
     commit('clearBookingError')
     var database = firebase.database()
-    var hotel = {
-      id: payload.selectedHotel.id,
-      name: payload.selectedHotel.name,
-      rating: payload.selectedHotel.rating,
-      icon: payload.selectedHotel.icon,
-      price: payload.selectedHotel.price
-    }
-    console.log('hotel data:', hotel)
+    var bookingDetails = payload
+    console.log('hotel data:', bookingDetails)
     var bookingsRef = database.ref('bookings/' + this.getters.user.id)
     bookingsRef.push().set({
-      hotel: hotel,
+      bookingDetails: bookingDetails,
       payment: 'testpayment',
-      startDate: 'testStartDate',
-      endDate: 'testEndDate',
-      rooms: 2,
-      discountModifier: 'testDiscount',
-      status: 'testStatus',
-      createdAt: 'blah',
-      updatedAt: 'blah'
+      discountModifier: 0,
+      status: 'pending',
+      createdAt: new Date().toISOString().substr(0, 10),
+      updatedAt: new Date().toISOString().substr(0, 10)
     })
     .then(
       booking => {

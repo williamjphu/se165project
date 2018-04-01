@@ -69,16 +69,22 @@
                       <v-flex xs12>
                         <v-container fluid px-0 py-0 grid-list-xs>
                           <v-layout row wrap>
-                            <v-flex xs6 class="text-xs-left" pb-0>
-                              Price per night:
+                            <v-flex xs9 class="text-xs-left" pb-0>
+                              Price for 1 night per room:
                             </v-flex>
-                            <v-flex xs6 class="text-xs-right" pb-0>
+                            <v-flex xs3 class="text-xs-right" pb-0>
                               $ {{ data.rounded_price }}
                             </v-flex>
-                            <v-flex xs6 class="text-xs-left" pt-0>
-                              Price for {{ query.nights }} nights:
+                            <v-flex xs9 class="text-xs-left" py-0>
+                              Price for {{ query.nights }} nights per room:
                             </v-flex>
-                            <v-flex xs6 class="text-xs-right green--text" pt-0>
+                            <v-flex xs3 class="text-xs-right" py-0>
+                              $ {{ query.nights * data.rounded_price }}
+                            </v-flex>
+                            <v-flex xs9 class="text-xs-left" pt-0>
+                              Price for {{ query.nights }} nights for {{ query.rooms }} rooms:
+                            </v-flex>
+                            <v-flex xs3 class="text-xs-right green--text" pt-0>
                               $ {{ total }}
                             </v-flex>
                           </v-layout>
@@ -145,12 +151,13 @@
         return this.$store.getters.getQuery
       },
       total () {
-        return this.$store.getters.getQuery.nights * this.data.rounded_price
+        return this.$store.getters.getQuery.nights * this.data.rounded_price * this.$store.getters.getQuery.rooms
       }
     },
     methods: {
       onBookClicked () {
         var hotel = {
+          id: this.hotelDetails.place_id,
           name: this.hotelDetails.name,
           address: this.hotelDetails.formatted_address,
           photo: typeof this.hotelDetails.photos !== 'undefined'
@@ -165,7 +172,7 @@
         console.log(hotel)
         this.$emit('bookClicked', hotel)
       },
-      onBackClicked() {
+      onBackClicked () {
         this.$emit('backClicked')
       }
     },

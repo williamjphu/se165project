@@ -249,7 +249,7 @@
           location: this.destLocation,
           dateIn: this.dateFormatted,
           dateOut: this.dateFormatted2,
-          nights: Math.ceil((new Date(this.date2) - new Date(this.date)) / (1000 * 3600 * 24)),
+          nights: Math.ceil((new Date(this.dateFormatted2) - new Date(this.dateFormatted)) / (1000 * 3600 * 24)),
           rooms: this.rooms
         }
         this.$router.replace('/search')

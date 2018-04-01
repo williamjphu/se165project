@@ -139,7 +139,6 @@
       user (value) {
         if (value !== null && value !== undefined) {
           this.$store.commit('setShowLogin', false)
-          this.$router.push('/')
         }
       }
     }
