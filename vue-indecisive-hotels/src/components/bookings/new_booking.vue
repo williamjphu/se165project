@@ -8,16 +8,14 @@
         <v-divider></v-divider>
         <v-stepper-step step="3" :complete="currentStep > 3">Payment Details</v-stepper-step>
         <v-divider></v-divider>
-        <v-stepper-step step="4">Confirm Booking</v-stepper-step>
+        <v-stepper-step step="4">Booking Confirmation</v-stepper-step>
       </v-stepper-header>
       <v-stepper-items>
         <v-stepper-content step="1">
           <search-page @hotelSelected="onHotelSelected"></search-page>
         </v-stepper-content>
         <v-stepper-content step="2">
-          <hotel-details :data="selectedHotel"></hotel-details>
-          <v-btn color="brown darken-2" dark @click.stop="currentStep = 3">Continue</v-btn>
-          <v-btn flat @click.stop="currentStep = 1">Back</v-btn>
+          <hotel-details :data="selectedHotel" @bookClicked="onHotelBooked" @backClicked="currentStep = 1"></hotel-details>
         </v-stepper-content>
         <v-stepper-content step="3">
           <v-card color="grey lighten-1" class="mb-5" height="200px"></v-card>
@@ -41,7 +39,8 @@
     data () {
       return {
         currentStep: 0,
-        selectedHotel: null
+        selectedHotel: null,
+        bookedHotel: null
       }
     },
     components: {
@@ -51,13 +50,16 @@
     methods: {
       onHotelSelected (value) {
         this.selectedHotel = value
-        console.log(this.selectedHotel)
         this.currentStep = 2
+      },
+      onHotelBooked (value) {
+        this.bookedHotel = value
+        this.currentStep = 3
       },
       bookingCreate () {
         console.log('Creating Booking')
         console.log(this.$store)
-        this.$store.dispatch('createBooking', { selectedHotel: this.selectedHotel })
+        this.$store.dispatch('createBooking', { selectedHotel: this.bookedHotel })
       }
     }
   }

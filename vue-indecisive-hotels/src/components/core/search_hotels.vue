@@ -19,6 +19,7 @@
                     types=""
                     required
                     v-on:placechanged="getDestLocationData"
+                    v-on:no-results-found="destLocation = null"
                   ></vuetify-google-autocomplete>
                 </v-flex>
                 <v-flex xs12>
@@ -74,6 +75,7 @@
               <v-card-actions>
                 <v-btn
                   light
+                  :disabled="destLocation === null"
                   block
                   color="white"
                   @click="searchPage"
@@ -100,6 +102,7 @@
                     required
                     solo
                     v-on:placechanged="getDestLocationData"
+                    v-on:no-results-found="destLocation = null"
                 ></vuetify-google-autocomplete>
                 </v-flex>
                 <v-flex xs12 sm4 md3 lg2>
@@ -156,8 +159,9 @@
                 </v-flex>
                 <v-flex xs12 md3 lg2>
                   <v-btn
-                    dark
+                    :dark="destLocation !== null"
                     block
+                    :disabled="destLocation === null"
                     color="brown darken-2"
                     @click="searchPage"
                   >Search</v-btn>
@@ -243,6 +247,8 @@
       searchPage () {
         const searchQuery = {
           location: this.destLocation,
+          dateIn: this.dateFormatted,
+          dateOut: this.dateFormatted2,
           nights: Math.ceil((new Date(this.date2) - new Date(this.date)) / (1000 * 3600 * 24)),
           rooms: this.rooms
         }
@@ -263,8 +269,14 @@
       const min = minDate.toISOString().substr(0, 10)
       const max = maxDate.toISOString().substr(0, 10)
       this.allowedIn = {min, max}
-      this.dateFormatted = this.formatDate(this.allowedIn.min)
-      this.dateFormatted2 = this.formatDate(this.allowedOut.min)
+      if (this.$store.getters.getQuery === null || this.$store.getters.getQuery === undefined) {
+        this.dateFormatted = this.formatDate(this.allowedIn.min)
+        this.dateFormatted2 = this.formatDate(this.allowedOut.min)
+      } else {
+        this.dateFormatted = this.$store.getters.getQuery.dateIn
+        this.dateFormatted2 = this.$store.getters.getQuery.dateOut
+        this.rooms = this.$store.getters.getQuery.rooms
+      }
       this.date = this.parseDate(this.dateFormatted)
       this.date2 = this.parseDate(this.dateFormatted2)
       // calculate the day difference between two Date objects:

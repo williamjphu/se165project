@@ -1,6 +1,6 @@
 <template>
   <v-layout row justify-center>
-    <v-dialog v-model="dialog" fullscreen transition="dialog-bottom-transition" :overlay="false">
+    <v-dialog v-model="dialog" :overlay="false">
       <v-card>
         <v-toolbar dark color="brown darken-2">
           <v-btn icon @click.native="dialog = false" dark>
@@ -33,7 +33,7 @@
     mounted () {
       const element = document.getElementById(this.name)
       const options = {
-        zoom: 14,
+        zoom: 13,
         center: new google.maps.LatLng(51.501527,-0.1921837)
       }
       const map = new google.maps.Map(element, options)
