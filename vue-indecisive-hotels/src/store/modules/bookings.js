@@ -3,7 +3,8 @@ import * as firebase from 'firebase'
 const state = {
   bookings: [],
   bookingLoading: false,
-  bookingError: null
+  bookingError: null,
+  redeemPointsEligible: false
 }
 
 const getters = {
@@ -15,6 +16,9 @@ const getters = {
   },
   bookingError (state) {
     return state.bookingError
+  },
+  redeemPointsEligible (state) {
+    return state.redeemPointsEligible
   }
 }
 
@@ -33,6 +37,9 @@ const mutations = {
   },
   addBooking (state, payload) {
     state.bookings.push(payload)
+  },
+  setRedeemPointsEligible (state, payload) {
+    state.redeemPointsEligible = payload
   }
 }
 
@@ -57,6 +64,9 @@ const actions = {
           if (user) {
             if (user) {
               user.rewardPoints++
+              if (user.rewardPoints >= 10) {
+                commit('setRedeemPointsEligible', true)
+              }
               console.log('rewards', user.rewardPoints)
             } else {
               console.log('Reward points not successfully incremented')
@@ -64,6 +74,7 @@ const actions = {
           }
           return user
         })
+        console.log('eligible: ' + this.getters.redeemPointsEligible)
         dispatch('retrieveBookings')
 
         commit('setBookingLoading', false)
@@ -97,6 +108,9 @@ const actions = {
           if (user.rewardPoints >= 10) {
             user.rewardPoints = user.rewardPoints - 10
             console.log('rewards', user.rewardPoints)
+            if (user.rewardPoints < 10) {
+              commit('setRedeemPointsEligible', false)
+            }
           } else {
             // show error here for the user!!
             console.log('Not enough points')
@@ -106,6 +120,17 @@ const actions = {
         }
       }
       return user
+    })
+    console.log('eligible: ' + this.getters.redeemPointsEligible)
+  },
+
+  checkPointsElegible ({ commit }) {
+    var ref = firebase.database().ref('users/' + this.getters.user.id)
+
+    ref.on('value', function (snapshot) {
+      console.log('reward points: ' + snapshot.val().rewardPoints)
+    }, function (error) {
+      console.log('Error: ' + error.code)
     })
   }
 }
