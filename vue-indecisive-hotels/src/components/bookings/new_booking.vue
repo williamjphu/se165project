@@ -18,9 +18,7 @@
           <hotel-details :data="selectedHotel" @bookClicked="onHotelBooked" @backClicked="currentStep = 1"></hotel-details>
         </v-stepper-content>
         <v-stepper-content step="3">
-          <payment-details></payment-details>
-          <v-btn v-if="$store.getters.user !== null && $store.getters.user !== undefined" color="brown darken-2" dark @click.stop="currentStep = 4">Continue</v-btn>
-          <v-btn flat @click.stop="currentStep = 2">Back</v-btn>
+          <payment-details @checkout="onCheckout" @backClicked="currentStep = 2"></payment-details>
         </v-stepper-content>
         <v-stepper-content step="4">
           <v-card color="grey lighten-1" class="mb-5" height="200px"></v-card>
@@ -58,10 +56,13 @@
         this.bookedHotel = value
         this.currentStep = 3
       },
+      onCheckout (value) {
+        this.bookedHotel.discount = value.discount
+        this.bookedHotel.totalCharge = this.bookedHotel.price * (this.bookedHotel.rooms * this.bookedHotel.nights - (value.discount ? 1 : 0))
+        this.currentStep = 4
+      },
       bookingCreate () {
-        console.log('Creating Booking')
-        console.log(this.$store)
-        this.$store.dispatch('createBooking', { selectedHotel: this.bookedHotel })
+        this.$store.dispatch('createBooking', this.bookedHotel)
       }
     }
   }

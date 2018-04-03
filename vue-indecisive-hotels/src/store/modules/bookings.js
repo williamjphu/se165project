@@ -1,14 +1,14 @@
 import * as firebase from 'firebase'
 
 const state = {
-  booking: null,
+  bookings: [],
   bookingLoading: false,
   bookingError: null
 }
 
 const getters = {
-  booking (state) {
-    return state.booking
+  bookings (state) {
+    return state.bookings
   },
   bookingLoading (state) {
     return state.bookingLoading
@@ -19,8 +19,8 @@ const getters = {
 }
 
 const mutations = {
-  setBooking (state, payload) {
-    state.booking = payload
+  clearBookings (state) {
+    state.bookings = []
   },
   setBookingLoading (state, payload) {
     state.bookingLoading = payload
@@ -30,21 +30,21 @@ const mutations = {
   },
   clearBookingError (state, payload) {
     state.bookingError = null
+  },
+  addBooking (state, payload) {
+    state.bookings.push(payload)
   }
 }
 
 const actions = {
-  createBooking ({commit}, payload) {
+  createBooking ({ commit, dispatch }, payload) {
     commit('setBookingLoading', true)
     commit('clearBookingError')
     var database = firebase.database()
     var bookingDetails = payload
-    console.log('hotel data:', bookingDetails)
     var bookingsRef = database.ref('bookings/' + this.getters.user.id)
     bookingsRef.push().set({
       bookingDetails: bookingDetails,
-      payment: 'testpayment',
-      discountModifier: 0,
       status: 'pending',
       createdAt: new Date().toISOString().substr(0, 10),
       updatedAt: new Date().toISOString().substr(0, 10)
@@ -52,6 +52,7 @@ const actions = {
     .then(
       booking => {
         // commit('setBooking', )
+        dispatch('retrieveBookings')
         commit('setBookingLoading', false)
       }
     )
@@ -63,9 +64,16 @@ const actions = {
       }
     )
   },
-
-  retrieveBookings ({ commit }, payload) {
+  retrieveBookings ({ commit }) {
     commit('setBookingLoading', true)
+    commit('clearBookings')
+    console.log('Retrieving bookings of current user:')
+    firebase.database().ref('bookings/' + this.getters.user.id).once('value', function (snapshot) {
+      snapshot.forEach(function (child) {
+        commit('addBooking', child.val())
+      })
+    })
+    console.log(this.getters.bookings)
   }
 }
 
