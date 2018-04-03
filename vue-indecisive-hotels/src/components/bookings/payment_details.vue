@@ -10,11 +10,7 @@
               </v-container>
             </v-flex>
             <v-flex xs v-if="authenticated">
-<<<<<<< HEAD
-=======
-              <p>HELLO WORLD</p>
               <v-btn @click="usePoints">Use points</v-btn>  <!-- testing out the redeem points -->
->>>>>>> b0862c761e1c85e1835aa54751013ba4c09464f4
               <v-btn @click="onCheckout">checkout</v-btn>
             </v-flex>
           </v-layout>
