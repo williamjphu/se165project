@@ -5,6 +5,7 @@
         <v-layout column align-center>
           <v-flex xs12>
             <h3 class="display-3">This is a stub. Please insert your code in here.</h3>
+            <v-btn color="info" @click="checkout">Checkout</v-btn>
           </v-flex>
         </v-layout>
       </v-container>
@@ -19,6 +20,24 @@
         // Any variable data should go in here
       }
     },
+
+    methods: {
+      checkout () {
+        this.$checkout.open({
+          name: 'IDCV hotel',
+          currency: 'USD',
+          billingAddress: true,
+          amount: 999,
+          locale: 'auto',
+          panelLabel: 'Subscribe {{amount}}',
+          token: (token) => {
+            console.log(token)
+            this.token = token
+          }
+        })
+      }
+    },
+
     computed: {
       // Any variables that need to be dynamically recomputed go in here
     }

@@ -21,6 +21,7 @@
     "vue": "^2.5.16",
     "vue-router": "^3.0.1",
     "vue-star-rating": "^1.5.1",
+    "vue-stripe-checkout": "^1.0.3",
     "vuetify": "^1.0.11",
     "vuetify-google-autocomplete": "^2.0.0-Alpha.8",
     "vuex": "^3.0.1"

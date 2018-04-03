@@ -10,7 +10,6 @@
               </v-container>
             </v-flex>
             <v-flex xs v-if="authenticated">
-              <p>HELLO WORLD</p>
               <v-btn @click="usePoints">Use points</v-btn>  <!-- testing out the redeem points -->
               <v-btn @click="onCheckout">checkout</v-btn>
             </v-flex>
@@ -29,6 +28,7 @@
         discount: false
       }
     },
+    props: ['booking'],
     computed: {
       // should return total number of reward points accumulated
       rewardPoints () {
@@ -36,12 +36,27 @@
       },
       authenticated () {
         return this.$store.getters.user !== null && this.$store.getters.user !== undefined
+      },
+      total () {
+        return this.booking.price * (this.booking.rooms * this.booking.nights - (this.discount ? 1 : 0))
       }
     },
     methods: {
       onCheckout () {
         // add Stripe code here - the line below should ONLY be emitted if payment is successful, if not, emit 'error' instead
-        this.$emit('checkout', {discount: this.discount})
+        this.$checkout.open({
+          name: this.booking.name,
+          currency: 'USD',
+          billingAddress: false,
+          amount: this.total * 100,
+          locale: 'auto',
+          panelLabel: 'Subscribe {{amount}}',
+          token: (token) => {
+            this.token = token
+            console.log(token)
+            this.$emit('checkout', {discount: this.discount, total: this.total})
+          }
+        })
       },
 
       // testing out the reemPoints function
