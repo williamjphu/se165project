@@ -11,6 +11,7 @@
             </v-flex>
             <v-flex xs v-if="authenticated">
               <p>HELLO WORLD</p>
+              <v-btn @click="usePoints">Use points</v-btn>  <!-- testing out the redeem points -->
               <v-btn @click="onCheckout">checkout</v-btn>
             </v-flex>
           </v-layout>
@@ -41,6 +42,11 @@
       onCheckout () {
         // add Stripe code here - the line below should ONLY be emitted if payment is successful, if not, emit 'error' instead
         this.$emit('checkout', {discount: this.discount})
+      },
+
+      // testing out the reemPoints function
+      usePoints () {
+        this.$store.dispatch('redeemPoints')
       }
     }
   }

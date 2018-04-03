@@ -48,7 +48,7 @@ const actions = {
             first: payload.first,
             last: payload.last,
             paymentInfo: null,
-            rewards: 0,
+            rewardPoints: 0,
             bookings: []
           }
           firebase.database().ref('users/' + user.uid).set(newUser)
@@ -90,7 +90,7 @@ const actions = {
                 first: result.additionalUserInfo.profile.given_name,
                 last: result.additionalUserInfo.profile.family_name,
                 paymentInfo: null,
-                rewards: 0,
+                rewardPoints: 0,
                 bookings: []
               }
               firebase.database().ref('users/' + result.user.uid).set(newUser)
@@ -134,7 +134,7 @@ const actions = {
                 first: result.additionalUserInfo.profile.first_name,
                 last: result.additionalUserInfo.profile.last_name,
                 paymentInfo: null,
-                rewards: 0,
+                rewardPoints: 0,
                 bookings: []
               }
               firebase.database().ref('users/' + result.user.uid).set(newUser)
@@ -178,7 +178,7 @@ const actions = {
                 first: result.additionalUserInfo.profile.name,
                 last: result.additionalUserInfo.profile.name,
                 paymentInfo: null,
-                rewards: 0,
+                rewardPoints: 0,
                 bookings: []
               }
               firebase.database().ref('users/' + result.user.uid).set(newUser)

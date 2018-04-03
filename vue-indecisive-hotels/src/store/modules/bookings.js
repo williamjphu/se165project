@@ -51,20 +51,19 @@ const actions = {
     })
     .then(
       booking => {
-        var postRef = firebase.database().ref('users').child(this.getters.user.id)
+        var rewardsRef = firebase.database().ref('users').child(this.getters.user.id)
 
-        postRef.transaction(function (user) {
+        rewardsRef.transaction(function (user) {
           if (user) {
             if (user) {
-              user.rewards++
-              console.log('rewards', user.rewards)
+              user.rewardPoints++
+              console.log('rewards', user.rewardPoints)
             } else {
-              console.log("didn't work")
+              console.log('Reward points not successfully incremented')
             }
           }
           return user
         })
-        // commit('setBooking', )
         dispatch('retrieveBookings')
 
         commit('setBookingLoading', false)
@@ -73,7 +72,7 @@ const actions = {
     .catch(
       error => {
         commit('setBookingLoading', false)
-        commit('setError', error)
+        commit('setBookingError', error)
         console.log(error)
       }
     )
@@ -88,6 +87,26 @@ const actions = {
       })
     })
     console.log(this.getters.bookings)
+  },
+
+  redeemPoints ({ commit }) {
+    var rewardsRef = firebase.database().ref('users').child(this.getters.user.id)
+    rewardsRef.transaction(function (user) {
+      if (user) {
+        if (user) {
+          if (user.rewardPoints >= 10) {
+            user.rewardPoints = user.rewardPoints - 10
+            console.log('rewards', user.rewardPoints)
+          } else {
+            // show error here for the user!!
+            console.log('Not enough points')
+          }
+        } else {
+          console.log('Rewards not successfully incremented')
+        }
+      }
+      return user
+    })
   }
 }
 
