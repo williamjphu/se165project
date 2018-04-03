@@ -18,7 +18,7 @@
           <hotel-details :data="selectedHotel" @bookClicked="onHotelBooked" @backClicked="currentStep = 1"></hotel-details>
         </v-stepper-content>
         <v-stepper-content step="3">
-          <payment-details @checkout="onCheckout" @backClicked="currentStep = 2"></payment-details>
+          <payment-details @checkout="onCheckout" @backClicked="currentStep = 2" :booking="bookedHotel"></payment-details>
         </v-stepper-content>
         <v-stepper-content step="4">
           <v-card color="grey lighten-1" class="mb-5" height="200px"></v-card>
@@ -58,7 +58,7 @@
       },
       onCheckout (value) {
         this.bookedHotel.discount = value.discount
-        this.bookedHotel.totalCharge = this.bookedHotel.price * (this.bookedHotel.rooms * this.bookedHotel.nights - (value.discount ? 1 : 0))
+        this.bookedHotel.totalCharge = value.total
         this.currentStep = 4
       },
       bookingCreate () {
