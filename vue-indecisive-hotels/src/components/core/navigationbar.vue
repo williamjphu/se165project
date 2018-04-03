@@ -18,7 +18,7 @@
             <v-flex d-flex>
               <v-layout row wrap>
                 <v-flex d-flex xs12 style="line-height: 100%">
-                  <span class="caption">English | Spanish | Chinese</span>  
+                  <span class="caption"> </span>  
                 </v-flex>
               </v-layout>
             </v-flex>

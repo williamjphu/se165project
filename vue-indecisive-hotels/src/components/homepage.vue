@@ -23,34 +23,6 @@
         </v-container>
       </v-parallax>
     </section>
-    <section>
-      <v-container grid-list-xl>
-        <v-layout row justify-space-between>
-          <v-flex d-flex xs12>
-            <span class="display-1 text-xs-center text-md-right brown--text text--darken-2">{{ locale.homepageDestinationHeader }}</span>
-          </v-flex>
-        </v-layout>
-      </v-container>
-    </section>
-    <section>
-      <v-container grid-list-xl>
-        <v-layout row wrap>
-          <v-flex d-flex xs12 md7 order-md2>
-            <v-layout row wrap>
-              <v-flex d-flex xs12 md6 v-for="i in 4" :key="i">
-                <v-card img="http://freetourpraga.com/wp-content/uploads/2017/04/Karlovy-Vary.jpg" height="120px" dark>
-                  <v-card-title class="subheading">Karlovy Vary</v-card-title>
-                </v-card>
-              </v-flex>
-            </v-layout>
-          </v-flex>
-          <v-flex d-flex xs12 md5>
-            <v-card img="http://www.ronghuhotel.info/wp-content/uploads/2017/12/discounts-for-motels-motel-6-coupons-20-off-coupon-promo-code-december-2017-download.jpg" dark style="min-height: 160px">
-            </v-card>
-          </v-flex>
-        </v-layout>
-      </v-container>
-    </section>
   </v-container>
 </template>
 

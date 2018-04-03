@@ -1,12 +1,11 @@
 <template>
-  <v-container fluid py-0 px-1>
+  <v-container fluid py-0 px-0>
     <v-layout row wrap>
       <v-flex d-flex xs12>
-        <v-container fluid>
+        <v-container fluid px-0>
           <v-layout row wrap>
             <v-flex xs12 d-flex v-if="!authenticated">
-              <v-btn icon outline color="grey darken-1" @click="onBackClicked"><v-icon>keyboard_arrow_left</v-icon></v-btn>
-              <v-container style="max-width: 350px">
+              <v-container fluid px-0 style="max-width: 350px; min-width: 350px">
                 <login-dialog></login-dialog>
               </v-container>
             </v-flex>
