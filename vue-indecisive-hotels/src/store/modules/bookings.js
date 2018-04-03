@@ -51,8 +51,22 @@ const actions = {
     })
     .then(
       booking => {
+        var postRef = firebase.database().ref('users').child(this.getters.user.id)
+
+        postRef.transaction(function (user) {
+          if (user) {
+            if (user) {
+              user.rewards++
+              console.log('rewards', user.rewards)
+            } else {
+              console.log("didn't work")
+            }
+          }
+          return user
+        })
         // commit('setBooking', )
         dispatch('retrieveBookings')
+
         commit('setBookingLoading', false)
       }
     )
