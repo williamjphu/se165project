@@ -4,7 +4,8 @@ const state = {
   bookings: [],
   bookingLoading: false,
   bookingError: null,
-  redeemPointsEligible: false
+  redeemPointsEligible: false,
+  rewardPoints: 0
 }
 
 const getters = {
@@ -19,6 +20,9 @@ const getters = {
   },
   redeemPointsEligible (state) {
     return state.redeemPointsEligible
+  },
+  rewardPoints (state) {
+    return state.rewardPoints
   }
 }
 
@@ -40,6 +44,9 @@ const mutations = {
   },
   setRedeemPointsEligible (state, payload) {
     state.redeemPointsEligible = payload
+  },
+  setRewardPoints (state, payload) {
+    state.rewardPoints = payload
   }
 }
 
@@ -68,6 +75,7 @@ const actions = {
                 commit('setRedeemPointsEligible', true)
               }
               console.log('rewards', user.rewardPoints)
+              commit('setRewardPoints', user.rewardPoints)
             } else {
               console.log('Reward points not successfully incremented')
             }
@@ -111,6 +119,7 @@ const actions = {
             if (user.rewardPoints < 10) {
               commit('setRedeemPointsEligible', false)
             }
+            commit('setRewardPoints', user.rewardPoints)
           } else {
             // show error here for the user!!
             console.log('Not enough points')
@@ -134,6 +143,7 @@ const actions = {
       } else {
         commit('setRedeemPointsEligible', false)
       }
+      commit('setRewardPoints', snapshot.val().rewardPoints)
     }, function (error) {
       console.log('Error: ' + error.code)
     })

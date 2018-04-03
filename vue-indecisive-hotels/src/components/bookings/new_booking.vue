@@ -21,9 +21,30 @@
           <payment-details @checkout="onCheckout" @backClicked="currentStep = 2" :booking="bookedHotel"></payment-details>
         </v-stepper-content>
         <v-stepper-content step="4">
-          <v-card color="grey lighten-1" class="mb-5" height="200px"></v-card>
-          <v-btn color="brown darken-2" dark @click.stop="currentStep = 1" @click = "bookingCreate">Finish</v-btn>
-          <v-btn flat @click.stop="currentStep = 3">Back</v-btn>
+          <v-card flat v-if="bookedHotel !== null && bookedHotel !== undefined">
+            <v-container fluid grid-list-lg>
+              <v-layout row wrap>
+                <v-flex xs12 lg8 offset-lg2>
+                  <v-alert type="success" :value="true">Your booking has been successfully processed!</v-alert>
+                </v-flex>
+                <v-flex xs5 lg4 offset-lg2>
+                  <v-card-media :src="bookedHotel.photo" height="200"></v-card-media>
+                </v-flex>
+                <v-flex xs7 lg4>
+                  <p class="body-2">{{ bookedHotel.name }}
+                    <vue-star-rating :star-size=14 read-only v-model="bookedHotel.rating" :max-rating="bookedHotel.rating" :show-rating=false></vue-star-rating>
+                  </p>
+                  <p style="margin-bottom: 0em">{{ bookedHotel.address }}</p>
+                  <p>{{ bookedHotel.phone }}</p>
+                  <p style="margin-bottom: 0em">{{ bookedHotel.dateIn}} - {{ bookedHotel.dateOut }} ({{ bookedHotel.nights}} night{{ bookedHotel.nights === 1 ? '' : 's' }})</p>
+                  <p>{{ bookedHotel.rooms }} room{{ bookedHotel.rooms === 1 ? '' : 's' }}</p>
+                </v-flex>
+                <v-flex xs12 lg8 offset-lg2>
+                  <v-btn color="success" block @click="$router.push('/mybookings')">Finish</v-btn>
+                </v-flex>
+              </v-layout>
+            </v-container>
+          </v-card>
         </v-stepper-content>
       </v-stepper-items>
     </v-stepper>
@@ -60,8 +81,6 @@
         this.bookedHotel.discount = value.discount
         this.bookedHotel.totalCharge = value.total
         this.currentStep = 4
-      },
-      bookingCreate () {
         this.$store.dispatch('createBooking', this.bookedHotel)
       }
     }

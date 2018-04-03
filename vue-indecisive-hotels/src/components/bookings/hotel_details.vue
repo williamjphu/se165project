@@ -2,7 +2,7 @@
   <v-container fluid py-0 px-1>
     <v-layout row wrap>
       <v-flex d-flex xs12>
-        <v-card>
+        <v-card flat>
           <v-container fluid grid-list-xl>
             <v-layout row wrap>
               <v-flex xs12 v-if="status === 'loaded'">
@@ -160,6 +160,7 @@
           id: this.hotelDetails.place_id,
           name: this.hotelDetails.name,
           address: this.hotelDetails.formatted_address,
+          phone: this.hotelDetails.international_phone_number,
           photo: typeof this.hotelDetails.photos !== 'undefined'
             ? this.hotelDetails.photos[0].getUrl({'maxWidth': 960, 'maxHeight': 960}) : 'http://experienceidyllwild.com/images/no-image-available2.jpg',
           price: this.data.rounded_price,
