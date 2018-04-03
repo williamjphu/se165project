@@ -23,6 +23,7 @@ const mutations = {
     state.user = payload
     if (payload !== null) {
       this.dispatch('retrieveBookings')
+      this.dispatch('checkPointsEligible')
     }
   },
   setLoading (state, payload) {

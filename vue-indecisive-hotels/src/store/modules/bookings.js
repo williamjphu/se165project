@@ -124,11 +124,16 @@ const actions = {
     console.log('eligible: ' + this.getters.redeemPointsEligible)
   },
 
-  checkPointsElegible ({ commit }) {
+  checkPointsEligible ({ commit }) {
     var ref = firebase.database().ref('users/' + this.getters.user.id)
 
     ref.on('value', function (snapshot) {
       console.log('reward points: ' + snapshot.val().rewardPoints)
+      if (snapshot.val().rewardPoints >= 10) {
+        commit('setRedeemPointsEligible', true)
+      } else {
+        commit('setRedeemPointsEligible', false)
+      }
     }, function (error) {
       console.log('Error: ' + error.code)
     })
