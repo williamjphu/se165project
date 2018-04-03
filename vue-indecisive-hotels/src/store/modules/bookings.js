@@ -1,14 +1,14 @@
 import * as firebase from 'firebase'
 
 const state = {
-  booking: null,
+  bookings: [],
   bookingLoading: false,
   bookingError: null
 }
 
 const getters = {
-  booking (state) {
-    return state.booking
+  bookings (state) {
+    return state.bookings
   },
   bookingLoading (state) {
     return state.bookingLoading
@@ -19,8 +19,8 @@ const getters = {
 }
 
 const mutations = {
-  setBooking (state, payload) {
-    state.booking = payload
+  clearBookings (state) {
+    state.bookings = []
   },
   setBookingLoading (state, payload) {
     state.bookingLoading = payload
@@ -30,37 +30,29 @@ const mutations = {
   },
   clearBookingError (state, payload) {
     state.bookingError = null
+  },
+  addBooking (state, payload) {
+    state.bookings.push(payload)
   }
 }
 
 const actions = {
-  createBooking ({commit}, payload) {
+  createBooking ({ commit, dispatch }, payload) {
     commit('setBookingLoading', true)
     commit('clearBookingError')
     var database = firebase.database()
-    var hotel = {
-      id: payload.selectedHotel.id,
-      name: payload.selectedHotel.name,
-      rating: payload.selectedHotel.rating,
-      icon: payload.selectedHotel.icon,
-      price: payload.selectedHotel.price
-    }
-    console.log('hotel data:', hotel)
+    var bookingDetails = payload
     var bookingsRef = database.ref('bookings/' + this.getters.user.id)
     bookingsRef.push().set({
-      hotel: hotel,
-      payment: 'testpayment',
-      startDate: 'testStartDate',
-      endDate: 'testEndDate',
-      rooms: 2,
-      discountModifier: 'testDiscount',
-      status: 'testStatus',
-      createdAt: 'blah',
-      updatedAt: 'blah'
+      bookingDetails: bookingDetails,
+      status: 'pending',
+      createdAt: new Date().toISOString().substr(0, 10),
+      updatedAt: new Date().toISOString().substr(0, 10)
     })
     .then(
       booking => {
         // commit('setBooking', )
+        dispatch('retrieveBookings')
         commit('setBookingLoading', false)
       }
     )
@@ -72,9 +64,16 @@ const actions = {
       }
     )
   },
-
-  retrieveBookings ({ commit }, payload) {
+  retrieveBookings ({ commit }) {
     commit('setBookingLoading', true)
+    commit('clearBookings')
+    console.log('Retrieving bookings of current user:')
+    firebase.database().ref('bookings/' + this.getters.user.id).once('value', function (snapshot) {
+      snapshot.forEach(function (child) {
+        commit('addBooking', child.val())
+      })
+    })
+    console.log(this.getters.bookings)
   }
 }
 

@@ -21,6 +21,9 @@ const getters = {
 const mutations = {
   setUser (state, payload) {
     state.user = payload
+    if (payload !== null) {
+      this.dispatch('retrieveBookings')
+    }
   },
   setLoading (state, payload) {
     state.loading = payload

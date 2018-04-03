@@ -8,21 +8,17 @@
         <v-divider></v-divider>
         <v-stepper-step step="3" :complete="currentStep > 3">Payment Details</v-stepper-step>
         <v-divider></v-divider>
-        <v-stepper-step step="4">Confirm Booking</v-stepper-step>
+        <v-stepper-step step="4">Booking Confirmation</v-stepper-step>
       </v-stepper-header>
       <v-stepper-items>
         <v-stepper-content step="1">
           <search-page @hotelSelected="onHotelSelected"></search-page>
         </v-stepper-content>
         <v-stepper-content step="2">
-          <hotel-details :data="selectedHotel"></hotel-details>
-          <v-btn color="brown darken-2" dark @click.stop="currentStep = 3">Continue</v-btn>
-          <v-btn flat @click.stop="currentStep = 1">Back</v-btn>
+          <hotel-details :data="selectedHotel" @bookClicked="onHotelBooked" @backClicked="currentStep = 1"></hotel-details>
         </v-stepper-content>
         <v-stepper-content step="3">
-          <v-card color="grey lighten-1" class="mb-5" height="200px"></v-card>
-          <v-btn color="brown darken-2" dark @click.stop="currentStep = 4">Continue</v-btn>
-          <v-btn flat @click.stop="currentStep = 2">Back</v-btn>
+          <payment-details @checkout="onCheckout" @backClicked="currentStep = 2"></payment-details>
         </v-stepper-content>
         <v-stepper-content step="4">
           <v-card color="grey lighten-1" class="mb-5" height="200px"></v-card>
@@ -37,27 +33,36 @@
 <script>
   import searchResults from './search_results'
   import hotelDetails from './hotel_details'
+  import paymentDetails from './payment_details'
   export default {
     data () {
       return {
         currentStep: 0,
-        selectedHotel: null
+        selectedHotel: null,
+        bookedHotel: null
       }
     },
     components: {
       'search-page': searchResults,
-      'hotel-details': hotelDetails
+      'hotel-details': hotelDetails,
+      'payment-details': paymentDetails
     },
     methods: {
       onHotelSelected (value) {
         this.selectedHotel = value
-        console.log(this.selectedHotel)
         this.currentStep = 2
       },
+      onHotelBooked (value) {
+        this.bookedHotel = value
+        this.currentStep = 3
+      },
+      onCheckout (value) {
+        this.bookedHotel.discount = value.discount
+        this.bookedHotel.totalCharge = this.bookedHotel.price * (this.bookedHotel.rooms * this.bookedHotel.nights - (value.discount ? 1 : 0))
+        this.currentStep = 4
+      },
       bookingCreate () {
-        console.log('Creating Booking')
-        console.log(this.$store)
-        this.$store.dispatch('createBooking', { selectedHotel: this.selectedHotel })
+        this.$store.dispatch('createBooking', this.bookedHotel)
       }
     }
   }
