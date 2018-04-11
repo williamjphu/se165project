@@ -3,7 +3,7 @@
 <v-container style="max-width: 1200px" py-0 px-0>
   <v-layout row>
     <v-flex xs12 sm10 md8 offset-sm1 offset-md2 pa-5>
-    
+      <rewards></rewards>
       <v-card style="opacity: 0.7;">
         <v-toolbar dark color="brown darken-2">
           

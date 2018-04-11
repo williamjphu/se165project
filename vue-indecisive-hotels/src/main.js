@@ -18,6 +18,7 @@ import { faSpinner } from '@fortawesome/fontawesome-free-solid'
 import FontAwesomeIcon from '@fortawesome/vue-fontawesome'
 import stars from 'vue-star-rating'
 import googleMap from './components/core/google_map'
+import rewards from './components/core/reward_points'
 import VuetifyGoogleAutocomplete from 'vuetify-google-autocomplete'
 import VueStripeCheckout from 'vue-stripe-checkout'
 
@@ -48,6 +49,7 @@ Vue.component('login-dialog', login)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 Vue.component('vue-star-rating', stars)
 Vue.component('google-map', googleMap)
+Vue.component('rewards', rewards)
 
 /* eslint-disable no-new */
 new Vue({
