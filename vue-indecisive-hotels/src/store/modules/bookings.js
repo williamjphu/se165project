@@ -107,7 +107,13 @@ const actions = {
     })
     console.log(this.getters.bookings)
   },
-
+  deleteBooking ({ commit }, payload) {
+    //change to take payload
+    var booking = "-L9lamQp2a7AaC3HgYE8"
+    console.log(booking)
+    var bookingRef = firebase.database().ref('bookings').child(this.getters.user.id).child(booking)
+    bookingRef.remove()
+  },
   redeemPoints ({ commit }) {
     var rewardsRef = firebase.database().ref('users').child(this.getters.user.id)
     rewardsRef.transaction(function (user) {
