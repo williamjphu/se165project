@@ -14,7 +14,8 @@
           v-for="(booking, i) in bookings"
           :key="i"
         >
-            <v-layout>
+        <v-layout>
+           <!--  <v-layout v-if="booking.bookingDetails.dateOut < "> -->
             <v-card >
         <v-card-media :src="booking.bookingDetails.photo" height="250px">
         </v-card-media>
@@ -28,7 +29,7 @@
           </div>
         </v-card-title>
         <v-card-actions>
-          <v-btn flat color="brown darken-2">View Details</v-btn>
+          <v-btn flat color="brown darken-2" @click = "bookingInformation" >View Details</v-btn>
           <v-btn flat color="brown darken-2">Modify</v-btn>
         </v-card-actions>
       </v-card>
@@ -60,7 +61,7 @@
           </div>
         </v-card-title>
         <v-card-actions>
-          <v-btn flat color="brown darken-2">View Details</v-btn>
+          <v-btn @click = 'bookingInformation' flat color="brown darken-2">View Details</v-btn>
         </v-card-actions>
       </v-card>
     
@@ -79,6 +80,10 @@
 
 <script>
   export default {
+    data() {
+      var time = new Date()
+      return time
+    },
 
     // data () {
     //   booking:
@@ -100,7 +105,10 @@
       }
     },
   methods: {
-
+    bookingInformation() {
+      this.$router.replace('/bookinginformation')
+      //need to pass booking object
+    }
   }
 }
   
