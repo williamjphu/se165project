@@ -19,6 +19,7 @@ import FontAwesomeIcon from '@fortawesome/vue-fontawesome'
 import stars from 'vue-star-rating'
 import googleMap from './components/core/google_map'
 import VuetifyGoogleAutocomplete from 'vuetify-google-autocomplete'
+import VueStripeCheckout from 'vue-stripe-checkout'
 
 // Matt's key; different than key used for firebase
 const ourApiKey = 'AIzaSyBpTKjVXmHXDFoZaoVvACQsWOzIyTJZBeE'
@@ -27,6 +28,11 @@ const ourApiKey = 'AIzaSyBpTKjVXmHXDFoZaoVvACQsWOzIyTJZBeE'
 Vue.use(VuetifyGoogleAutocomplete, {
   // Can also be an object. E.g, for Google Maps Premium API, pass `{ client: <YOUR-CLIENT-ID> }`
   apiKey: ourApiKey
+})
+
+// Stripe API setup
+Vue.use(VueStripeCheckout, {
+  key: 'pk_test_KcsmXiJ9FRBeXDn2lY7usX9e'
 })
 
 fontawesome.library.add(brands, faSpinner)

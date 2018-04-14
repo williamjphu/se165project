@@ -41,8 +41,12 @@
           return hotels.sort((a, b) => b.name.localeCompare(a.name))
         } else if (sort === 'A to Z') {
           return hotels.sort((a, b) => a.name.localeCompare(b.name))
+        } else if (sort === 'Most expensive') {
+          return hotels.sort((a, b) => b.rounded_price - a.rounded_price)
+        } else if (sort === 'Cheapest') {
+          return hotels.sort((a, b) => a.rounded_price - b.rounded_price)
         } else if (sort === 'Most stars') {
-          return hotels.sort((a, b) => b.rating - (a.rating || 0))
+          return hotels.sort((a, b) => (b.rating || 3) - (a.rating || 3))
         } else {
           return hotels
         }

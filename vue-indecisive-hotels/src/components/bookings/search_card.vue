@@ -102,11 +102,11 @@
         // Determines the low rate
         return this.hotel.discount
       },
-      originalRate () {
+      lowestRate () {
         return this.hotel.rounded_price
       },
-      lowestRate () {
-        return (this.originalRate - this.discount / 100 * this.originalRate).toFixed()
+      originalRate () {
+        return (this.lowestRate / ((100 - this.discount) / 100.0)).toFixed()
       },
       rating () {
         return Math.round(this.hotel.rating || 3)

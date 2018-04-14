@@ -2,11 +2,12 @@
 const state = {
   location: null,
   showMap: false,
-  searchRadius: 1000,
+  searchRadius: 4000,
   locationLoading: false,
   locationError: null,
   sort: '',
-  hotels: []
+  hotels: [],
+  query: null
 }
 
 const getters = {
@@ -27,6 +28,9 @@ const getters = {
   },
   getShowMap (state) {
     return state.showMap
+  },
+  getQuery (state) {
+    return state.query
   }
 }
 
@@ -153,19 +157,23 @@ const mutations = {
   },
   setShowMap (state, payload) {
     state.showMap = payload
+  },
+  setQuery (state, payload) {
+    state.query = payload
   }
 }
 
 const actions = {
   findPlaces ({ commit, state }, payload) {
     console.log(payload)
+    commit('setQuery', payload)
     commit('setLocationLoading', true)
     commit('clearHotels')
     commit('setLocation', payload.location)
     console.log(state.location)
     var map = new google.maps.Map(document.getElementById('searchMap'), {
       center: state.location,
-      zoom: 12 // TODO Would like to calculate off of searchRadius at some point
+      zoom: 13 // TODO Would like to calculate off of searchRadius at some point
     })
     var request = {
       location: state.location,
@@ -187,18 +195,9 @@ const actions = {
               map: map,
               position: place.geometry.location
             })
-            google.maps.event.addListener(marker, 'click', function() {
-              var request = {placeId: arg.place_id}
-  
-              service.getDetails(request, function(result, status) {
-                if (status !== google.maps.places.PlacesServiceStatus.OK) {
-                  console.error(status)
-                  return
-                }
-                console.log(result)
-                infoWindow.setContent(result.name)
+            google.maps.event.addListener(marker, 'mouseover', function() {
+                infoWindow.setContent(arg.name)
                 infoWindow.open(map, marker)
-              })
             })
           })()
         }
