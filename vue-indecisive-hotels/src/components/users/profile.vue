@@ -299,10 +299,21 @@
       addressDialog: false
     }),
     computed: {
-    user () {
-      return this.$store.getters.user
+      user () {
+        return this.$store.getters.user
+      }
+    },
+    methods: {
+      updateUserInfo() {
+        var newUser = {
+          id: this.user.id,
+          first: this.user.first,
+          last: this.user.last,
+          rewardPoints: this.user.rewardPoints
+        }
+        this.$store.dispatch('updateUserInfo', newUser)
+      }
     }
-  },
   }
 
 </script>
