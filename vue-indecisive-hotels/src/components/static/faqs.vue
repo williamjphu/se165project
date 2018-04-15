@@ -6,12 +6,12 @@
           <v-flex xs12>
             <v-card class="primary--text" color="brown darken-2 flat" >
               <v-card-text class="text-xs-center headline" style="text-shadow: 1px 1px #111111; color:white;">
-                 Got a Questions  <v-icon x-large left color="white">help</v-icon>  We've Got Answers.
+                 You Have Questions. <v-icon x-large left color="white">help</v-icon> We Have Answers.
               </v-card-text>
               <hr><hr>
 
                 <v-card-text class="text-xs-left title" style="text-shadow: 1px 1px #111111; color: white">
-                To save your time ,We've put answers to the most common inquiries here.Just click on the category and look for your question.
+                To save your time, we have the answers to commonly asked questions. Click on a category to start looking.
               </v-card-text>
             </v-card>
             <template>

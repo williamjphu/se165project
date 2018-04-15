@@ -5,7 +5,8 @@ const state = {
   bookingLoading: false,
   bookingError: null,
   redeemPointsEligible: false,
-  rewardPoints: 0
+  rewardPoints: 0,
+  REDEEM_AMOUNT: 10
 }
 
 const getters = {
@@ -23,6 +24,9 @@ const getters = {
   },
   rewardPoints (state) {
     return state.rewardPoints
+  },
+  redeemAmount (state) {
+    return state.REDEEM_AMOUNT
   }
 }
 
@@ -71,7 +75,7 @@ const actions = {
           if (user) {
             if (user) {
               user.rewardPoints++
-              if (user.rewardPoints >= 10) {
+              if (user.rewardPoints >= state.REDEEM_AMOUNT) {
                 commit('setRedeemPointsEligible', true)
               }
               console.log('rewards', user.rewardPoints)
@@ -108,8 +112,8 @@ const actions = {
     console.log(this.getters.bookings)
   },
   deleteBooking ({ commit }, payload) {
-    //change to take payload
-    var booking = "-L9lamQp2a7AaC3HgYE8"
+    // change to take payload
+    var booking = '-L9lamQp2a7AaC3HgYE8'
     console.log(booking)
     var bookingRef = firebase.database().ref('bookings').child(this.getters.user.id).child(booking)
     bookingRef.remove()
@@ -119,10 +123,10 @@ const actions = {
     rewardsRef.transaction(function (user) {
       if (user) {
         if (user) {
-          if (user.rewardPoints >= 10) {
-            user.rewardPoints = user.rewardPoints - 10
+          if (user.rewardPoints >= state.REDEEM_AMOUNT) {
+            user.rewardPoints = user.rewardPoints - state.REDEEM_AMOUNT
             console.log('rewards', user.rewardPoints)
-            if (user.rewardPoints < 10) {
+            if (user.rewardPoints < state.REDEEM_AMOUNT) {
               commit('setRedeemPointsEligible', false)
             }
             commit('setRewardPoints', user.rewardPoints)
@@ -143,8 +147,7 @@ const actions = {
     var ref = firebase.database().ref('users/' + this.getters.user.id)
 
     ref.on('value', function (snapshot) {
-      console.log('reward points: ' + snapshot.val().rewardPoints)
-      if (snapshot.val().rewardPoints >= 10) {
+      if (snapshot.val().rewardPoints >= state.REDEEM_AMOUNT) {
         commit('setRedeemPointsEligible', true)
       } else {
         commit('setRedeemPointsEligible', false)
