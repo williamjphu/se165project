@@ -153,6 +153,29 @@ const mutations = {
     payload.price = price.toFixed(2)
     payload.rounded_price = (price).toFixed()
     payload.discount = discount
+    
+    // Hotel distance and duration
+    var matrixService = new google.maps.DistanceMatrixService;
+    var units = google.maps.UnitSystem.IMPERIAL // can be METRIC
+    var mode = 'DRIVING' // can be BICYCLING, TRANSIT, or WALKING
+      
+    matrixService.getDistanceMatrix({
+      origins: [state.location],
+      destinations: [payload.geometry.location],
+      travelMode: mode,
+      unitSystem: units,
+      avoidHighways: false,
+      avoidTolls: false
+    }, function(response, status) {
+      if (status !== 'OK') {
+        alert('Error was: ' + status)
+      } else {
+        var matrixResults = response.rows[0].elements
+        payload.distance = matrixResults[0].distance
+        payload.duration = matrixResults[0].duration
+      }
+    })
+
     state.hotels.push(payload)
   },
   setShowMap (state, payload) {
@@ -170,7 +193,7 @@ const actions = {
     commit('setLocationLoading', true)
     commit('clearHotels')
     commit('setLocation', payload.location)
-    console.log(state.location)
+    console.log('destLocation: ', state.location)
     var map = new google.maps.Map(document.getElementById('searchMap'), {
       center: state.location,
       zoom: 13 // TODO Would like to calculate off of searchRadius at some point
@@ -184,7 +207,9 @@ const actions = {
     var infoWindow = new google.maps.InfoWindow()
     var service = new google.maps.places.PlacesService(map)
     service.nearbySearch(request, function(results, status) {
-      if (status !== google.maps.places.PlacesServiceStatus.OK) {
+      if (status === google.maps.places.PlacesServiceStatus.ZERO_RESULTS) {
+        window.alert('No hotels found.')
+      } else if (status !== google.maps.places.PlacesServiceStatus.OK) {
         console.error(status)
       } else {
         for (var i = 0, place; place = results[i]; i++) {

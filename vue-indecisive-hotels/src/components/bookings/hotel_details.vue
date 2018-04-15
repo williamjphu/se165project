@@ -30,9 +30,16 @@
                 <v-container fluid px-0 py-0 grid-list-xl v-if="status === 'loaded'">
                   <v-layout row wrap>
                     <v-flex xs12>
-                      <span class="title">
+                      <p class="title">
+                        Distance and Weather
+                      </p>
+                      <p class="body-1">Distance from location: {{ data.distance.text }}</p>
+                      <p class="body-1">Estimated Driving Duration: {{ data.duration.text }}</p>
+                      <!-- TODO fix weather function before un-commenting <p class="body-1">Current Weather: {{ weather }}</p> -->
+                    </v-flex><v-flex xs12>
+                      <p class="title">
                         Amenities
-                      </span>
+                      </p>
                     </v-flex>
                     <v-flex xs12>
                       <p class="title">
@@ -56,7 +63,7 @@
                         </v-layout>
                       </v-container>
                       <p class="body-1">
-                        <a :href="hotelDetails.url" target="_blank"><b>Read more reviews on Google Places</b></a>
+                        <a :href="hotelDetails.url" target="_blank"><b>More Reviews on Google Maps</b></a>
                       </p>
                     </v-flex>
                   </v-layout>
@@ -96,20 +103,20 @@
                           Hotel Information
                         </p>
                         <p class="body-1">
-                          <b>Address:</b> {{ hotelDetails.formatted_address }}
+                          <b>Address</b><br>{{ hotelDetails.formatted_address }}
                         </p>
                         <p class="body-1">
-                          <b>Phone number:</b> {{ hotelDetails.international_phone_number }}
+                          <b>Phone number</b><br>{{ hotelDetails.international_phone_number }}
                         </p>
                         <p class="body-1">
-                          <b>Website:</b> {{ hotelDetails.website }}
+                          <a :href="hotelDetails.website" target="_blank"><b>Hotel Website</b></a>
                         </p>
                         <p class="body-1" v-if="hotelDetails.openingHours !== null && hotelDetails.openingHours !== undefined">
                           <b>Opening Hours:</b><br>
                           <span v-for="(day, i) in hotelDetails.opening_hours.weekday_text" :key="i"> {{ day }}<br></span>
                         </p>
                         <p class="body-1">
-                          <a :href="hotelDetails.url" target="_blank"><b>Click to see more on Google Places</b></a>
+                          <a :href="hotelDetails.url" target="_blank"><b>Google Maps Details</b></a>
                         </p>
                       </v-flex>
                       <v-flex xs12 class="body-1 text-xs-center">
@@ -137,6 +144,7 @@
       }
     },
     props: ['data'],
+    /* eslint-disable */
     computed: {
       images () {
         if (this.hotelDetails === null || this.hotelDetails === undefined) {
@@ -152,6 +160,18 @@
       },
       total () {
         return this.$store.getters.getQuery.nights * this.data.rounded_price * this.$store.getters.getQuery.rooms
+      },
+      weather () {
+        // Weather at hotel
+        var latlng = this.data.geometry.location.lat() + ',' + this.data.geometry.location.lng()
+
+        // NOTE: Only 10 calls per minute allowed.
+        // TODO weatherResponse is undefined when returning since callback is not complete
+        var weatherResponse = axios.get('http://api.wunderground.com/api/b350991e46f0de04/geolookup/conditions/q/' + latlng + '.json').then(response => {
+          return response.data
+        })
+        // With response data, this line will give the current temperature (read from json response; verified works)
+        return weatherResponse['current_observation']['temperature_string']
       }
     },
     methods: {
@@ -177,7 +197,6 @@
         this.$emit('backClicked')
       }
     },
-    /* eslint-disable */
     watch: {
       data () {
         this.status = 'loading'
@@ -191,10 +210,12 @@
           center: this.data.geometry.location
         }
         const map = new google.maps.Map(element, options)
+
         var marker = new google.maps.Marker({
           map: map,
           position: this.data.geometry.location
         })
+
         var service = new google.maps.places.PlacesService(map)
         service.getDetails({placeId: this.data.place_id}, (result, status) => {
           if (status !== google.maps.places.PlacesServiceStatus.OK) {
@@ -202,10 +223,29 @@
             this.status = 'error'
             return
           }
-          console.log(result)
+          console.log('details result ', result)
           this.hotelDetails = result
           this.status = 'loaded'
         })
+
+        /* Draws route on Map from location to hotel
+        var directionsService = new google.maps.DirectionsService
+        var directionsDisplay = new google.maps.DirectionsRenderer
+        directionsDisplay.setMap(map)
+        
+        directionsService.route({
+          origin: this.$store.getters.location,
+          destination: this.data.geometry.location,
+          travelMode: 'DRIVING'
+        }, function(response, status) {
+          if (status === 'OK') {
+            console.log('directions response ', response)
+            directionsDisplay.setDirections(response)
+          } else {
+            console.error('Directions request failed due to ',  status)
+          }
+        })
+        */
       }
     }
     /* eslint-enable */

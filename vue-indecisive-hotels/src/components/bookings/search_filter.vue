@@ -14,11 +14,17 @@
             <v-btn color="grey lighten-4" block @click="setSort('Cheapest')">
               Cheapest
             </v-btn>
-            <v-btn color="grey lighten-4" block @click="setSort('Most expensive')">
-              Most expensive
+            <v-btn color="grey lighten-4" block @click="setSort('Most Expensive')">
+              Most Expensive
             </v-btn>
-            <v-btn color="grey lighten-4" block @click="setSort('Most stars')">
-              Most stars
+            <v-btn color="grey lighten-4" block @click="setSort('Closest')">
+              Closest
+            </v-btn>
+            <v-btn color="grey lighten-4" block @click="setSort('Farthest')">
+              Farthest
+            </v-btn>
+            <v-btn color="grey lighten-4" block @click="setSort('Most Stars')">
+              Most Stars
             </v-btn>
           </v-expansion-panel-content>
           <v-expansion-panel-content>
@@ -45,7 +51,7 @@
     },
     methods: {
       setSort (payload) {
-        this.sortMethod = 'Sort from ' + payload
+        this.sortMethod = 'Sort by ' + payload
         this.$store.commit('setSort', payload)
       },
       showMap () {

@@ -8,7 +8,7 @@
     </v-content>
     <v-footer fixed app>
       <v-spacer></v-spacer>
-      <span>&copy; Team Indecisive, 2018</span>
+      <span>&copy; Team Indecisive 2018</span>
       <v-spacer></v-spacer>
     </v-footer>
   </v-app>
