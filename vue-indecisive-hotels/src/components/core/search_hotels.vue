@@ -1,19 +1,26 @@
 <template>
-  <v-container>
-    <v-layout row align-center wrap>
-      <v-flex d-flex xs12 sm6 md4 offset-sm3 offset-md4>
+  <v-container class="px-0">
+    <!-- CARD layout for search-bar on homepage -->
+    <v-layout row align-center wrap v-if="!bar">
+      <v-flex d-flex xs12 sm10 md6 lg4 offset-sm1 offset-md3 offset-lg4>
         <v-card style="opacity: 0.7;" color="brown darken-1" dark class="text-xs-center">
           <v-container grid-list-xl>
-            <v-form @submit.prevent="submit" ref="form">
+            <v-form>
               <v-layout wrap>
                 <v-flex xs12>
                   <span class="title">BOOK NOW</span>
                 </v-flex>
                 <v-flex xs12>
-                  <v-text-field
-                    label="Place"
+                  <vuetify-google-autocomplete
+                    id="placeCard"
+                    label="Adventure location"
+                    placeholder=""
+                    prepend-icon="room"
+                    types=""
                     required
-                  ></v-text-field>
+                    v-on:placechanged="getDestLocationData"
+                    v-on:no-results-found="destLocation = null"
+                  ></vuetify-google-autocomplete>
                 </v-flex>
                 <v-flex xs12>
                   <v-dialog
@@ -23,6 +30,7 @@
                     width="290px"
                   >
                     <v-text-field
+                      prepend-icon="date_range"
                       required
                       slot="activator"
                       label="Check In"
@@ -42,6 +50,7 @@
                     width="290px"
                   >
                     <v-text-field
+                      prepend-icon="date_range"
                       required
                       slot="activator"
                       label="Check Out"
@@ -53,15 +62,111 @@
                     </v-date-picker>
                   </v-dialog>
                 </v-flex>
+                <v-flex xs12>
+                  <v-select
+                    prepend-icon="vpn_key"
+                    label="Rooms"
+                    v-model="rooms"
+                    :items="[1, 2, 3, 4, 5]"
+                    required
+                  ></v-select>
+                </v-flex>
               </v-layout>
               <v-card-actions>
                 <v-btn
                   light
+                  :disabled="destLocation === null"
                   block
                   color="white"
-                  type="submit"
+                  @click="searchPage"
                 >Search</v-btn>
               </v-card-actions>
+            </v-form>
+          </v-container>
+        </v-card>
+      </v-flex>
+    </v-layout>
+    <!-- BAR layout for search-bar in results -->
+    <v-layout row align-center wrap v-if="bar">
+      <v-flex d-flex xs12>
+        <v-card class="text-xs-center">
+          <v-container grid-list-xl>
+            <v-form>
+              <v-layout wrap>
+                <v-flex xs12 lg4>
+                  <vuetify-google-autocomplete
+                    id="placeBar"
+                    placeholder="Adventure location"
+                    prepend-icon="room"
+                    types=""
+                    required
+                    solo
+                    v-on:placechanged="getDestLocationData"
+                    v-on:no-results-found="destLocation = null"
+                ></vuetify-google-autocomplete>
+                </v-flex>
+                <v-flex xs12 sm4 md3 lg2>
+                  <v-dialog
+                    v-model="menu"
+                    lazy
+                    full-width
+                    width="290px"
+                  >
+                    <v-text-field
+                      prepend-icon="date_range"
+                      required
+                      slot="activator"
+                      label="Check In"
+                      v-model="dateFormatted"
+                      solo
+                      @blur="date = parseDate(dateFormatted)"
+                    ></v-text-field>
+                    <v-date-picker v-model="date" @input="dateFormatted = formatDate($event)" 
+                      :min="allowedIn.min" :max="allowedIn.max" @change="menu = !menu">
+                    </v-date-picker>
+                  </v-dialog>
+                </v-flex>
+                <v-flex xs12 sm4 md3 lg2>
+                  <v-dialog
+                    v-model="menu2"
+                    lazy
+                    full-width
+                    width="290px"
+                  >
+                    <v-text-field
+                      prepend-icon="date_range"
+                      required
+                      slot="activator"
+                      label="Check Out"
+                      v-model="dateFormatted2"
+                      solo
+                      @blur="date = parseDate(dateFormatted2)"
+                    ></v-text-field>
+                    <v-date-picker v-model="date2" @input="dateFormatted2 = formatDate($event)"
+                      :min="allowedOut.min" :max="allowedOut.max" @change="menu2 = !menu2">
+                    </v-date-picker>
+                  </v-dialog>
+                </v-flex>
+                <v-flex xs12 sm4 md3 lg2>
+                  <v-select
+                    prepend-icon="vpn_key"
+                    label="Rooms"
+                    v-model="rooms"
+                    :items="[1, 2, 3, 4, 5]"
+                    required
+                    solo
+                  ></v-select>
+                </v-flex>
+                <v-flex xs12 md3 lg2>
+                  <v-btn
+                    :dark="destLocation !== null"
+                    block
+                    :disabled="destLocation === null"
+                    color="brown darken-2"
+                    @click="searchPage"
+                  >Search</v-btn>
+                </v-flex>
+              </v-layout>
             </v-form>
           </v-container>
         </v-card>
@@ -72,18 +177,21 @@
 
 <script>
   export default {
-    data: () => ({
-      date: null,   // check-in date picker storage
-      date2: null,  // check-out date picker storage
-      dateFormatted: null,  // check-in date for textfield
-      dateFormatted2: null, // check-out date for textfield
-      menu: false,  // controls if check-in date picker should be displayed
-      menu2: false, // controls if check-out date picker should be displayed
-      rooms: 1, // room #
-      adults: 1,  // adults #
-      children: 0,  // children #
-      allowedIn: {min: null, max: null} // range for check-in days (1 year from day after current date)
-    }),
+    props: ['bar'],
+    data () {
+      return {
+        date: null,   // check-in date picker storage
+        date2: null,  // check-out date picker storage
+        dateFormatted: null,  // check-in date for textfield
+        dateFormatted2: null, // check-out date for textfield
+        menu: false,  // controls if check-in date picker should be displayed
+        menu2: false, // controls if check-out date picker should be displayed
+        rooms: 1, // room #
+        destLocation: null,  // trip destLocation
+        radius: null,  // search radius
+        allowedIn: {min: null, max: null} // range for check-in days (1 year from day after current date)
+      }
+    },
     computed: {
       // range for check-out days (1 day more than check-in day, for up to a year)
       allowedOut () {
@@ -135,6 +243,22 @@
           return null
         }
         return new Date(date)
+      },
+      searchPage () {
+        const searchQuery = {
+          location: this.destLocation,
+          dateIn: this.dateFormatted,
+          dateOut: this.dateFormatted2,
+          nights: Math.ceil((new Date(this.dateFormatted2) - new Date(this.dateFormatted)) / (1000 * 3600 * 24)),
+          rooms: this.rooms
+        }
+        this.$router.replace('/search')
+        this.$store.dispatch('findPlaces', searchQuery)
+      },
+      // get destLocation from autocomplete result
+      getDestLocationData (addressData, placeResultData, containerId) {
+        this.destLocation = new window.google.maps.LatLng(
+            {lat: addressData.latitude, lng: addressData.longitude})
       }
     },
     mounted () {
@@ -145,8 +269,14 @@
       const min = minDate.toISOString().substr(0, 10)
       const max = maxDate.toISOString().substr(0, 10)
       this.allowedIn = {min, max}
-      this.dateFormatted = this.formatDate(this.allowedIn.min)
-      this.dateFormatted2 = this.formatDate(this.allowedOut.min)
+      if (this.$store.getters.getQuery === null || this.$store.getters.getQuery === undefined) {
+        this.dateFormatted = this.formatDate(this.allowedIn.min)
+        this.dateFormatted2 = this.formatDate(this.allowedOut.min)
+      } else {
+        this.dateFormatted = this.$store.getters.getQuery.dateIn
+        this.dateFormatted2 = this.$store.getters.getQuery.dateOut
+        this.rooms = this.$store.getters.getQuery.rooms
+      }
       this.date = this.parseDate(this.dateFormatted)
       this.date2 = this.parseDate(this.dateFormatted2)
       // calculate the day difference between two Date objects:

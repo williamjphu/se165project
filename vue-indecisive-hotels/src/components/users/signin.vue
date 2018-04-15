@@ -1,60 +1,97 @@
 <template>
-  <v-container fluid class="py-0 px-0">
-    <section>
-      <v-parallax src="http://4d929081ba88c9ed3ddf-c79bd9a987c770ca05f310489412f8c1.r41.cf1.rackcdn.com/lps/assets/u/who3462po.126147_tb-2.jpg"> 
-        <v-flex xs12 v-if="error">
-          <v-layout row>
-            <app-alert @dismissed="onDismissed" :text="error.message"></app-alert>
-          </v-layout>
-        </v-flex>
-        <v-container>
-          <v-layout>
-            <v-flex xs12 sm6 offset-sm3>
-              <v-card>
-                <v-card-text>
-                  <v-container>
+  <v-container class="text-xs-center" py-0 px-0>
+    <v-layout>
+      <v-flex d-flex xs12>
+        <v-card>
+          <v-card-text>
+            <v-container>
+              <v-layout row wrap>
+                <v-flex d-flex xs12 v-if="error">
+                  <app-alert @dismissed="onDismissed" :text="error.message"></app-alert>
+                </v-flex>
+                <v-flex d-flex xs12 pb-2>
+                  <font-awesome-icon style="color: #0D47A1" size="3x" :icon="['fas', 'id-card']" />
+                </v-flex>
+                <v-flex xs12 align-center>
+                  <span class="title" style="color: #0D47A1;">Login</span>
+                  <span class="title" style="font-weight: 300"> to your account</span>
+                </v-flex>
+                <v-flex xs12 pt-4 pb-2>
+                  <div class="strike">
+                    <span>Login with</span>
+                  </div>
+                </v-flex>
+                <v-flex d-flex xs4>
+                  <div>
                     <v-btn
-                    @click="googleSignup"
-                    :disabled="loading" :loading="loading" block color="white"
+                      @click="googleSignup"
+                      :disabled="loading" :loading="loading" color="white" dark fab
                     >
-                    Sign up with Google
+                      <v-avatar><img src="@/assets/btn_google.png"></v-avatar>
                     </v-btn>
+                </div>
+                </v-flex>
+                <v-flex d-flex xs4>
+                  <div>
                     <v-btn
-                    @click="facebookSignup"
-                    :disabled="loading" :loading="loading" block color="primary"
+                      @click="facebookSignup"
+                      :disabled="loading" :loading="loading" color="blue darken-3" dark fab
                     >
-                    Sign up with Facebook
+                      <font-awesome-icon size="2x" :icon="['fab', 'facebook-f']" />
                     </v-btn>
+                  </div>
+                </v-flex>
+                <v-flex d-flex xs4>
+                  <div>
                     <v-btn
-                    @click="twitterSignup"
-                    :disabled="loading" :loading="loading" block color="secondary"
+                      @click="twitterSignup"
+                      :disabled="loading" :loading="loading" color="light-blue" dark fab
                     >
-                    Sign up with Twitter
+                      <font-awesome-icon size="2x" :icon="['fab', 'twitter']" />
                     </v-btn>
-                    <v-form>
+                  </div>
+                </v-flex>
+                <v-flex xs12 pt-2 pb-2>
+                  <div class="strike">
+                    <span>or</span>
+                  </div>
+                </v-flex>
+              </v-layout>
+              <v-form>
+                <v-container fluid class="px-0">
+                  <v-layout row wrap>
+                    <v-flex xs12 pb-1>
                       <v-text-field
-                      label="E-mail"
-                      v-model="email"
-                      required
+                        prepend-icon="email"
+                        label="E-mail"
+                        v-model="email"
+                        solo
+                        required
                       ></v-text-field>
+                    </v-flex>
+                    <v-flex xs12 pb-3>
                       <v-text-field
-                      label="Password"
-                      v-model="password"
-                      type="password"
-                      required
+                        prepend-icon="lock"
+                        label="Password"
+                        v-model="password"
+                        type="password"
+                        solo
+                        required
                       ></v-text-field>
-                      <v-card-actions>
-                        <v-btn @click="submit" :disabled="loading" :loading="loading">Sign in</v-btn>
-                      </v-card-actions>
-                    </v-form>
-                  </v-container>
-                </v-card-text>
-              </v-card>
-            </v-flex>
-          </v-layout>
-        </v-container>
-      </v-parallax>
-    </section>
+                    </v-flex>
+                    <v-flex xs12>
+                      <v-btn @click="submit" :disabled="loading" :loading="loading" block dark color="blue darken-4">
+                        Login
+                      </v-btn>
+                    </v-flex>
+                  </v-layout>
+                </v-container>
+              </v-form>
+            </v-container>
+          </v-card-text>
+        </v-card>
+      </v-flex>
+    </v-layout>
   </v-container>
 </template>
 
@@ -101,9 +138,43 @@
     watch: {
       user (value) {
         if (value !== null && value !== undefined) {
-          this.$router.push('/')
+          this.$store.commit('setShowLogin', false)
         }
       }
     }
   }
 </script>
+
+<style scoped>
+.strike {
+    display: block;
+    text-align: center;
+    overflow: hidden;
+    white-space: nowrap; 
+}
+
+.strike > span {
+    position: relative;
+    display: inline-block;
+}
+
+.strike > span:before,
+.strike > span:after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 9999px;
+    height: 1px;
+    background: gray;
+}
+
+.strike > span:before {
+    right: 100%;
+    margin-right: 15px;
+}
+
+.strike > span:after {
+    left: 100%;
+    margin-left: 15px;
+}
+</style>

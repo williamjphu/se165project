@@ -1,5 +1,8 @@
 <template>
-  <v-container v-bind:style="heightBinder" fluid grid-list-xs class="py-0 px-0">
+  <v-container v-bind:style="heightBinder" fluid grid-list-xs py-0 px-0>
+    <v-dialog v-model="showLogin" max-width="350px">
+      <login-dialog></login-dialog>
+    </v-dialog>
     <div style="max-width: 1200px; max-height: 70px; margin: auto" v-if="!$vuetify.breakpoint.xsOnly">
       <v-layout row justify-space-between>
         <v-flex d-flex sm1 v-if="!$vuetify.breakpoint.xsOnly">
@@ -19,15 +22,15 @@
                 </v-flex>
               </v-layout>
             </v-flex>
-            <v-flex d-flex justify-center>
+            <v-flex d-flex xs12 justify-center>
               <v-layout row wrap>
                 <v-flex d-flex xs6 v-if="!authenticated">
-                  <v-btn flat round block to="signup" outline color="red darken-1">
+                  <v-btn flat round block outline color="red darken-1" to="signup">
                     Sign Up
                   </v-btn>
                 </v-flex>
                 <v-flex d-flex xs6 v-if="!authenticated">
-                  <v-btn flat round block to="signin" outline color="red darken-1">
+                  <v-btn flat round block outline color="red darken-1" @click="toggleLogin">
                     Sign In
                   </v-btn>
                 </v-flex>
@@ -70,17 +73,19 @@
         quote: '“The easiest decision you will ever make.”',
         menuItems: [
           {title: 'Home', link: '/'},
-          {title: 'Book Online', link: '/booking'},
           {title: 'myBookings', link: '/mybookings'},
           {title: 'myAccount', link: '/profile'},
           {title: 'FAQs', link: '/faqs'},
-          {title: 'Contact Us', link: '/contactus'}
+          {title: 'Contact Us', link: '/contact'}
         ]
       }
     },
     methods: {
       toggleSidebar: function (context) {
         this.$store.commit('toggleSidebar')
+      },
+      toggleLogin: function (context) {
+        this.$store.commit('toggleLogin')
       },
       onResize () {
         if (window.innerWidth > 600) {
@@ -89,6 +94,7 @@
       },
       onLogout () {
         this.$store.dispatch('logout')
+        this.$router.push('/')
       }
     },
     computed: {
@@ -98,6 +104,14 @@
       heightBinder () {
         return {
           maxHeight: (this.$vuetify.breakpoint.xsOnly ? '48px' : '116px')
+        }
+      },
+      showLogin: {
+        get () {
+          return this.$store.getters.getShowLogin
+        },
+        set (value) {
+          this.$store.commit('setShowLogin', value)
         }
       }
     }

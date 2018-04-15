@@ -10,21 +10,44 @@ import sidebar from './components/core/sidebar'
 import navigationbar from './components/core/navigationbar'
 import searchHotels from './components/core/search_hotels'
 import alertMsg from './components/core/alert'
+import login from './components/users/signin'
 import { store } from './store'
 import fontawesome from '@fortawesome/fontawesome'
 import brands from '@fortawesome/fontawesome-free-brands'
 import { faSpinner } from '@fortawesome/fontawesome-free-solid'
+import FontAwesomeIcon from '@fortawesome/vue-fontawesome'
+import stars from 'vue-star-rating'
+import googleMap from './components/core/google_map'
+import VuetifyGoogleAutocomplete from 'vuetify-google-autocomplete'
+import VueStripeCheckout from 'vue-stripe-checkout'
+
+// Matt's key; different than key used for firebase
+const ourApiKey = 'AIzaSyBpTKjVXmHXDFoZaoVvACQsWOzIyTJZBeE'
+
+// TODO Check if Vue.use is correct way to use this
+Vue.use(VuetifyGoogleAutocomplete, {
+  // Can also be an object. E.g, for Google Maps Premium API, pass `{ client: <YOUR-CLIENT-ID> }`
+  apiKey: ourApiKey
+})
+
+// Stripe API setup
+Vue.use(VueStripeCheckout, {
+  key: 'pk_test_KcsmXiJ9FRBeXDn2lY7usX9e'
+})
 
 fontawesome.library.add(brands, faSpinner)
 
 Vue.use(Vuetify)
-
 Vue.config.productionTip = false
 
 Vue.component('sidebar', sidebar)
 Vue.component('navigationbar', navigationbar)
-Vue.component('searchHotels', searchHotels)
+Vue.component('search-hotels', searchHotels)
 Vue.component('app-alert', alertMsg)
+Vue.component('login-dialog', login)
+Vue.component('font-awesome-icon', FontAwesomeIcon)
+Vue.component('vue-star-rating', stars)
+Vue.component('google-map', googleMap)
 
 /* eslint-disable no-new */
 new Vue({
