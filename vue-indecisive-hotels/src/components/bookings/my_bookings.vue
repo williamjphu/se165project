@@ -6,7 +6,7 @@
           <h3 class="display-2">Cameron :)</h3>
           <br><br><br>
 
-          <v-flex xs12>
+          <v-flex xs12> 
             <h3 class="display-2">Upcoming Bookings</h3>
             <v-layout row wrap>
              <v-flex pa-4
