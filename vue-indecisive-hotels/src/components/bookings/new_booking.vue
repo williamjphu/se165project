@@ -23,7 +23,7 @@
         <v-stepper-content step="4">
           <v-card flat v-if="bookedHotel !== null && bookedHotel !== undefined">
             <v-container fluid grid-list-lg>
-              <v-layout row wrap>
+              <v-layout row wrap v-if="!error">
                 <v-flex xs12 lg8 offset-lg2>
                   <v-alert type="success" :value="true">Your booking has been successfully processed!</v-alert>
                 </v-flex>
@@ -41,6 +41,14 @@
                 </v-flex>
                 <v-flex xs12 lg8 offset-lg2>
                   <v-btn color="success" block @click="$router.push('/mybookings')">Finish</v-btn>
+                </v-flex>
+              </v-layout>
+              <v-layout row wrap v-else>
+                <v-flex xs12>
+                  <app-alert @dismissed="onDismissed" :text="error.message"></app-alert>
+                </v-flex>
+                <v-flex xs12>
+                  <v-btn color="primary" block @click="currentStep = 1; $store.commit('clearBookingError')">Return to search</v-btn>
                 </v-flex>
               </v-layout>
             </v-container>
@@ -63,6 +71,11 @@
         bookedHotel: null
       }
     },
+    computed: {
+      error () {
+        return this.$store.getters.bookingError
+      }
+    },
     components: {
       'search-page': searchResults,
       'hotel-details': hotelDetails,
@@ -82,6 +95,10 @@
         this.bookedHotel.totalCharge = value.total
         this.currentStep = 4
         this.$store.dispatch('createBooking', this.bookedHotel)
+      },
+      onDismissed () {
+        console.log('Alert dismissed!')
+        this.$store.dispatch('clearBookingError')
       }
     }
   }

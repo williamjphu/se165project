@@ -73,6 +73,9 @@
                 <v-card color="grey lighten-2" v-if="status === 'loaded'">
                   <v-container fluid grid-list-lg>
                     <v-layout row wrap>
+                      <v-flex xs12 v-if="$store.getters.bookingError">
+                        <app-alert @dismissed="onDismissed" :text="$store.getters.bookingError.message"></app-alert>
+                      </v-flex>
                       <v-flex xs12>
                         <v-container fluid px-0 py-0 grid-list-xs>
                           <v-layout row wrap>
@@ -82,10 +85,10 @@
                             <v-flex xs3 class="text-xs-right" pb-0>
                               $ {{ data.rounded_price }}
                             </v-flex>
-                            <v-flex xs9 class="text-xs-left" py-0>
+                            <v-flex xs9 class="text-xs-left" py-0 v-if="query.nights > 1">
                               Price for {{ query.nights }} nights per room:
                             </v-flex>
-                            <v-flex xs3 class="text-xs-right" py-0>
+                            <v-flex xs3 class="text-xs-right" py-0 v-if="query.nights > 1">
                               $ {{ query.nights * data.rounded_price }}
                             </v-flex>
                             <v-flex xs9 class="text-xs-left" pt-0>
@@ -176,6 +179,7 @@
     },
     methods: {
       onBookClicked () {
+        this.$store.commit('clearBookingError')
         var hotel = {
           id: this.hotelDetails.place_id,
           name: this.hotelDetails.name,
@@ -191,10 +195,19 @@
           dateOut: this.$store.getters.getQuery.dateOut
         }
         console.log(hotel)
+        this.$store.dispatch('checkDoubleBooking', hotel)
+        if (this.$store.getters.bookingError) {
+          return
+        }
         this.$emit('bookClicked', hotel)
       },
       onBackClicked () {
+        this.$store.commit('clearBookingError')
         this.$emit('backClicked')
+      },
+      onDismissed () {
+        console.log('Alert dismissed!')
+        this.$store.commit('clearBookingError')
       }
     },
     watch: {

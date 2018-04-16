@@ -244,7 +244,7 @@ const actions = {
   clearError ({commit}) {
     commit('clearError')
   },
-  updateUserInfo({commit}, payload) {
+  updateUserInfo ({commit}, payload) {
     commit('setUser', payload)
     firebase.database().ref('users/').child(payload.id).set(payload)
   }

@@ -55,6 +55,21 @@ const mutations = {
 }
 
 const actions = {
+  checkDoubleBooking ({ commit, state }, payload) {
+    var dateIn = new Date(payload.dateIn)
+    var dateOut = new Date(payload.dateOut)
+    for (var i = 0; i < state.bookings.length; i++) {
+      var b = state.bookings[i]
+      var dateIn2 = new Date(b.bookingDetails.dateIn)
+      var dateOut2 = new Date(b.bookingDetails.dateOut)
+      if ((dateIn >= dateIn2 && dateIn < dateOut2) || (dateOut >= dateIn2 && dateOut < dateOut2)) {
+        commit('setBookingLoading', false)
+        commit('setBookingError', { message: 'Double bookings are not allowed! Please select different dates!' })
+        return true
+      }
+    }
+    return false
+  },
   createBooking ({ commit, dispatch }, payload) {
     commit('setBookingLoading', true)
     commit('clearBookingError')
@@ -106,14 +121,16 @@ const actions = {
     console.log('Retrieving bookings of current user:')
     firebase.database().ref('bookings/' + this.getters.user.id).once('value', function (snapshot) {
       snapshot.forEach(function (child) {
-        commit('addBooking', child.val())
+        var b = child.val()
+        b.id = child.key
+        commit('addBooking', b)
       })
     })
     console.log(this.getters.bookings)
   },
   deleteBooking ({ commit }, payload) {
     // change to take payload
-    var booking = '-L9lamQp2a7AaC3HgYE8'
+    var booking = payload
     console.log(booking)
     var bookingRef = firebase.database().ref('bookings').child(this.getters.user.id).child(booking)
     bookingRef.remove()

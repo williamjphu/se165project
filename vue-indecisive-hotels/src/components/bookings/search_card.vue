@@ -35,8 +35,7 @@
                                 v-model="rating">
                               </vue-star-rating><br>
                               {{ hotel.vicinity }}<br>
-                              <!-- TODO card displays before distance is updated -->
-                              <!-- {{ hotel.distance.text }} -->
+                              {{ distance }} away</div>
                             </span>
                           </v-flex>
                           <v-flex xs12 class="text-xs-right">
@@ -98,6 +97,12 @@
 
 <script>
   export default {
+    data () {
+      return {
+        distance: '',
+        interval: {}
+      }
+    },
     props: ['hotel'],
     computed: {
       discount () {
@@ -140,6 +145,16 @@
       onDetailsClicked (event) {
         this.$emit('hotelSelected', this.hotel)
       }
+    },
+    beforeDestroy () {
+      clearInterval(this.interval)
+    },
+    mounted () {
+      this.interval = setInterval(() => {
+        if (this.distance.length < 1 && this.hotel.distance !== undefined && this.hotel.distance.text.length > 1) {
+          this.distance = this.hotel.distance.text
+        }
+      }, 10)
     }
   }
 </script>

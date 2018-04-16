@@ -267,8 +267,8 @@
       cardExp: false,
       cardSecurtyCode: false,
       addressDialog: false,
-      newFirstName: "",
-      newLastName: ""
+      newFirstName: '',
+      newLastName: ''
     }),
     computed: {
       user () {
@@ -276,7 +276,7 @@
       }
     },
     methods: {
-      updateUserInfo()  {
+      updateUserInfo () {
         this.nameDialog = false
         var newUser = {
           id: this.user.id,
