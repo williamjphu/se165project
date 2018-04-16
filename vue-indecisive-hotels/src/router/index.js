@@ -9,6 +9,7 @@ import signup from '@/components/users/signup'
 import contactUs from '@/components/static/contact_us'
 import faqs from '@/components/static/faqs'
 import mybookings from '@/components/bookings/my_bookings'
+import bookinginformation from '@/components/bookings/booking_information'
 import book from '@/components/bookings/new_booking'
 
 Vue.use(Router)
@@ -62,7 +63,14 @@ export default new Router({
       name: 'mybookings',
       component: mybookings,
       beforeEnter: AuthGuard
+    },
+    {
+      path: '/bookinginformation',
+      name: 'bookinginformation',
+      component: bookinginformation,
+      beforeEnter: AuthGuard
     }
+
   ],
   mode: 'history'
 })

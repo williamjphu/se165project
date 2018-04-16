@@ -227,7 +227,12 @@ const actions = {
       )
   },
   autoLogin ({commit}, payload) {
-    commit('setUser', {id: payload.uid})
+    firebase.database().ref('users/').once('value', function (snapshot) {
+      var currUser = snapshot.child(payload.uid).val()
+      currUser.email = firebase.auth().currentUser.email
+      commit('setUser', currUser)
+      commit('setLoading', false)
+    })
   },
   logout ({commit}) {
     firebase.auth().signOut()
@@ -238,6 +243,10 @@ const actions = {
   },
   clearError ({commit}) {
     commit('clearError')
+  },
+  updateUserInfo({commit}, payload) {
+    commit('setUser', payload)
+    firebase.database().ref('users/').child(payload.id).set(payload)
   }
 }
 
