@@ -24,10 +24,10 @@
           <v-container grid-list-md>
             <v-layout wrap>
               <v-flex xs12 sm6 md4>
-                <v-text-field label="New first name" required></v-text-field>
+                <v-text-field v-model="newFirstName" label="New first name" required></v-text-field>
               </v-flex>
               <v-flex xs12 sm6 md4>
-                <v-text-field label="New last name" required></v-text-field>
+                <v-text-field v-model = "newLastName" label="New last name" required></v-text-field>
               </v-flex>
             </v-layout>
           </v-container>
@@ -36,7 +36,7 @@
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn color="brown darken-2" flat @click.native="nameDialog = false">Close</v-btn>
-          <v-btn color="brown darken-2" flat @click.native="nameDialog = false">Save</v-btn>
+          <v-btn color="brown darken-2" flat @click="updateUserInfo"> Save</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -46,7 +46,7 @@
           <v-list-tile>
           	<v-list-tile-title>Email: {{user.email}}
           	</v-list-tile-title>
-          	<v-dialog v-model="emailDialog" persistent max-width="500px">
+          <!-- 	<v-dialog v-model="emailDialog" persistent max-width="500px">
       <v-btn color="brown darken-2" dark slot="activator">Edit Email</v-btn>
       <v-card>
         <v-card-title>
@@ -71,7 +71,7 @@
           <v-btn color="brown darken-2" flat @click.native="emailDialog = false">Save</v-btn>
         </v-card-actions>
       </v-card>
-    </v-dialog>
+    </v-dialog> -->
         </v-list-tile>
         </v-list> 
         <v-list two-line>
@@ -296,7 +296,10 @@
       cardDialog: false,
       cardExp: false,
       cardSecurtyCode: false,
-      addressDialog: false
+      addressDialog: false,
+      newFirstName: "",
+      newLastName: ""
+
     }),
     computed: {
       user () {
@@ -304,11 +307,12 @@
       }
     },
     methods: {
-      updateUserInfo() {
-        var newUser = {
+      updateUserInfo()  {
+        this.nameDialog = false
+          var newUser = {
           id: this.user.id,
-          first: this.user.first,
-          last: this.user.last,
+          first: this.newFirstName,
+          last: this.newLastName,
           rewardPoints: this.user.rewardPoints
         }
         this.$store.dispatch('updateUserInfo', newUser)
