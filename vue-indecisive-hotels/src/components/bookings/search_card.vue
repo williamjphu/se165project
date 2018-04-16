@@ -34,7 +34,9 @@
                                 active-color="#FFB300"
                                 v-model="rating">
                               </vue-star-rating><br>
-                              {{ hotel.vicinity }}
+                              {{ hotel.vicinity }}<br>
+                              <!-- TODO card displays before distance is updated -->
+                              <!-- {{ hotel.distance.text }} -->
                             </span>
                           </v-flex>
                           <v-flex xs12 class="text-xs-right">
