@@ -4,7 +4,7 @@
   <v-layout row>
     <v-flex xs12 sm10 md8 offset-sm1 offset-md2 pa-5>
     
-      <v-card style="opacity: 0.7;">
+      <v-card>
         <v-toolbar dark color="brown darken-2">
           
           <v-toolbar-title>Account Details</v-toolbar-title>
@@ -12,7 +12,7 @@
           </v-toolbar>
         <v-list two-line>
           <v-list-tile>
-          	<v-list-tile-title>Name: {name}
+          	<v-list-tile-title>Name: {{user.first}} {{user.last}}
           	</v-list-tile-title>
           	 <v-dialog v-model="nameDialog" persistent max-width="500px">
       <v-btn color="brown darken-2" dark slot="activator">Edit Name</v-btn>
@@ -24,10 +24,10 @@
           <v-container grid-list-md>
             <v-layout wrap>
               <v-flex xs12 sm6 md4>
-                <v-text-field label="New first name" required></v-text-field>
+                <v-text-field v-model="newFirstName" label="New first name" required></v-text-field>
               </v-flex>
               <v-flex xs12 sm6 md4>
-                <v-text-field label="New last name" hint="example of helper text only on focus"></v-text-field>
+                <v-text-field v-model = "newLastName" label="New last name" required></v-text-field>
               </v-flex>
             </v-layout>
           </v-container>
@@ -36,7 +36,7 @@
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn color="brown darken-2" flat @click.native="nameDialog = false">Close</v-btn>
-          <v-btn color="brown darken-2" flat @click.native="nameDialog = false">Save</v-btn>
+          <v-btn color="brown darken-2" flat @click="updateUserInfo"> Save</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -44,9 +44,9 @@
         </v-list>
         <v-list two-line>
           <v-list-tile>
-          	<v-list-tile-title>Email: {email}
+          	<v-list-tile-title>Email: {{user.email}}
           	</v-list-tile-title>
-          	<v-dialog v-model="emailDialog" persistent max-width="500px">
+          <!-- 	<v-dialog v-model="emailDialog" persistent max-width="500px">
       <v-btn color="brown darken-2" dark slot="activator">Edit Email</v-btn>
       <v-card>
         <v-card-title>
@@ -59,7 +59,7 @@
                 <v-text-field label="New email" required></v-text-field>
               </v-flex>
               <v-flex xs12 sm12>
-                <v-text-field label="Confirm new email" ></v-text-field>
+                <v-text-field label="Confirm new email" required></v-text-field>
               </v-flex>
             </v-layout>
           </v-container>
@@ -71,7 +71,7 @@
           <v-btn color="brown darken-2" flat @click.native="emailDialog = false">Save</v-btn>
         </v-card-actions>
       </v-card>
-    </v-dialog>
+    </v-dialog> -->
         </v-list-tile>
         </v-list> 
         <v-list two-line>
@@ -94,7 +94,7 @@
                 <v-text-field label="New Password" required></v-text-field>
               </v-flex>
               <v-flex xs12 sm12>
-                <v-text-field label="Confirm New Password" ></v-text-field>
+                <v-text-field label="Confirm New Password" required></v-text-field>
               </v-flex>
             </v-layout>
           </v-container>
@@ -112,7 +112,7 @@
         
       </v-card>
       <br><br><br>
-      <v-card style="opacity: 0.7;">
+      <v-card>
         <v-toolbar dark color="brown darken-2">
           
           <v-toolbar-title>Card Information</v-toolbar-title>
@@ -135,7 +135,7 @@
                 <v-text-field label="New Card Number" required></v-text-field>
               </v-flex>
               <v-flex xs12 sm12>
-                <v-text-field label="Confirm New Card Number" hint="example of helper text only on focus"></v-text-field>
+                <v-text-field label="Confirm New Card Number"required ></v-text-field>
               </v-flex>
             </v-layout>
           </v-container>
@@ -207,7 +207,7 @@
                 <v-text-field label="New Security Code" required></v-text-field>
               </v-flex>
               <v-flex xs12 sm12>
-                <v-text-field label="Confirm New Security Code" ></v-text-field>
+                <v-text-field label="Confirm New Security Code"required ></v-text-field>
               </v-flex>
             </v-layout>
           </v-container>
@@ -225,7 +225,7 @@
       </v-card>
 
       <br><br><br>
-      <v-card style="opacity: 0.7;">
+      <v-card >
         <v-toolbar dark color="brown darken-2">
           
           <v-toolbar-title>Billing Information</v-toolbar-title>
@@ -296,7 +296,28 @@
       cardDialog: false,
       cardExp: false,
       cardSecurtyCode: false,
-      addressDialog: false
-    })
+      addressDialog: false,
+      newFirstName: "",
+      newLastName: ""
+
+    }),
+    computed: {
+      user () {
+        return this.$store.getters.user
+      }
+    },
+    methods: {
+      updateUserInfo()  {
+        this.nameDialog = false
+          var newUser = {
+          id: this.user.id,
+          first: this.newFirstName,
+          last: this.newLastName,
+          rewardPoints: this.user.rewardPoints
+        }
+        this.$store.dispatch('updateUserInfo', newUser)
+      }
+    }
   }
+
 </script>
