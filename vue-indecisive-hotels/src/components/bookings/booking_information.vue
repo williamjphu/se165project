@@ -6,7 +6,7 @@
           <v-container fluid grid-list-xl>
             <v-layout row wrap>
               <v-flex xs12 v-if="status === 'loaded'">
-                <p class="headline" style="font-weight: 500;"><v-btn icon outline color="grey darken-1" @click="onBackClicked"><v-icon>keyboard_arrow_left</v-icon></v-btn>{{ data.name }}
+                <p class="headline" style="font-weight: 500;">{{ data.name }}
                   <vue-star-rating
                     :star-size=18
                     :show-rating=false
@@ -41,31 +41,7 @@
                         Amenities
                       </p>
                     </v-flex>
-                    <v-flex xs12>
-                      <p class="title">
-                        Reviews
-                      </p>
-                      <p class="subheading">Average user rating: <vue-star-rating :star-size=10 read-only inline v-model="hotelDetails.rating" :increment=0.1></vue-star-rating></p>
-                      <v-container fluid grid-list-lg v-for="(review, i) in hotelDetails.reviews" :key="i">
-                        <v-layout row wrap>
-                          <v-flex sm2 lg1 v-if="!$vuetify.breakpoint.xsOnly" pt-4 pl-0>
-                            <v-avatar size="50" tile>
-                              <img :src="review.profile_photo_url">
-                            </v-avatar>
-                          </v-flex>
-                          <v-flex xs12 sm10 lg11 d-flex>
-                            <v-card>
-                              <v-card-title><p><i><a :href="review.author_url" target="_blank">{{ review.author_name }}</a></i></p>
-                                <p class="body-1">&nbsp;&nbsp;said {{ review.relative_time_description }}: <vue-star-rating inline :star-size=10 :show-rating=false read-only v-model="hotelDetails.rating" :increment=0.5></vue-star-rating></p><p>{{ review.text }}</p>
-                              </v-card-title>
-                            </v-card>
-                          </v-flex>
-                        </v-layout>
-                      </v-container>
-                      <p class="body-1">
-                        <a :href="hotelDetails.url" target="_blank"><b>More Reviews on Google Maps</b></a>
-                      </p>
-                    </v-flex>
+                    
                   </v-layout>
                 </v-container>
               </v-flex>
@@ -73,33 +49,33 @@
                 <v-card color="grey lighten-2" v-if="status === 'loaded'">
                   <v-container fluid grid-list-lg>
                     <v-layout row wrap>
-                      <v-flex xs12 v-if="$store.getters.bookingError">
-                        <app-alert @dismissed="onDismissed" :text="$store.getters.bookingError.message"></app-alert>
-                      </v-flex>
                       <v-flex xs12>
+                        <p class="title">
+                          Booking Information
+                        </p>
                         <v-container fluid px-0 py-0 grid-list-xs>
                           <v-layout row wrap>
                             <v-flex xs9 class="text-xs-left" pb-0>
-                              Price for 1 night per room:
+                              Check In: 
                             </v-flex>
                             <v-flex xs3 class="text-xs-right" pb-0>
-                              $ {{ data.rounded_price }}
+                              DATE IN
                             </v-flex>
-                            <v-flex xs9 class="text-xs-left" py-0 v-if="query.nights > 1">
-                              Price for {{ query.nights }} nights per room:
+                            <v-flex xs9 class="text-xs-left" py-0>
+                              Check Out:
                             </v-flex>
-                            <v-flex xs3 class="text-xs-right" py-0 v-if="query.nights > 1">
-                              $ {{ query.nights * data.rounded_price }}
+                            <v-flex xs3 class="text-xs-right" py-0>
+                              DATEOUT
                             </v-flex>
                             <v-flex xs9 class="text-xs-left" pt-0>
-                              Price for {{ query.nights }} nights for {{ query.rooms }} rooms:
+                              Total Cost:
                             </v-flex>
                             <v-flex xs3 class="text-xs-right green--text" pt-0>
-                              $ {{ total }}
+                              $ TOTAL 
                             </v-flex>
                           </v-layout>
                         </v-container>
-                        <v-btn block dark color="success" @click="onBookClicked">BOOK NOW</v-btn>
+                       
                       </v-flex>
                       <v-flex xs12>
                         <p class="title">
@@ -122,10 +98,7 @@
                           <a :href="hotelDetails.url" target="_blank"><b>Google Maps Details</b></a>
                         </p>
                       </v-flex>
-                      <v-flex xs12 class="body-1 text-xs-center">
-                        Want to explore other hotels?
-                        <v-btn block dark color="grey darken-1" @click="onBackClicked">SEARCH AGAIN</v-btn>
-                      </v-flex>
+                      
                     </v-layout>
                   </v-container>
                 </v-card>
@@ -178,37 +151,7 @@
       }
     },
     methods: {
-      onBookClicked () {
-        this.$store.commit('clearBookingError')
-        var hotel = {
-          id: this.hotelDetails.place_id,
-          name: this.hotelDetails.name,
-          address: this.hotelDetails.formatted_address,
-          phone: this.hotelDetails.international_phone_number,
-          photo: typeof this.hotelDetails.photos !== 'undefined'
-            ? this.hotelDetails.photos[0].getUrl({'maxWidth': 960, 'maxHeight': 960}) : 'http://experienceidyllwild.com/images/no-image-available2.jpg',
-          price: this.data.rounded_price,
-          rating: Math.round(this.data.rating || 3),
-          rooms: this.$store.getters.getQuery.rooms,
-          nights: this.$store.getters.getQuery.nights,
-          dateIn: this.$store.getters.getQuery.dateIn,
-          dateOut: this.$store.getters.getQuery.dateOut
-        }
-        console.log(hotel)
-        this.$store.dispatch('checkDoubleBooking', hotel)
-        if (this.$store.getters.bookingError) {
-          return
-        }
-        this.$emit('bookClicked', hotel)
-      },
-      onBackClicked () {
-        this.$store.commit('clearBookingError')
-        this.$emit('backClicked')
-      },
-      onDismissed () {
-        console.log('Alert dismissed!')
-        this.$store.commit('clearBookingError')
-      }
+      
     },
     watch: {
       data () {
@@ -241,24 +184,7 @@
           this.status = 'loaded'
         })
 
-        /* Draws route on Map from location to hotel
-        var directionsService = new google.maps.DirectionsService
-        var directionsDisplay = new google.maps.DirectionsRenderer
-        directionsDisplay.setMap(map)
-        
-        directionsService.route({
-          origin: this.$store.getters.location,
-          destination: this.data.geometry.location,
-          travelMode: 'DRIVING'
-        }, function(response, status) {
-          if (status === 'OK') {
-            console.log('directions response ', response)
-            directionsDisplay.setDirections(response)
-          } else {
-            console.error('Directions request failed due to ',  status)
-          }
-        })
-        */
+      
       }
     }
     /* eslint-enable */

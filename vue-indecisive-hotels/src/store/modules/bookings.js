@@ -5,7 +5,8 @@ const state = {
   bookingLoading: false,
   bookingError: null,
   redeemPointsEligible: false,
-  rewardPoints: 0
+  rewardPoints: 0,
+  REDEEM_AMOUNT: 10
 }
 
 const getters = {
@@ -23,6 +24,9 @@ const getters = {
   },
   rewardPoints (state) {
     return state.rewardPoints
+  },
+  redeemAmount (state) {
+    return state.REDEEM_AMOUNT
   }
 }
 
@@ -51,6 +55,21 @@ const mutations = {
 }
 
 const actions = {
+  checkDoubleBooking ({ commit, state }, payload) {
+    var dateIn = new Date(payload.dateIn)
+    var dateOut = new Date(payload.dateOut)
+    for (var i = 0; i < state.bookings.length; i++) {
+      var b = state.bookings[i]
+      var dateIn2 = new Date(b.bookingDetails.dateIn)
+      var dateOut2 = new Date(b.bookingDetails.dateOut)
+      if ((dateIn >= dateIn2 && dateIn < dateOut2) || (dateOut >= dateIn2 && dateOut < dateOut2)) {
+        commit('setBookingLoading', false)
+        commit('setBookingError', { message: 'Double bookings are not allowed! Please select different dates!' })
+        return true
+      }
+    }
+    return false
+  },
   createBooking ({ commit, dispatch }, payload) {
     commit('setBookingLoading', true)
     commit('clearBookingError')
@@ -71,7 +90,7 @@ const actions = {
           if (user) {
             if (user) {
               user.rewardPoints++
-              if (user.rewardPoints >= 10) {
+              if (user.rewardPoints >= state.REDEEM_AMOUNT) {
                 commit('setRedeemPointsEligible', true)
               }
               console.log('rewards', user.rewardPoints)
@@ -102,21 +121,29 @@ const actions = {
     console.log('Retrieving bookings of current user:')
     firebase.database().ref('bookings/' + this.getters.user.id).once('value', function (snapshot) {
       snapshot.forEach(function (child) {
-        commit('addBooking', child.val())
+        var b = child.val()
+        b.id = child.key
+        commit('addBooking', b)
       })
     })
     console.log(this.getters.bookings)
   },
-
+  deleteBooking ({ commit }, payload) {
+    // change to take payload
+    var booking = payload
+    console.log(booking)
+    var bookingRef = firebase.database().ref('bookings').child(this.getters.user.id).child(booking)
+    bookingRef.remove()
+  },
   redeemPoints ({ commit }) {
     var rewardsRef = firebase.database().ref('users').child(this.getters.user.id)
     rewardsRef.transaction(function (user) {
       if (user) {
         if (user) {
-          if (user.rewardPoints >= 10) {
-            user.rewardPoints = user.rewardPoints - 10
+          if (user.rewardPoints >= state.REDEEM_AMOUNT) {
+            user.rewardPoints = user.rewardPoints - state.REDEEM_AMOUNT
             console.log('rewards', user.rewardPoints)
-            if (user.rewardPoints < 10) {
+            if (user.rewardPoints < state.REDEEM_AMOUNT) {
               commit('setRedeemPointsEligible', false)
             }
             commit('setRewardPoints', user.rewardPoints)
@@ -137,8 +164,7 @@ const actions = {
     var ref = firebase.database().ref('users/' + this.getters.user.id)
 
     ref.on('value', function (snapshot) {
-      console.log('reward points: ' + snapshot.val().rewardPoints)
-      if (snapshot.val().rewardPoints >= 10) {
+      if (snapshot.val().rewardPoints >= state.REDEEM_AMOUNT) {
         commit('setRedeemPointsEligible', true)
       } else {
         commit('setRedeemPointsEligible', false)

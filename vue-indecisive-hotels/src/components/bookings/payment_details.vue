@@ -88,7 +88,8 @@
         return this.$store.getters.redeemPointsElibile
       },
       redeemBtnText () {
-        return this.discount ? 'Discount Applied' : (this.rewardEligible ? 'Redeem Free Night' : 'Cannot Redeem Now')
+        return this.discount ? 'Free Night Redeemed' : (this.rewardEligible ? 'Redeem Free Night'
+            : this.$store.getters.rewardPoints + ' of ' + this.$store.getters.redeemAmount + ' Rewrd Points Needed')
       },
       authenticated () {
         return this.$store.getters.user !== null && this.$store.getters.user !== undefined
@@ -99,7 +100,6 @@
     },
     methods: {
       onCheckout () {
-        // add Stripe code here - the line below should ONLY be emitted if payment is successful, if not, emit 'error' instead
         this.$checkout.open({
           name: this.booking.name,
           currency: 'USD',
