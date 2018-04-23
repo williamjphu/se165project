@@ -1,105 +1,393 @@
 <template>
   <v-container style="max-width: 1200px" py-0 px-0>
     <section>
-      <v-container d-flex class="text-xs-center" style="text-shadow: 1px 1px #111111;">
+      <v-container d-flex class="text-xs-center">
         <v-layout column align-center>
           <v-flex xs12 >
           <v-card-title primary-title>
           <v-container d-flex class="text-xs-center">
           <div>
             <h3 class="headline mb-3"> ABOUT US </h3>
-            <div> We are a team of San Jose University students all major in Software Engineering.<br>
+            <div style="font-family:"> We are a team of San Jose University students all major in Software Engineering.<br>
             We foucsed exclusively on the hotel sector.
             We have called the brightest, most <br>commerically focused experienced and passionate team of online marketers<br>
-            account managers,designers and developers in industry. </div>
+            account managers, designers and developers in industry. </div>
             </div>
             </v-container>
             </v-card-title>
-
+            <div>
             <h3 class="headline mb-0"> Meet the Team INDECISIVE </h3>
-
+          </div><br/>
             <v-container fluid grid-list-sm>
              <v-layout row wrap>
-      <v-flex xs12 sm6 md3 order-md4 md1 order-md2 order-sm2>
-          <v-card img="http://freetourpraga.com/wp-content/uploads/2017/04/Karlovy-Vary.jpg" height="160px" dark>
-          </v-card>
-          <v-card-text>
-            <h4> Matt Morin/Developer</h4>
-            </v-card-text>
-      </v-flex>
-        <v-flex xs12 sm6 md3 order-md3 order-sm1>
-          <v-card img="http://freetourpraga.com/wp-content/uploads/2017/04/Karlovy-Vary.jpg" height="160px" dark>
-          </v-card>
-          <v-card-text>
-            <h4> David Luong/Technical Lead</h4>
-            </v-card-text>
-        </v-flex>
 
-        <v-flex xs12 sm6 md3 order-md2 order-sm4>
-          <v-card img="http://freetourpraga.com/wp-content/uploads/2017/04/Karlovy-Vary.jpg" height="160px" dark>
-          </v-card>
-          <v-card-text>
-            <h4> Rana Shamoun/Developer</h4>
-            </v-card-text>
-        </v-flex>
-        <v-flex xs12 sm6 md3 order-md1 order-sm3>
-           <v-card img="http://freetourpraga.com/wp-content/uploads/2017/04/Karlovy-Vary.jpg" height="160px" dark>
-        </v-card>
-        <v-card-text>
-            <h4> William Hu/Project Manager</h4>
-            </v-card-text>
-        </v-flex>
-        <v-flex xs12 sm6 md3 order-md1 order-sm3>
-           <v-card img="http://freetourpraga.com/wp-content/uploads/2017/04/Karlovy-Vary.jpg" height="160px" dark>
-        </v-card>
-        <v-card-text>
-            <h4> Gwyneth Mina/Product Owner</h4>
-            </v-card-text>
-        </v-flex>
-        <v-flex xs12 sm6 md3 order-md1 order-sm3>
-           <v-card img="http://freetourpraga.com/wp-content/uploads/2017/04/Karlovy-Vary.jpg" height="160px" dark>
-        </v-card>
-           <v-card-text>
-            <h4> Michael Li/Tester</h4>
-            </v-card-text>
-        </v-flex>
-        <v-flex xs12 sm6 md3 order-md1 order-sm3>
-          <v-card img="http://freetourpraga.com/wp-content/uploads/2017/04/Karlovy-Vary.jpg" height="160px" dark>
-          </v-card>
-        <v-card-text>
-            <h4> Marcus Norona/Developer</h4>
-            </v-card-text>
-        </v-flex>
-        <v-flex xs12 sm6 md3 order-md1 order-sm3>
-          <v-card img="http://freetourpraga.com/wp-content/uploads/2017/04/Karlovy-Vary.jpg" height="160px" dark>
-          </v-card>
-        <v-card-text>
-            <h4> Cameron Chien/Developer</h4>
-            </v-card-text>
-        </v-flex>
-    </v-layout>
-    </v-container>
-    <v-container fluid grid-list-sm>
-    <v-layout wrap>
-      <v-flex xs3 align-center>
-        <v-card img="http://freetourpraga.com/wp-content/uploads/2017/04/Karlovy-Vary.jpg" height="160px" dark>
-        </v-card>
-        <v-card-text>
-            <h4> Payam Khosravi/Product Owner</h4>
-            </v-card-text>
+      <v-flex md4 xs6 sm4 align-center v-for="i in 12" :key="i">
+          <div class="teamcard-container" >
+
+            <div class="TeamCard"  v-if="i==1" >
+            </div>
+
+
+            <div class="TeamCard"  v-if="i==2" >
+                <div class="front">
+                        <img class="img-circle" src="https://www.flaticon.com/premium-icon/icons/svg/145/145861.svg" />
+                    <div class="backpanel">
+                        <div class="content">
+                            <div class="main" >
+                                <h3 class="name" >William Hu</h3>
+                                <p class="profession">Project Manager</p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="back">
+                    <div class="header">
+                      <h3 class="name" >William Hu</h3>
+                      <p class="profession">Project Manager</p>
+                    </div>
+                    <div class="Backcontent" justify-end="true">
+                      -	Brief introduction -	Brief introduction -	Brief introduction-	Brief introduction
+                    </div>
+                    <div class="footer">
+                        <div class="social-links text-center">
+                            <a href="http://facebook.com/" class="facebook" target="_blank"><font-awesome-icon  size="2x" :icon="['fab', 'facebook']" /></a>
+                            <a href="http://twitter.com" class="twitter" target="_blank"><font-awesome-icon  size="2x" :icon="['fab', 'twitter']" /></a>
+                            <a href="http://instagram.com" class="instagram" target="_blank"><font-awesome-icon  size="2x" :icon="['fab', 'instagram']" /></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="TeamCard"  v-if="i==3" >
+            </div>
+
+
+            <div class="TeamCard" v-if="i==4" >
+                <div class="front">
+                        <img class="img-circle" src="https://www.flaticon.com/premium-icon/icons/svg/145/145857.svg" />
+                    <div class="backpanel">
+                        <div class="content">
+                            <div class="main" >
+                                <h3 class="name" >David Luong</h3>
+                                <p class="profession">Technical Lead</p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="back">
+                    <div class="header">
+                      <h3 class="name" >David Luong</h3>
+                      <p class="profession">Technical Lead</p>
+                    </div>
+                    <div class="Backcontent" justify-end="true">
+                      -	Brief introduction -	Brief introduction -	Brief introduction-	Brief introduction
+                    </div>
+                    <div class="footer">
+                        <div class="social-links text-center">
+                            <a href="http://facebook.com/" class="facebook" target="_blank"><font-awesome-icon  size="2x" :icon="['fab', 'facebook']" /></a>
+                            <a href="http://twitter.com" class="twitter" target="_blank"><font-awesome-icon  size="2x" :icon="['fab', 'twitter']" /></a>
+                            <a href="http://instagram.com" class="instagram" target="_blank"><font-awesome-icon  size="2x" :icon="['fab', 'instagram']" /></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="TeamCard" v-if="i==5">
+                <div class="front">
+                        <img class="img-circle" src="https://image.flaticon.com/icons/svg/701/701989.svg" />
+                    <div class="backpanel">
+                        <div class="content">
+                            <div class="main" >
+                                <h3 class="name" >Rana Shamoun</h3>
+                                <p class="profession">Software Developer</p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="back">
+                    <div class="header">
+                      <h3 class="name" >Rana Shamoun</h3>
+                      <p class="profession">Software Developer</p>
+                    </div>
+                    <div class="Backcontent" justify-end="true">
+                      -	Brief introduction -	Brief introduction -	Brief introduction-	Brief introduction
+                    </div>
+                    <div class="footer">
+                        <div class="social-links text-center">
+                            <a href="http://facebook.com/" class="facebook" target="_blank"><font-awesome-icon  size="2x" :icon="['fab', 'facebook']" /></a>
+                            <a href="http://twitter.com" class="twitter" target="_blank"><font-awesome-icon  size="2x" :icon="['fab', 'twitter']" /></a>
+                            <a href="http://instagram.com" class="instagram" target="_blank"><font-awesome-icon  size="2x" :icon="['fab', 'instagram']" /></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="TeamCard" v-if="i==6">
+                <div class="front">
+                        <img class="img-circle" src="https://www.flaticon.com/premium-icon/icons/svg/145/145861.svg" />
+                    <div class="backpanel">
+                        <div class="content">
+                            <div class="main" >
+                                <h3 class="name" >Matt Morin</h3>
+                                <p class="profession">oftware Developer</p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="back">
+                    <div class="header">
+                      <h3 class="name" >Matt Morin</h3>
+                      <p class="profession">oftware Developer</p>
+                    </div>
+                    <div class="Backcontent" justify-end="true">
+                      -	Brief introduction -	Brief introduction -	Brief introduction-	Brief introduction
+                    </div>
+                    <div class="footer">
+                        <div class="social-links text-center">
+                            <a href="http://facebook.com/" class="facebook" target="_blank"><font-awesome-icon  size="2x" :icon="['fab', 'facebook']" /></a>
+                            <a href="http://twitter.com" class="twitter" target="_blank"><font-awesome-icon  size="2x" :icon="['fab', 'twitter']" /></a>
+                            <a href="http://instagram.com" class="instagram" target="_blank"><font-awesome-icon  size="2x" :icon="['fab', 'instagram']" /></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="TeamCard" v-if="i==7">
+                <div class="front">
+                        <img class="img-circle" src="https://image.flaticon.com/icons/svg/701/701989.svg" />
+                    <div class="backpanel">
+                        <div class="content">
+                            <div class="main" >
+                                <h3 class="name" >Gwyneth Mina</h3>
+                                <p class="profession">Product Owner</p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="back">
+                    <div class="header">
+                      <h3 class="name" >Gwyneth Mina</h3>
+                      <p class="profession">Product Owner</p>
+                    </div>
+                    <div class="Backcontent" justify-end="true">
+                      -	Brief introduction -	Brief introduction -	Brief introduction-	Brief introduction
+                    </div>
+                    <div class="footer">
+                        <div class="social-links text-center">
+                            <a href="http://facebook.com/" class="facebook" target="_blank"><font-awesome-icon  size="2x" :icon="['fab', 'facebook']" /></a>
+                            <a href="http://twitter.com" class="twitter" target="_blank"><font-awesome-icon  size="2x" :icon="['fab', 'twitter']" /></a>
+                            <a href="http://instagram.com" class="instagram" target="_blank"><font-awesome-icon  size="2x" :icon="['fab', 'instagram']" /></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="TeamCard" v-if="i==8">
+                <div class="front">
+                        <img class="img-circle" src="https://image.flaticon.com/icons/svg/265/265674.svg" />
+                    <div class="backpanel">
+                        <div class="content">
+                            <div class="main" >
+                                <h3 class="name" >Michael Li</h3>
+                                <p class="profession">Software Tester</p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="back">
+                    <div class="header">
+                        <h3 class="name">Michael Li</h3>
+                        <p class="profession">Software Tester</p>
+                    </div>
+                    <div class="Backcontent" justify-end="true">
+                      -	Brief introduction -	Brief introduction -	Brief introduction-	Brief introduction
+                    </div>
+                    <div class="footer">
+                        <div class="social-links text-center">
+                            <a href="http://facebook.com/" class="facebook" target="_blank"><font-awesome-icon  size="2x" :icon="['fab', 'facebook']" /></a>
+                            <a href="http://twitter.com" class="twitter" target="_blank"><font-awesome-icon  size="2x" :icon="['fab', 'twitter']" /></a>
+                            <a href="http://instagram.com" class="instagram" target="_blank"><font-awesome-icon  size="2x" :icon="['fab', 'instagram']" /></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="TeamCard" v-if="i==9">
+                <div class="front">
+                        <img class="img-circle" src="https://www.flaticon.com/premium-icon/icons/svg/145/145861.svg" />
+                    <div class="backpanel">
+                        <div class="content">
+                            <div class="main" >
+                                <h3 class="name" >Marcus Norona</h3>
+                                <p class="profession">Software Developer</p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="back">
+                    <div class="header">
+                        <h3 class="name">Marcus Norona</h3>
+                        <p class="profession">Software Developer</p>
+                    </div>
+                    <div class="Backcontent" justify-end="true">
+                      -	Brief introduction -	Brief introduction -	Brief introduction-	Brief introduction
+                    </div>
+                    <div class="footer">
+                        <div class="social-links text-center">
+                            <a href="http://facebook.com/" class="facebook" target="_blank"><font-awesome-icon  size="2x" :icon="['fab', 'facebook']" /></a>
+                            <a href="http://twitter.com" class="twitter" target="_blank"><font-awesome-icon  size="2x" :icon="['fab', 'twitter']" /></a>
+                            <a href="http://instagram.com" class="instagram" target="_blank"><font-awesome-icon  size="2x" :icon="['fab', 'instagram']" /></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="TeamCard" v-if="i==10">
+                <div class="front">
+                        <img class="img-circle" src="https://www.flaticon.com/premium-icon/icons/svg/145/145861.svg" />
+                    <div class="backpanel">
+                        <div class="content">
+                            <div class="main" >
+                                <h3 class="name" >Cameron Chien</h3>
+                                <p class="profession">Software Developer</p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="back">
+                    <div class="header">
+                      <h3 class="name" >Cameron Chien</h3>
+                      <p class="profession">Software Developer</p>
+                    </div>
+                    <div class="Backcontent" justify-end="true">
+                      -	Brief introduction -	Brief introduction -	Brief introduction-	Brief introduction
+                    </div>
+                    <div class="footer">
+                        <div class="social-links text-center">
+                            <a href="http://facebook.com/" class="facebook" target="_blank"><font-awesome-icon  size="2x" :icon="['fab', 'facebook']" /></a>
+                            <a href="http://twitter.com" class="twitter" target="_blank"><font-awesome-icon  size="2x" :icon="['fab', 'twitter']" /></a>
+                            <a href="http://instagram.com" class="instagram" target="_blank"><font-awesome-icon  size="2x" :icon="['fab', 'instagram']" /></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="TeamCard" v-if="i==11">
+                <div class="front">
+                        <img class="img-circle" src="https://www.flaticon.com/premium-icon/icons/svg/145/145857.svg" />
+                    <div class="backpanel">
+                        <div class="content">
+                            <div class="main" >
+                              <h3 class="name" >Yen Nguyen</h3>
+                              <p class="profession">Software Tester</p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="back">
+                    <div class="header">
+                      <h3 class="name" >Yen Nguyen</h3>
+                      <p class="profession">Software Tester</p>
+                    </div>
+                    <div class="Backcontent" justify-end="true">
+                      -	Brief introduction -	Brief introduction -	Brief introduction-	Brief introduction
+                    </div>
+                    <div class="footer">
+                        <div class="social-links text-center">
+                            <a href="http://facebook.com/" class="facebook" target="_blank"><font-awesome-icon  size="2x" :icon="['fab', 'facebook']" /></a>
+                            <a href="http://twitter.com" class="twitter" target="_blank"><font-awesome-icon  size="2x" :icon="['fab', 'twitter']" /></a>
+                            <a href="http://instagram.com" class="instagram" target="_blank"><font-awesome-icon  size="2x" :icon="['fab', 'instagram']" /></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="TeamCard" v-if="i==12">
+                <div class="front">
+                        <img class="img-circle" src="https://www.flaticon.com/premium-icon/icons/svg/145/145857.svg" />
+                    <div class="backpanel">
+                        <div class="content">
+                            <div class="main" >
+                                <h3 class="name" >pa</h3>
+                                <p class="profession">Product Owner</p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="back">
+                    <div class="header">
+                        <h3 class="name">pa</h3>
+                        <p class="profession">Product Owner</p>
+                    </div>
+                    <div class="Backcontent" justify-end="true">
+                      -	Brief introduction -	Brief introduction -	Brief introduction-	Brief introduction
+                    </div>
+                    <div class="footer">
+                        <div class="social-links text-center">
+                            <a href="http://facebook.com/" class="facebook" target="_blank"><font-awesome-icon  size="2x" :icon="['fab', 'facebook']" /></a>
+                            <a href="http://twitter.com" class="twitter" target="_blank"><font-awesome-icon  size="2x" :icon="['fab', 'twitter']" /></a>
+                            <a href="https://www.instagram.com/payam_9/" class="instagram" target="_blank"><font-awesome-icon  size="2x" :icon="['fab', 'instagram']" /></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
       </v-flex>
-      <v-flex xs3 align-center>
-        <v-card img="http://freetourpraga.com/wp-content/uploads/2017/04/Karlovy-Vary.jpg" height="160px" dark>
-         </v-card>
-         <v-card-text>
-            <h4> Yen Nguyen/Tester</h4>
-            </v-card-text>
-      </v-flex>
     </v-layout>
+
+    <v-flex xs12>
+    <br>
+      <v-flex xs12>
+        <v-card>
+        <v-card-text class="px-0 display-1 headline primary--text" align-center>Contact Us</v-card-text>
+        </v-card>
+    </v-flex>
+
+      <v-flex xs12>
+      <v-card dark style="background-color:#795548">
+        <v-card-text class="px-0" align-center>Do you have a question or have any concerns?</v-card-text>
+      </v-card>
+    </v-flex>
+<template>
+  <v-card>
+  <v-form v-model="valid" ref="form" lazy-validation>
+    <v-text-field
+      v-model="message"
+      label="Message"
+      :counter="500"
+        v-validate="'required|max:500'"
+      data-vv-name="message"
+      multi-line = "true"
+      required
+      xs12
+    ></v-text-field>
+ </v-form>
+  </v-card>
+</template>
+
+    <v-btn @click="sendmail" xs12 align-center color="info" outline large >Send  <v-icon dark right>send</v-icon></v-btn>
+
+      </v-flex>
+
     </v-container>
-            
+    <v-container d-flex class="text-xs-center">
+    <v-card class="primary--text" text-center color="grey lighten-4" >
+          <div style="color:white; background-color:grey;">
+            <h3 class="headline mb-0" > Customer Service </h3>
+            <div> We are here to help you. Please do not hesitate to contact us
+            <br> if you have any question or concern. </br>
+            phone number: (408) 924-1000
+            <br> You can also use our live chat to chat with us</br> or to leave us a message and we will try to get</br> back to you as soon as possible</br> </div>
+            </div>
+            </v-card>
+            </v-container>
+
+
           </v-flex>
-          
+
 
         </v-layout>
       </v-container>
@@ -108,32 +396,209 @@
 </template>
 
 <script>
-  export default {
-    data () {
-      return {
-        // Any variable data should go in here
-      }
-    },
-// No need for this method
-    methods: {
-      checkout () {
-        this.$checkout.open({
-          name: 'IDCV hotel',
-          currency: 'USD',
-          billingAddress: true,
-          amount: 999,
-          locale: 'auto',
-          panelLabel: 'Subscribe {{amount}}',
-          token: (token) => {
-            console.log(token)
-            this.token = token
-          }
-        })
-      }
-    },
-
-    computed: {
-      // Any variables that need to be dynamically recomputed go in here
+    export default {
+  data () {
+        return {
+      message
     }
+  },
+
+        //  No need for this method
+  methods: {
+        sendmail: function (event) {
+  document.location.href = 'mailto:info@hotel.com?subject=Message%20From%20Website'
+    }
+  },
+
+  computed: {
+            // Any variables that need to be dynamically recomputed go in here
   }
+    }
 </script>
+<style>
+    .Backcontent {
+        padding-top: 3%;
+        margin-top: 1%;
+        height: 50%;
+        border-top: thin solid #795548;
+    }
+
+    .teamcard-container {
+        font-family: "Helvetica Nueue",Arial,Verdana,sans-serif;
+        -webkit-perspective: 800px;
+        -moz-perspective: 800px;
+        -o-perspective: 800px;
+        perspective: 800px;
+        margin-left: 2%;
+        margin-bottom: 2%;
+        /* border: thin solid #795548;    */
+
+    }
+
+        .teamcard-container:not(.manual-flip):hover .TeamCard,
+        .teamcard-container.hover.manual-flip .TeamCard {
+            -webkit-transform: rotateY( 180deg );
+            -moz-transform: rotateY( 180deg );
+            -o-transform: rotateY( 180deg );
+            transform: rotateY( 180deg );
+        }
+
+        .teamcard-container.static:hover .TeamCard,
+        .teamcard-container.static.hover .TeamCard {
+            -webkit-transform: none;
+            -moz-transform: none;
+            -o-transform: none;
+            transform: none;
+        }
+
+    .TeamCard {
+        -webkit-transition: -webkit-transform .5s;
+        -moz-transition: -moz-transform .5s;
+        -o-transition: -o-transform .5s;
+        transition: transform .5s;
+        -webkit-transform-style: preserve-3d;
+        -moz-transform-style: preserve-3d;
+        -o-transform-style: preserve-3d;
+        transform-style: preserve-3d;
+        position: relative;
+    }
+
+    .front, .back {
+        -webkit-backface-visibility: hidden;
+        -moz-backface-visibility: hidden;
+        -o-backface-visibility: hidden;
+        backface-visibility: hidden;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: #FFF;
+        box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.14);
+    }
+
+    /* front pane, placed above back */
+    .front {
+        z-index: 2;
+    }
+
+    /* back, initially hidden pane */
+    .back {
+        -webkit-transform: rotateY( 180deg );
+        -moz-transform: rotateY( 180deg );
+        -o-transform: rotateY( 180deg );
+        transform: rotateY( 180deg );
+        z-index: 3;
+    }
+
+    .TeamCard {
+        background: none repeat scroll 0 0 #FFFFFF;
+        border-radius: 4px;
+        color: #444444;
+
+    }
+
+    .teamcard-container, .front, .back {
+        width: 100%;
+        height: 260px;
+        border-radius: 8px;
+    }
+
+    .TeamCard .front img {
+        margin: 2%;
+        background: none repeat scroll 0 0 #FFFFFF;
+        height: 96%;
+        border-radius: 4px;
+        width: 96%;
+    }
+
+    .TeamCard .content {
+        box-shadow: none;
+        position: absolute;
+        top: 86%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
+        background-color: white;
+        padding: 2%;
+        opacity: 0.7;
+        filter: alpha(opacity=70);
+        text-align: center !important;
+    }
+
+    .TeamCard .back .content .main {
+        height: auto;
+    }
+
+    .TeamCard .name {
+        font-size: 18px;
+        line-height: 15px;
+        margin: 5px 0 0;
+        text-align: center;
+        text-transform: capitalize;
+    }
+
+    .TeamCard h5 {
+        margin: 5px 0;
+        font-weight: 900;
+        line-height: 15px;
+    }
+
+    .TeamCard .profession {
+        color: saddlebrown;
+        text-align: center;
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+
+
+    .TeamCard .footer {
+        border-top: 1px solid #EEEEEE;
+        color: #999999;
+        margin: 30px 0 0;
+        text-align: center;
+    }
+
+        .TeamCard .footer .social-links {
+            font-size: 15px;
+            text-align: center;
+            width: 100%;
+            padding: 3%;
+            vertical-align: middle;
+            background-color: white;
+        }
+
+            .TeamCard .footer .social-links a {
+                margin: 0 5px;
+            }
+
+    .TeamCard .header {
+        margin-top: 10%;
+    }
+
+    /*       Fix bug for IE      */
+
+    @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+        .front, .back {
+            -ms-backface-visibility: visible;
+            backface-visibility: visible;
+        }
+
+        .back {
+            visibility: hidden;
+            -ms-transition: all 0.2s cubic-bezier(.92,.01,.83,.67);
+        }
+
+        .front {
+            z-index: 4;
+        }
+
+        .teamcard-container:not(.manual-flip):hover .back,
+        .teamcard-container.manual-flip.hover .back {
+            z-index: 5;
+            visibility: visible;
+        }
+    }
+    .instagram{
+
+    }
+
+</style>
