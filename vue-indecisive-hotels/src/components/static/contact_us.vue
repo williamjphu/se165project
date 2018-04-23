@@ -309,7 +309,7 @@
                     <div class="backpanel">
                         <div class="content">
                             <div class="main" >
-                                <h3 class="name" >pa</h3>
+                                <h3 class="name" >Payam Khosravi</h3>
                                 <p class="profession">Product Owner</p>
                             </div>
 
@@ -318,7 +318,7 @@
                 </div>
                 <div class="back">
                     <div class="header">
-                        <h3 class="name">pa</h3>
+                        <h3 class="name">Payam Khosravi</h3>
                         <p class="profession">Product Owner</p>
                     </div>
                     <div class="Backcontent" justify-end="true">
@@ -535,7 +535,7 @@
         font-size: 18px;
         line-height: 15px;
         margin: 5px 0 0;
-        text-align: center;
+        text-align: left;
         text-transform: capitalize;
     }
 
@@ -550,6 +550,7 @@
         text-align: center;
         font-weight: bold;
         margin-bottom: 5px;
+        text-align: left;
     }
 
 
