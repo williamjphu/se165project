@@ -6,7 +6,7 @@
         "questions": [
           {
             "id": 1,
-            "question": "I.What are the different types and information about hotels and hotel rooms?",
+            "question": "I.How do I find information about different hotels and hotel rooms?",
             "answers": [
               {
                 "id": 1,
@@ -35,7 +35,7 @@
           },
           {
             "id": 3,
-            "question": "III.Where can I get information about your company?",
+            "question": "III.Where can I get information about the team members and their roles?",
             "answers": [
               {
                 "id": 1,
@@ -101,15 +101,14 @@
           },
           {
             "id": 4,
-            "question": "IV.How do I view and edit my account information?",
+            "question": "IV.How do I edit my card information?",
             "answers": [
               {
                 "id": 1,
                 "text": "Please log in into Indecisive account on the Indecisive website and follow these instructions:",
                 "options": [
                   "Click on “myAccount”",
-                  "Choose Account Details, Card Information, or Billing Information.",
-                  "Select view or edit."
+                  "Under Card Information, please select any edit option that you want to edit in the card information."
                 ]
               }
             ]
@@ -155,15 +154,15 @@
         "questions": [
           {
             "id": 1,
-            "question": "I.Where can I see my current bookings and reservations?",
+            "question": "I.Where can I see and modify my upcoming bookings and reservations?",
             "answers": [
               {
                 "id": 1,
                 "text": "Please log in into Indecisive account on the Indecisive website and follow these instructions:",
                 "options": [
                   "Click on myBookings.",
-                  "Choose on Current booking.",
-                  "Select view booking."
+                  "Choose Upcoming booking.",
+                  "Select view or modify booking."
                 ]
               }
             ]
@@ -174,8 +173,11 @@
             "answers": [
               {
                 "id": 1,
-                "text": "",
+                "text": "Please log in into Indecisive account on the Indecisive website and follow these instructions:",
                 "options": [
+                  "Click on myBookings.",
+                  "Choose Upcoming and Past bookings.",
+                  "Select view bookings."
                 ]
               }
             ]
