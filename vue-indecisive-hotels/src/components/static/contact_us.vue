@@ -7,8 +7,8 @@
           <v-card-title primary-title>
           <v-container d-flex class="text-xs-center">
           <div>
-            <h3 class="headline mb-3"> ABOUT US </h3>
-            <div style="font-family:"> We are a team of San Jose University students all major in Software Engineering.<br>
+            <h1 class="headline mb-3" style="font-size:100px; font-weight:bold"> ABOUT US </h1>
+            <div style="font-family:; font-size:20px; background-color:light-grey;"> We are a team of San Jose University students all major in Software Engineering.<br>
             We foucsed exclusively on the hotel sector.
             We have called the brightest, most <br>commerically focused experienced and passionate team of online marketers<br>
             account managers, designers and developers in industry. </div>
@@ -16,7 +16,7 @@
             </v-container>
             </v-card-title>
             <div>
-            <h3 class="headline mb-0"> Meet the Team INDECISIVE </h3>
+            <h3 class="headline mb-0" style="font-size:100px; font-weight:bold; color:white; background-color:#0E76BC"> Meet the Team INDECISIVE </h3>
           </div><br/>
             <v-container fluid grid-list-sm>
              <v-layout row wrap>
@@ -130,7 +130,7 @@
                         <div class="content">
                             <div class="main" >
                                 <h3 class="name" >Matt Morin</h3>
-                                <p class="profession">oftware Developer</p>
+                                <p class="profession">Software Developer</p>
                             </div>
 
                         </div>
@@ -139,7 +139,7 @@
                 <div class="back">
                     <div class="header">
                       <h3 class="name" >Matt Morin</h3>
-                      <p class="profession">oftware Developer</p>
+                      <p class="profession">Software Developer</p>
                     </div>
                     <div class="Backcontent" justify-end="true">
                       -	Brief introduction -	Brief introduction -	Brief introduction-	Brief introduction
@@ -347,7 +347,7 @@
     </v-flex>
 
       <v-flex xs12>
-      <v-card dark style="background-color:#795548">
+      <v-card dark style="background-color:#0E76BC">
         <v-card-text class="px-0" align-center>Do you have a question or have any concerns?</v-card-text>
       </v-card>
     </v-flex>
@@ -373,8 +373,8 @@
       </v-flex>
 
     </v-container>
-    <v-container d-flex class="text-xs-center">
-    <v-card class="primary--text" text-center color="grey lighten-4" >
+    <v-container d-flex class="text-xs-center" >
+    <v-card class="primary--text" text-center style="color:grey"  >
           <div style="color:white; background-color:grey;">
             <h3 class="headline mb-0" > Customer Service </h3>
             <div> We are here to help you. Please do not hesitate to contact us
@@ -489,6 +489,7 @@
         -o-transform: rotateY( 180deg );
         transform: rotateY( 180deg );
         z-index: 3;
+        align:center;
     }
 
     .TeamCard {
