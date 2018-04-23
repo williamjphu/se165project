@@ -425,10 +425,10 @@
 
     .teamcard-container {
         font-family: "Helvetica Nueue",Arial,Verdana,sans-serif;
-        -webkit-perspective: 800px;
-        -moz-perspective: 800px;
-        -o-perspective: 800px;
-        perspective: 800px;
+        -webkit-perspective: 1000px;
+        -moz-perspective: 1000px;
+        -o-perspective: 1000px;
+        perspective: 1000px;
         margin-left: 2%;
         margin-bottom: 2%;
         /* border: thin solid #795548;    */
@@ -461,6 +461,9 @@
         -o-transform-style: preserve-3d;
         transform-style: preserve-3d;
         position: relative;
+        padding-left: 10px;
+        padding-right: 20px;
+        margin-left:40px;
     }
 
     .front, .back {
