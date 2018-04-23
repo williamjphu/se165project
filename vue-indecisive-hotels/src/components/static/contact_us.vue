@@ -305,7 +305,7 @@
             </div>
             <div class="TeamCard" v-if="i==12">
                 <div class="front">
-                        <img class="img-circle" src="https://www.flaticon.com/premium-icon/icons/svg/145/145857.svg" />
+                        <img class="img-circle" src="https://image.flaticon.com/icons/svg/265/265674.svg" />
                     <div class="backpanel">
                         <div class="content">
                             <div class="main" >
@@ -399,15 +399,14 @@
     export default {
   data () {
         return {
-      message
-    }
+        }
   },
 
         //  No need for this method
   methods: {
         sendmail: function (event) {
-  document.location.href = 'mailto:info@hotel.com?subject=Message%20From%20Website'
-    }
+          document.location.href = 'mailto:info@hotel.com?subject=Message%20From%20Website'
+        }
   },
 
   computed: {
