@@ -275,7 +275,7 @@
             </div>
             <div class="TeamCard" v-if="i==11">
                 <div class="front">
-                        <img class="img-circle" src="https://www.flaticon.com/premium-icon/icons/svg/145/145857.svg" />
+                        <img class="img-circle" src="https://image.flaticon.com/icons/svg/701/701989.svg" />
                     <div class="backpanel">
                         <div class="content">
                             <div class="main" >
@@ -305,7 +305,7 @@
             </div>
             <div class="TeamCard" v-if="i==12">
                 <div class="front">
-                        <img class="img-circle" src="https://image.flaticon.com/icons/svg/265/265674.svg" />
+                        <img class="img-circle" src="~@/assets/0.jpeg" >
                     <div class="backpanel">
                         <div class="content">
                             <div class="main" >
@@ -321,8 +321,13 @@
                         <h3 class="name">Payam Khosravi</h3>
                         <p class="profession">Product Owner</p>
                     </div>
-                    <div class="Backcontent" justify-end="true">
-                      -	Brief introduction -	Brief introduction -	Brief introduction-	Brief introduction
+                    <div class="Backcontent" justify-end="true" >
+                      <p>
+                      My name is Payam,
+                      Born and raised in Iran.
+                      Education and/or work.
+                      Most important to me is and I try to achieve/protect that the best I can.
+                      So far I have achieved .</p>
                     </div>
                     <div class="footer">
                         <div class="social-links text-center">
@@ -337,7 +342,8 @@
         </div>
       </v-flex>
     </v-layout>
-
+    </v-container>
+<!--
     <v-flex xs12>
     <br>
       <v-flex xs12>
@@ -346,7 +352,7 @@
         </v-card>
     </v-flex>
 
-      <v-flex xs12>
+   <v-flex xs12>
       <v-card dark style="background-color:#0E76BC">
         <v-card-text class="px-0" align-center>Do you have a question or have any concerns?</v-card-text>
       </v-card>
@@ -370,16 +376,17 @@
 
     <v-btn @click="sendmail" xs12 align-center color="info" outline large >Send  <v-icon dark right>send</v-icon></v-btn>
 
-      </v-flex>
+  </v-flex>
 
-    </v-container>
+    </v-container>-->
     <v-container d-flex class="text-xs-center" >
-    <v-card class="primary--text" text-center style="color:grey"  >
-          <div style="color:white; background-color:grey;">
+    <v-card class="primary--text" text-center column align-center >
+          <div style="color:white; background-color:grey;" >
             <h3 class="headline mb-0" > Customer Service </h3>
             <div> We are here to help you. Please do not hesitate to contact us
             <br> if you have any question or concern. </br>
-            phone number: (408) 924-1000
+            phone number: (408) 924-1000<br/>
+            <a @click="sendmail" style="align-center; color:#0000b3"><u> Email us </u> </v-icon></a>
             <br> You can also use our live chat to chat with us</br> or to leave us a message and we will try to get</br> back to you as soon as possible</br> </div>
             </div>
             </v-card>
@@ -399,13 +406,13 @@
     export default {
   data () {
         return {
+
         }
   },
 
-        //  No need for this method
   methods: {
         sendmail: function (event) {
-          document.location.href = 'mailto:info@hotel.com?subject=Message%20From%20Website'
+          document.location.href = 'mailto:info@indecisive.com'
         }
   },
 
@@ -503,6 +510,7 @@
         width: 100%;
         height: 260px;
         border-radius: 8px;
+
     }
 
     .TeamCard .front img {
