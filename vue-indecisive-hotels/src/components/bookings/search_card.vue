@@ -99,12 +99,18 @@
   export default {
     data () {
       return {
-        distance: '',
+        distance2: '',
         interval: {}
       }
     },
     props: ['hotel'],
     computed: {
+      distance () {
+        if (this.hotel.distance !== null && this.hotel.distance !== undefined && this.hotel.distance.text.length > 1) {
+          return this.hotel.distance.text
+        }
+        return this.distance2
+      },
       discount () {
         // Determines the low rate
         return this.hotel.discount
@@ -152,7 +158,7 @@
     mounted () {
       this.interval = setInterval(() => {
         if (this.distance.length < 1 && this.hotel.distance !== undefined && this.hotel.distance.text.length > 1) {
-          this.distance = this.hotel.distance.text
+          this.distance2 = this.hotel.distance.text
         }
       }, 10)
     }
