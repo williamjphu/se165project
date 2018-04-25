@@ -37,23 +37,29 @@
       hotels () {
         var hotels = this.$store.getters.getHotels.concat()
         const sort = this.$store.getters.getSort
+        var filters = this.$store.getters.getFilters
         if (sort === 'Z to A') {
-          return hotels.sort((a, b) => b.name.localeCompare(a.name))
+          hotels = hotels.sort((a, b) => b.name.localeCompare(a.name))
         } else if (sort === 'A to Z') {
-          return hotels.sort((a, b) => a.name.localeCompare(b.name))
+          hotels = hotels.sort((a, b) => a.name.localeCompare(b.name))
         } else if (sort === 'Most Expensive') {
-          return hotels.sort((a, b) => b.rounded_price - a.rounded_price)
+          hotels = hotels.sort((a, b) => b.rounded_price - a.rounded_price)
         } else if (sort === 'Cheapest') {
-          return hotels.sort((a, b) => a.rounded_price - b.rounded_price)
+          hotels = hotels.sort((a, b) => a.rounded_price - b.rounded_price)
         } else if (sort === 'Closest') {
-          return hotels.sort((a, b) => a.distance.value - b.distance.value)
+          hotels = hotels.sort((a, b) => a.distance.value - b.distance.value)
         } else if (sort === 'Farthest') {
-          return hotels.sort((a, b) => b.distance.value - a.distance.value)
+          hotels = hotels.sort((a, b) => b.distance.value - a.distance.value)
         } else if (sort === 'Most Stars') {
-          return hotels.sort((a, b) => (b.rating || 3) - (a.rating || 3))
-        } else {
-          return hotels
+          hotels = hotels.sort((a, b) => (b.rating || 3) - (a.rating || 3))
         }
+        // hotels = hotels.filter(hotel => hotel.rounded_price >= filters.price.min)
+        // hotels = hotels.filter(hotel => hotel.rounded_price <= filters.price.max)
+        // hotels = hotels.filter(hotel => (hotel.distance === undefined ? 0 : hotel.distance.value) >= filters.distance.min)
+        // hotels = hotels.filter(hotel => (hotel.distance === undefined ? 50 : hotel.distance.value) <= filters.distance.max)
+        // hotels = hotels.filter(hotel => (hotel.rating || 3) >= filters.rating.min)
+        // hotels = hotels.filter(hotel => (hotel.rating || 3) <= filters.rating.max)
+        return hotels
       },
       loading () {
         return this.$store.getters.locationLoading

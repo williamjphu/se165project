@@ -6,6 +6,20 @@ const state = {
   locationLoading: false,
   locationError: null,
   sort: '',
+  filters: {
+    price: {
+      min: 0,
+      max: 200
+    },
+    distance: {
+      min: 0,
+      max: 20
+    },
+    rating: {
+      min: 0,
+      max: 5
+    }
+  },
   hotels: [],
   query: null
 }
@@ -31,6 +45,9 @@ const getters = {
   },
   getQuery (state) {
     return state.query
+  },
+  getFilters (state) {
+    return state.filters
   }
 }
 
@@ -49,6 +66,9 @@ const mutations = {
   },
   setSort (state, payload) {
     state.sort = payload
+  },
+  setFilters (state, payload) {
+    state.filters = payload
   },
   clearHotels (state) {
     state.hotels = []
@@ -188,6 +208,7 @@ const mutations = {
 
 const actions = {
   findPlaces ({ commit, state }, payload) {
+    commit('setSort', '')
     console.log(payload)
     commit('setQuery', payload)
     commit('setLocationLoading', true)

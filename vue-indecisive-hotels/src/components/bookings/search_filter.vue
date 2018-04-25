@@ -46,7 +46,26 @@
   export default {
     data () {
       return {
-        sortMethod: 'Sort by'
+        sortMethod: 'Sort by',
+        filters: {
+          price: {
+            min: 0,
+            max: 0
+          },
+          distance: {
+            min: 0,
+            max: 0
+          },
+          rating: {
+            min: 0,
+            max: 0
+          }
+        }
+      }
+    },
+    computed: {
+      storeFilters () {
+        return this.$store.getters.filters
       }
     },
     methods: {
@@ -56,6 +75,17 @@
       },
       showMap () {
         this.$store.commit('setShowMap', true)
+      },
+      setFilters () {
+        this.$store.commit('setFilters', this.filters)
+      }
+    },
+    watch: {
+      filters () {
+        this.setFilters()
+      },
+      storeFilters () {
+        this.filters = this.$store.getters.filters
       }
     }
   }
