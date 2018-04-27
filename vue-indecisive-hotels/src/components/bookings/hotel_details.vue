@@ -33,6 +33,14 @@
                       <p class="title">
                         Distance and Weather
                       </p>
+                      <weather
+                        api-key="2536a25e69e0b892139dcce8c19f8953"
+                        title= "WeatherTitle"
+                        latitude= '37.7749'
+                        longitude='122.4149'
+                        language='en'
+                        units="us">
+                      </weather>
                       <p class="body-1">Distance from location: {{ data.distance.text }}</p>
                       <p class="body-1">Estimated Driving Duration: {{ data.duration.text }}</p>
                       <!-- TODO fix weather function before un-commenting <p class="body-1">Current Weather: {{ weather }}</p> -->
@@ -139,12 +147,19 @@
 </template>
 
 <script>
+  import VueWeatherWidget from 'vue-weather-widget'
+  import 'vue-weather-widget/dist/css/vue-weather-widget.css'
+
   export default {
     data () {
       return {
+        weatherTitle: '',
         hotelDetails: null,
         status: 'loading'
       }
+    },
+    components: {
+      'weather': VueWeatherWidget
     },
     props: ['data'],
     /* eslint-disable */
