@@ -139,7 +139,6 @@ const actions = {
   deleteBooking ({ commit }, payload) {
     // change to take payload
     var bookingId = payload
-    console.log(booking)
     var bookingRef = firebase.database().ref('bookings').child(this.getters.user.id).child(bookingId)
     bookingRef.remove()
   },
