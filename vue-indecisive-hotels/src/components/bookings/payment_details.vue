@@ -129,21 +129,22 @@
               console.log('CustomerID created: ' + customerID)
               // Request to create a new charge based on the customer ID generated
               axios.post('https://api.stripe.com/v1/charges', qs.stringify({
-                amount: this.total * 10,
+                amount: this.total * 100,
                 currency: 'USD',
                 customer: customerID
               }), config)
               .then(response => {
-                console.log(JSON.stringify(response, null, 2))
+                // console.log(JSON.stringify(response, null, 2))
                 let paymentChargeID = response.data.id
                 console.log('ChargeID created: ' + paymentChargeID)
-                console.log('Charged is succesfully logged into Stripe')
+                console.log('Payment was succesfully logged into Stripe')
                 this.$emit('checkout', {discount: this.discount, total: this.total, paymentChargeID:paymentChargeID})
               }).catch(err => {
-                console.log('Charged WAS NOT succesfully logged into Stripe')
+                alert('You payment could not be processed at this time... Please time again!')
+                console.log('ERROR: Payment was NOT succesfully logged into Stripe')
                 console.log(JSON.stringify(err, null, 2))
-                paymentChargeID = 'Unsuccessful'
-                this.$emit('checkout', {discount: this.discount, total: this.total, paymentChargeID:paymentChargeID})
+                commit('setBookingError', err)
+                console.log(err)
               })
             }).catch(err => {
               console.log(JSON.stringify(err, null, 2))

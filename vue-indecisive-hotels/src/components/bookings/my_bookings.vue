@@ -18,11 +18,13 @@
                     <br>
                     <div> Check In: {{booking.bookingDetails.dateIn}} </div>
                     <div> Check Out: {{booking.bookingDetails.dateOut}} </div>
+                    <br>
+                    <div> Payment ID: {{booking.bookingDetails.paymentChargeID}} </div>
                   </div>
                 </v-card-title>
                 <v-card-actions>
                   <v-btn flat color="brown darken-2" @click = "bookingInformation" >Hotel Details</v-btn>
-                  <v-btn flat color="brown darken-2">Modify</v-btn>
+                  <v-btn flat color="brown darken-2" @click = "onDetailsClicked" :book='booking'>Modify</v-btn>
                   <v-btn flat color="brown darken-2" @click="onDelete(booking.id)">Delete</v-btn>
                 </v-card-actions>
               </v-card>
@@ -77,7 +79,7 @@
         this.$router.replace('/bookinginformation')
         // need to pass booking object
       },
-      onDetailsClicked (event) {
+      onDetailsClicked () {
         this.$emit('hotelSelected', this.hotel)
       },
       onDelete (payload) {

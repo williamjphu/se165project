@@ -140,7 +140,30 @@ const actions = {
     // change to take payload
     var bookingId = payload
     var bookingRef = firebase.database().ref('bookings').child(this.getters.user.id).child(bookingId)
-    bookingRef.remove()
+    var bookingDetailsRef = firebase.database().ref('bookings/' + this.getters.user.id + '/' + bookingId + '/bookingDetails')
+    .once('value').then(function (snapshot) {
+      var paymentID = snapshot.val().paymentChargeID
+      console.log(paymentID)
+      var qs = require('querystring')
+      let config = {
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+          'Authorization': 'Bearer sk_test_KpgWOHEURMabGzFuRHdnJK5M'
+        }
+      }
+      axios.post('https://api.stripe.com/v1/refunds', qs.stringify({
+        charge: paymentID
+      }), config)
+    }).then(response => {
+      console.log('Refund was successfully issued')
+      alert('Your refund is being processed, Please allow 5-10 business days to reflect changes on your credit card')
+      // Remove booking from Firebase 
+      bookingRef.remove()
+    }).catch(err => {
+      console.log('ERROR: Refund was NOT successfully issued')
+      commit('setBookingError', err)
+      console.log(err)
+    })
   },
   redeemPoints ({ commit }) {
     var rewardsRef = firebase.database().ref('users').child(this.getters.user.id)
