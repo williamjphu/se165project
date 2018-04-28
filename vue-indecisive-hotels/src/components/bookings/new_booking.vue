@@ -93,6 +93,7 @@
       onCheckout (value) {
         this.bookedHotel.discount = value.discount
         this.bookedHotel.totalCharge = value.total
+        this.bookedHotel.paymentChargeID = value.paymentChargeID
         this.currentStep = 4
         this.$store.dispatch('createBooking', this.bookedHotel)
       },

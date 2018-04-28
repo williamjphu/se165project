@@ -78,6 +78,7 @@
   export default {
     data () {
       return {
+        paymentChargeID: '',
         // Set discount to true IF user chooses to apply the discount - it will automatically take off one night from the total price.
         discount: false
       }
@@ -115,35 +116,38 @@
                 'Authorization': 'Bearer sk_test_KpgWOHEURMabGzFuRHdnJK5M'
               }
             }
-            var request = {
-              description: 'Hello',
-              source: token.id
-            }
             var qs = require('querystring')
+            console.log(token)
+            // Request to create customer ID for a charge 
             axios.post('https://api.stripe.com/v1/customers', qs.stringify({
               description: 'Reservation at ' + this.booking.name,
               email: token.email,
               source: token.id
             }), config)
             .then(response => {
-              let customer_id = response.data.id
-              console.log('CustomerID created: ' + customer_id)
+              let customerID = response.data.id
+              console.log('CustomerID created: ' + customerID)
+              // Request to create a new charge based on the customer ID generated
               axios.post('https://api.stripe.com/v1/charges', qs.stringify({
                 amount: this.total * 10,
                 currency: 'USD',
-                customer: customer_id
+                customer: customerID
               }), config)
               .then(response => {
+                console.log(JSON.stringify(response, null, 2))
+                let paymentChargeID = response.data.id
+                console.log('ChargeID created: ' + paymentChargeID)
                 console.log('Charged is succesfully logged into Stripe')
+                this.$emit('checkout', {discount: this.discount, total: this.total, paymentChargeID:paymentChargeID})
               }).catch(err => {
                 console.log('Charged WAS NOT succesfully logged into Stripe')
-                console.log(JSON.stringify(err, null, 2))  
+                console.log(JSON.stringify(err, null, 2))
+                paymentChargeID = 'Unsuccessful'
+                this.$emit('checkout', {discount: this.discount, total: this.total, paymentChargeID:paymentChargeID})
               })
             }).catch(err => {
               console.log(JSON.stringify(err, null, 2))
             })
-            console.log(token)
-            this.$emit('checkout', {discount: this.discount, total: this.total})
           }
         })
       },

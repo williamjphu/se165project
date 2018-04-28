@@ -33,13 +33,14 @@
                       <p class="title">
                         Distance and Weather
                       </p>
+                      <br>
                       <weather
-                        api-key="2536a25e69e0b892139dcce8c19f8953"
-                        title= "WeatherTitle"
-                        latitude= '37.7749'
-                        longitude='122.4149'
+                        api-key= '7435d3e21da772d627304d4d60e06e92'
+                        :title= 'weatherTitle'
+                        :latitude= 'latitudeForWeather'
+                        :longitude='longitudForWeather'
                         language='en'
-                        units="us">
+                        units="auto">
                       </weather>
                       <p class="body-1">Distance from location: {{ data.distance.text }}</p>
                       <p class="body-1">Estimated Driving Duration: {{ data.duration.text }}</p>
@@ -153,7 +154,7 @@
   export default {
     data () {
       return {
-        weatherTitle: '',
+        // weatherTitle: '',
         hotelDetails: null,
         status: 'loading'
       }
@@ -178,6 +179,21 @@
       },
       total () {
         return this.$store.getters.getQuery.nights * this.data.rounded_price * this.$store.getters.getQuery.rooms
+      },
+      weatherTitle () {
+        if (this.hotelDetails.name === null || this.hotelDetails === undefined) {
+          return 'Current weather forecast'
+        } else {
+          return 'Current weather near ' + this.hotelDetails.name
+        }
+      },
+      latitudeForWeather () {
+        console.log('\n\nLatitude: ' + this.data.geometry.location.lat())
+        return '' + this.data.geometry.location.lat()
+      },
+      longitudForWeather () {
+        console.log('\n\nLongitude: ' + this.data.geometry.location.lng())
+        return '' + this.data.geometry.location.lng()
       },
       weather () {
         // Weather at hotel
