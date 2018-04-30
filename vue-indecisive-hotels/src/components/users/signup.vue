@@ -3,26 +3,26 @@
   <v-container fluid class="text-xs-center" px-0 style="max-width: 1200px">
     <v-layout>
       <v-flex d-flex xs12 sm6 offset-sm3>
-        <v-card style="opacity: 0.95;" color="brown lighten-1">
+        <v-card style="opacity: 0.95;" color="blue-grey darken-2">
           <v-card-text>
             <v-container>
               <v-layout row wrap>
                 <v-flex d-flex xs12 v-if="error">
                   <app-alert @dismissed="onDismissed" :text="error.message"></app-alert>
                 </v-flex>
-                <v-flex d-flex xs12 pb-4>
-                  <span class="headline" style="color: #FFE082; font-weight: 500">Comfort Awaits.</span>
+                <v-flex d-flex xs12 pb-3>
+                  <span class="headline blue-grey--text text--lighten-4" style="font-weight: 500">Comfort Awaits.</span>
                 </v-flex>
-                <v-flex d-flex xs12 pb-4>
-                  <span class="subheading" style="color: #FFD54F; font-weight: 400">Register and discover the best of the web.</span>
+                <v-flex d-flex xs12 pb-3>
+                  <span class="subheading blue-grey--text text--lighten-3" style="font-weight: 400">Register and discover the best of the web.</span>
                 </v-flex>
                 <v-flex xs12 align-center>
-                  <span class="subheading" style="color: #FFD54F; font-weight: 400">And it's absolutely</span>
-                  <span class="title" style="color: #FFECB3;"> free</span>
+                  <span class="subheading blue-grey--text text--lighten-3" style="font-weight: 400">And it's absolutely</span>
+                  <span class="title blue-grey--text text--lighten-4"> free</span>
                 </v-flex>
                 <v-flex xs12 pt-4 pb-2>
                   <div class="strike">
-                    <span style="color: #FFE082">Sign up with</span>
+                    <span class="blue-grey--text text--lighten-4">Sign up with</span>
                   </div>
                 </v-flex>
                 <v-flex d-flex xs12>
@@ -60,72 +60,72 @@
                 </v-flex>
                 <v-flex xs12 pt-2 pb-2>
                   <div class="strike">
-                    <span style="color: #FFE082">or with email</span>
+                    <span class="blue-grey--text text--lighten-4">or with email</span>
                   </div>
                 </v-flex>
               </v-layout>
               <v-form v-model="valid" ref="form">
-                <v-container class="px-0">
+                <v-container px-0 py-0>
                   <v-layout row wrap>
-                    <v-flex xs12 pb-2>
+                    <v-flex xs12>
                       <v-text-field
                         prepend-icon="person"
-                        label="First name"
+                        :label="text['First name']"
                         v-model="firstName"
                         :rules="nameRules"
                         required
-                        solo
+                        dark
                       ></v-text-field>
                     </v-flex>
-                    <v-flex xs12 pb-2>
+                    <v-flex xs12>
                       <v-text-field
                         prepend-icon="person"
-                        label="Last name"
+                        :label="text['Last name']"
                         v-model="lastName"
                         :rules="nameRules"
                         required
-                        solo
+                        dark
                       ></v-text-field>
                     </v-flex>
-                    <v-flex xs12 pb-2>
+                    <v-flex xs12>
                       <v-text-field
                         prepend-icon="email"
-                        label="E-mail"
+                        :label="text['Email']"
                         v-model="email"
                         :rules="emailRules"
                         required
-                        solo
+                        dark
                       ></v-text-field>
                     </v-flex>
-                    <v-flex xs12 pb-2>
+                    <v-flex xs12>
                       <v-text-field
                         prepend-icon="lock"
-                        label="Password"
+                        :label="text['Password']"
                         v-model="password"
                         :append-icon="passwordVisible ? 'visibility' : 'visibility_off'"
                         :append-icon-cb="() => (passwordVisible = !passwordVisible)"
                         :type="passwordVisible ? 'password' : 'text'"
                         :rules="passwordRules"
                         required
-                        solo
+                        dark
                       ></v-text-field>
                     </v-flex>
-                    <v-flex xs12 pb-2>
+                    <v-flex xs12>
                       <v-text-field
                         prepend-icon="lock"
-                        label="Confirm Password"
+                        :label="text['Confirm password']"
                         v-model="password2"
                         :append-icon="password2Visible ? 'visibility' : 'visibility_off'"
                         :append-icon-cb="() => (password2Visible = !password2Visible)"
                         :type="password2Visible ? 'password' : 'text'"
                         :rules="passwordRules.concat([comparePasswords])"
                         required
-                        solo
+                        dark
                       ></v-text-field>
                     </v-flex>
-                    <v-flex xs12 pb-4>
-                      <v-btn @click="submit" :disabled="loading" :loading="loading" block color="amber">
-                        Sign up
+                    <v-flex xs12 pb-3>
+                      <v-btn @click="submit" :disabled="loading" :loading="loading" block color="deep-purple lighten-2" dark>
+                        {{ text['Sign up'] }}
                       </v-btn>
                     </v-flex>
                   </v-layout>
@@ -175,6 +175,9 @@
       },
       loading () {
         return this.$store.getters.loading
+      },
+      text () {
+        return this.$store.getters.text
       }
     },
     methods: {
@@ -233,7 +236,7 @@
     top: 50%;
     width: 9999px;
     height: 1px;
-    background: #FFE082;
+    background: #CFD8DC;
 }
 
 .strike > span:before {

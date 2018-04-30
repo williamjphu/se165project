@@ -13,8 +13,8 @@
                   <font-awesome-icon style="color: #0D47A1" size="3x" :icon="['fas', 'id-card']" />
                 </v-flex>
                 <v-flex xs12 align-center>
-                  <span class="title" style="color: #0D47A1;">Login</span>
-                  <span class="title" style="font-weight: 300"> to your account</span>
+                  <span class="title" style="color: #0D47A1;">{{ loginBoldText }}</span>
+                  <span class="title" style="font-weight: 300"> {{ loginNormalText }}</span>
                 </v-flex>
                 <v-flex xs12 pt-4 pb-2>
                   <div class="strike">
@@ -112,6 +112,29 @@
       },
       loading () {
         return this.$store.getters.loading
+      },
+      text () {
+        return this.$store.getters.text
+      },
+      loginBoldText () {
+        var loginText = this.$store.getters.text['Login to your account']
+        var loginArr = loginText.split(' ')
+        if (this.$store.getters.selectedLanguage === 'Vietnamese') {
+          return loginArr[0] + ' ' + loginArr[1]
+        }
+        else {
+          return loginArr[0]
+        }
+      },
+      loginNormalText () {
+        var loginText = this.$store.getters.text['Login to your account']
+        var loginArr = loginText.split(' ')
+        if (this.$store.getters.selectedLanguage === 'Vietnamese') {
+          return loginText.replace(loginArr[0] + ' ' + loginArr[1], '')
+        }
+        else {
+          return loginText.replace(loginArr[0], '')
+        }
       }
     },
     methods: {

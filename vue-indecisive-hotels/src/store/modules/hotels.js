@@ -8,16 +8,16 @@ const state = {
   sort: '',
   filters: {
     price: {
-      min: 0,
-      max: 200
+      value: [0, 200],
+      range: [0, 200]
     },
     distance: {
-      min: 0,
-      max: 20
+      value: [0, 6500],
+      range: [0, 6500]
     },
     rating: {
-      min: 0,
-      max: 5
+      value: [1, 5],
+      range: [1, 5]
     }
   },
   hotels: [],

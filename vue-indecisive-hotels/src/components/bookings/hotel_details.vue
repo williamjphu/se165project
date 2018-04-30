@@ -39,22 +39,18 @@
                         :title= 'weatherTitle'
                         :latitude= 'latitudeForWeather'
                         :longitude='longitudForWeather'
-                        language='en'
+                        :language='lang'
                         units="auto">
                       </weather>
                       <p class="body-1">Distance from location: {{ data.distance.text }}</p>
                       <p class="body-1">Estimated Driving Duration: {{ data.duration.text }}</p>
                       <!-- TODO fix weather function before un-commenting <p class="body-1">Current Weather: {{ weather }}</p> -->
-                    </v-flex><v-flex xs12>
-                      <p class="title">
-                        Amenities
-                      </p>
                     </v-flex>
                     <v-flex xs12>
                       <p class="title">
-                        Reviews
+                        {{ text['Reviews'] }}
                       </p>
-                      <p class="subheading">Average user rating: <vue-star-rating :star-size=10 read-only inline v-model="hotelDetails.rating" :increment=0.1></vue-star-rating></p>
+                      <p class="subheading">{{ text['Average user rating'] }}: <vue-star-rating :star-size=10 read-only inline v-model="hotelDetails.rating" :increment=0.1></vue-star-rating></p>
                       <v-container fluid grid-list-lg v-for="(review, i) in hotelDetails.reviews" :key="i">
                         <v-layout row wrap>
                           <v-flex sm2 lg1 v-if="!$vuetify.breakpoint.xsOnly" pt-4 pl-0>
@@ -95,20 +91,20 @@
                               $ {{ data.rounded_price }}
                             </v-flex>
                             <v-flex xs9 class="text-xs-left" py-0 v-if="query.nights > 1">
-                              Price for {{ query.nights }} nights per room:
+                              Price for {{ query.nights }} night{{ query.nights > 1? 's' : ''}} per room:
                             </v-flex>
                             <v-flex xs3 class="text-xs-right" py-0 v-if="query.nights > 1">
                               $ {{ query.nights * data.rounded_price }}
                             </v-flex>
                             <v-flex xs9 class="text-xs-left" pt-0>
-                              Price for {{ query.nights }} nights for {{ query.rooms }} rooms:
+                              Price for {{ query.nights }} night{{ query.nights > 1? 's' : ''}} for {{ query.rooms }} room{{ query.rooms > 1? 's' : ''}}:
                             </v-flex>
                             <v-flex xs3 class="text-xs-right green--text" pt-0>
                               $ {{ total }}
                             </v-flex>
                           </v-layout>
                         </v-container>
-                        <v-btn block dark color="success" @click="onBookClicked">BOOK NOW</v-btn>
+                        <v-btn block dark color="success" @click="onBookClicked">{{ text['Book now'] }}</v-btn>
                       </v-flex>
                       <v-flex xs12>
                         <p class="title">
@@ -165,6 +161,25 @@
     props: ['data'],
     /* eslint-disable */
     computed: {
+      lang () {
+        var language = this.$store.getters.selectedLanguage
+        if (language === 'Español') {
+          return 'es'
+        } else if (language === '國語') {
+          return 'zh-tw'
+        } else if (language === 'عربي') {
+          return 'ar'
+        } else if (language === 'Tiếng Việt') {
+          return 'en' // Not supported
+        } else if (language === 'Czech') {
+          return 'cs'
+        } else {
+          return 'en'
+        }
+      },
+      text () {
+        return this.$store.getters.text
+      },
       images () {
         if (this.hotelDetails === null || this.hotelDetails === undefined) {
           return null
@@ -296,9 +311,12 @@
   }
 </script>
 
-<style scoped>
+<style>
   .google-map {
     min-height: 150px;
     min-width: 150px;
+  }
+  .fe_loading {
+    position: relative;
   }
 </style>

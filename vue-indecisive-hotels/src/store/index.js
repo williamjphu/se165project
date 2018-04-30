@@ -5,6 +5,7 @@ import popups from './modules/popups'
 import users from './modules/users'
 import hotels from './modules/hotels'
 import bookings from './modules/bookings'
+import translations from './modules/translations'
 
 Vue.use(Vuex)
 
@@ -13,6 +14,7 @@ export const store = new Vuex.Store({
     users: users,
     hotels: hotels,
     popups: popups,
-    bookings: bookings
+    bookings: bookings,
+    translations: translations
   }
 })

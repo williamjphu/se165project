@@ -1,76 +1,149 @@
 <template>
+  <v-card>
   <v-container fluid py-2 px-2>
     <v-layout row wrap>
-      <v-flex d-flex xs12>
-        <v-expansion-panel expand>
-          <v-expansion-panel-content>
-            <div slot="header">{{ sortMethod }}</div>
-            <v-btn color="grey lighten-4" block @click="setSort('A to Z')">
-              A to Z
-            </v-btn>
-            <v-btn color="grey lighten-4" block @click="setSort('Z to A')">
-              Z to A
-            </v-btn>
-            <v-btn color="grey lighten-4" block @click="setSort('Cheapest')">
-              Cheapest
-            </v-btn>
-            <v-btn color="grey lighten-4" block @click="setSort('Most Expensive')">
-              Most Expensive
-            </v-btn>
-            <v-btn color="grey lighten-4" block @click="setSort('Closest')">
-              Closest
-            </v-btn>
-            <v-btn color="grey lighten-4" block @click="setSort('Farthest')">
-              Farthest
-            </v-btn>
-            <v-btn color="grey lighten-4" block @click="setSort('Most Stars')">
-              Most Stars
-            </v-btn>
-          </v-expansion-panel-content>
-          <v-expansion-panel-content>
-            <div slot="header">Filter By</div>
-            <v-card>
-              <v-card-text class="grey lighten-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</v-card-text>
-            </v-card>
-          </v-expansion-panel-content>
-        </v-expansion-panel>
+      <v-flex xs12>
+        <v-btn @click.stop="showMap" block color="blue-grey darken-2" dark>{{ text['Show map'] }}</v-btn>
       </v-flex>
-      <v-flex d-flex xs12>
-        <v-btn @click.stop="showMap" block color="brown darken-2" dark>Show Map</v-btn>
+      <v-flex xs12>
+        <v-list>
+          <v-list-tile>
+            <v-list-tile-content>
+              <v-list-tile-title class="title">{{ text['Sort from'] }}</v-list-tile-title>
+            </v-list-tile-content>
+          </v-list-tile>
+          <v-divider></v-divider>
+        </v-list>
+        <v-list dense>
+          <v-list-tile v-for="item in sorts" :key="item.title" @click="setSort(item.title)" :class="item.active ? 'primary--text' : 'black--text'">
+            <v-list-tile-content>
+              <v-list-tile-title>{{ text[item.title] }}</v-list-tile-title>
+            </v-list-tile-content>
+          </v-list-tile>
+        </v-list>
+        <v-divider></v-divider>
+      </v-flex>
+      <v-flex xs12 class="text-xs-left">
+        <v-list>
+          <v-list-tile>
+            <v-list-tile-content>
+              <v-list-tile-title class="title">{{ text['Filters'] }}</v-list-tile-title>
+            </v-list-tile-content>
+          </v-list-tile>
+          <v-divider></v-divider>
+        </v-list>
+        <span>{{ text['Max price']}}</span>
+        <vue-slider
+          ref="slider"
+          v-model="price"
+          tooltip="hover"
+          tooltip-dir="bottom"
+          :min="filters.price.range[0]"
+          :max="filters.price.range[1]"
+          :formatter="(v) => '$' + v"
+          use-keyboard
+        ></vue-slider>
+        <span>{{ text['Max distance']}}</span>
+        <vue-slider
+          ref="slider2"
+          v-model="distance"
+          tooltip="hover"
+          tooltip-dir="bottom"
+          :min="filters.distance.range[0]"
+          :max="filters.distance.range[1]"
+          :formatter="(v) => Math.round(v * 0.00621371)/10 + ' miles'"
+          :interval="160"
+          use-keyboard
+        ></vue-slider>
+        <span>{{ text['Most stars']}}</span>
+        <vue-slider
+          ref="slider3"
+          v-model="rating"
+          tooltip="hover"
+          tooltip-dir="bottom"
+          :min="filters.rating.range[0]"
+          :max="filters.rating.range[1]"
+          :formatter="(v) => v + ' stars'"
+          use-keyboard
+        ></vue-slider>
       </v-flex>
     </v-layout>
   </v-container>
+</v-card>
 </template>
 
 <script>
+  import VueSlider from 'vue-slider-component'
   export default {
+    components: {
+      VueSlider
+    },
     data () {
       return {
-        sortMethod: 'Sort by',
+        sorts: [
+          {
+            title: 'A to Z',
+            active: false
+          },
+          {
+            title: 'Z to A',
+            active: false
+          },
+          {
+            title: 'Closest',
+            active: false
+          },
+          {
+            title: 'Farthest',
+            active: false
+          },
+          {
+            title: 'Most expensive',
+            active: false
+          },
+          {
+            title: 'Cheapest',
+            active: false
+          },
+          {
+            title: 'Most stars',
+            active: false
+          }
+        ],
         filters: {
           price: {
-            min: 0,
-            max: 0
+            value: [0, 200],
+            range: [0, 200]
           },
           distance: {
-            min: 0,
-            max: 0
+            value: [0, 6500],
+            range: [0, 6500]
           },
           rating: {
-            min: 0,
-            max: 0
+            value: [1, 5],
+            range: [1, 5]
           }
-        }
+        },
+        price: [0, 200],
+        distance: [0, 6500],
+        rating: [1, 5]
       }
     },
     computed: {
-      storeFilters () {
-        return this.$store.getters.filters
+      text () {
+        return this.$store.getters.text
       }
     },
     methods: {
       setSort (payload) {
-        this.sortMethod = 'Sort by ' + payload
+        for (var i in this.sorts) {
+          var item = this.sorts[i]
+          if (item.title === payload) {
+            item.active = true
+          } else {
+            item.active = false
+          }
+        }
         this.$store.commit('setSort', payload)
       },
       showMap () {
@@ -81,11 +154,17 @@
       }
     },
     watch: {
-      filters () {
+      price () {
+        this.filters.price.value = this.price
         this.setFilters()
       },
-      storeFilters () {
-        this.filters = this.$store.getters.filters
+      distance () {
+        this.filters.distance.value = this.distance
+        this.setFilters()
+      },
+      rating () {
+        this.filters.rating.value = this.rating
+        this.setFilters()
       }
     }
   }

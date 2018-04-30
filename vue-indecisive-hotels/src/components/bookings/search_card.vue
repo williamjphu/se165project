@@ -35,11 +35,11 @@
                                 v-model="rating">
                               </vue-star-rating><br>
                               {{ hotel.vicinity }}<br>
-                              {{ distance }} away</div>
+                              {{ distance }}</div>
                             </span>
                           </v-flex>
                           <v-flex xs12 class="text-xs-right">
-                            <v-btn @click.stop="onDetailsClicked" color="brown" dark>More details</v-btn>
+                            <v-btn @click.stop="onDetailsClicked" color="blue-grey darken-2" dark>{{ text['More details'] }}</v-btn>
                           </v-flex>
                         </v-layout>
                       </v-container>
@@ -51,7 +51,7 @@
                             <v-container fluid py-0 px-0>
                               <v-layout row wrap>
                                 <v-flex xs12 md6 lg8>
-                                  <span class="caption">Others say<br></span>
+                                  <span class="caption">{{ text['Others say'] }}<br></span>
                                   <span class="body-1">{{ customerRating }}</span>
                                 </v-flex>
                                 <v-flex xs12 md6 lg4>
@@ -68,7 +68,7 @@
                                 <v-flex xs12>
                                   <span class="subheading">
                                     <v-chip label color="error" text-color="white">
-                                      <v-icon left>label</v-icon><span class="subheading">{{ discount }}% OFF</span>
+                                      <v-icon left>label</v-icon><span class="subheading">- {{ discount }}%</span>
                                     </v-chip>
                                   </span>
                                 </v-flex>
@@ -105,9 +105,12 @@
     },
     props: ['hotel'],
     computed: {
+      text () {
+        return this.$store.getters.text
+      },
       distance () {
-        if (this.hotel.distance !== null && this.hotel.distance !== undefined && this.hotel.distance.text.length > 1) {
-          return this.hotel.distance.text
+        if (this.hotel.distance !== null && this.hotel.distance !== undefined && this.hotel.distance.value > 0) {
+          return this.text['12 miles away'].replace('12', Math.round(this.hotel.distance.value / 160) / 10)
         }
         return this.distance2
       },
@@ -158,7 +161,7 @@
     mounted () {
       this.interval = setInterval(() => {
         if (this.distance.length < 1 && this.hotel.distance !== undefined && this.hotel.distance.text.length > 1) {
-          this.distance2 = this.hotel.distance.text
+          this.distance2 = this.text['12 miles away'].replace('12', Math.round(this.hotel.distance.value / 160) / 10)
         }
       }, 10)
     }

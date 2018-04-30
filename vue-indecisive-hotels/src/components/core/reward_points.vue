@@ -2,7 +2,9 @@
   <v-container fluid>
     <v-layout row wrap>
       <v-flex xs12 md4>
-        Collect 1 point per night! For every 10 points, get 1 night free!
+        <v-container px-0 fill-height>
+          Collect 1 point per night! For every 10 points, get 1 night free!
+        </v-container>
       </v-flex>
       <v-flex xs12 md4 d-flex>
         <v-progress-circular
@@ -16,7 +18,9 @@
         </v-progress-circular>
       </v-flex>
       <v-flex xs12 md4>
-        You currently have {{ ~~(points/10) }} free night{{ ~~(points/10) == 1 ? '' : 's'}}. Collect {{ 10 - (points % 10) }} more point{{ points % 10 == 9 ? '' : 's' }} to earn another free night!
+        <v-container px-0 fill-height>
+          You currently have {{ ~~(points/10) }} free night{{ ~~(points/10) == 1 ? '' : 's'}}. Collect {{ 10 - (points % 10) }} more point{{ points % 10 == 9 ? '' : 's' }} to earn another free night!
+      </v-container>
       </v-flex>
     </v-layout>
   </v-container>
@@ -27,8 +31,12 @@
     data () {
       return {
         interval: {},
-        points: 19,
         value: 0
+      }
+    },
+    computed: {
+      points () {
+        return this.$store.getters.rewardPoints
       }
     },
     beforeDestroy () {

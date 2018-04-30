@@ -3,17 +3,17 @@
     <!-- CARD layout for search-bar on homepage -->
     <v-layout row align-center wrap v-if="!bar">
       <v-flex d-flex xs12 sm10 md6 lg4 offset-sm1 offset-md3 offset-lg4>
-        <v-card style="opacity: 0.7;" color="brown darken-1" dark class="text-xs-center">
+        <v-card style="opacity: 0.85;" color="blue-grey darken-1" dark class="text-xs-center">
           <v-container grid-list-xl>
             <v-form>
               <v-layout wrap>
                 <v-flex xs12>
-                  <span class="title">BOOK NOW</span>
+                  <span class="title">{{ text['Book now'] }}</span>
                 </v-flex>
-                <v-flex xs12>
+                <v-flex xs12 py-1>
                   <vuetify-google-autocomplete
                     id="placeCard"
-                    label="Adventure location"
+                    :label="text['Location']"
                     placeholder=""
                     prepend-icon="room"
                     types=""
@@ -22,7 +22,7 @@
                     v-on:no-results-found="destLocation = null"
                   ></vuetify-google-autocomplete>
                 </v-flex>
-                <v-flex xs12>
+                <v-flex xs12 py-1>
                   <v-dialog
                     v-model="menu"
                     lazy
@@ -33,16 +33,16 @@
                       prepend-icon="date_range"
                       required
                       slot="activator"
-                      label="Check In"
+                      :label="text['Check In']"
                       v-model="dateFormatted"
                       @blur="date = parseDate(dateFormatted)"
                     ></v-text-field>
                     <v-date-picker v-model="date" @input="dateFormatted = formatDate($event)" 
-                      :min="allowedIn.min" :max="allowedIn.max" @change="menu = !menu">
+                      :min="allowedIn.min" :max="allowedIn.max" @change="menu = !menu" color="blue-grey darken-2" :locale="locale">
                     </v-date-picker>
                   </v-dialog>
                 </v-flex>
-                <v-flex xs12>
+                <v-flex xs12 py-1>
                   <v-dialog
                     v-model="menu2"
                     lazy
@@ -53,19 +53,19 @@
                       prepend-icon="date_range"
                       required
                       slot="activator"
-                      label="Check Out"
+                      :label="text['Check Out']"
                       v-model="dateFormatted2"
                       @blur="date = parseDate(dateFormatted2)"
                     ></v-text-field>
                     <v-date-picker v-model="date2" @input="dateFormatted2 = formatDate($event)"
-                      :min="allowedOut.min" :max="allowedOut.max" @change="menu2 = !menu2">
+                      :min="allowedOut.min" :max="allowedOut.max" @change="menu2 = !menu2" color="blue-grey darken-2" :locale="locale">
                     </v-date-picker>
                   </v-dialog>
                 </v-flex>
-                <v-flex xs12>
+                <v-flex xs12 py-1>
                   <v-select
                     prepend-icon="vpn_key"
-                    label="Rooms"
+                    :label="text['Rooms']"
                     v-model="rooms"
                     :items="[1, 2, 3, 4, 5]"
                     required
@@ -79,7 +79,7 @@
                   block
                   color="white"
                   @click="searchPage"
-                >Search</v-btn>
+                >{{ text['Search']}}</v-btn>
               </v-card-actions>
             </v-form>
           </v-container>
@@ -96,7 +96,8 @@
                 <v-flex xs12 lg4>
                   <vuetify-google-autocomplete
                     id="placeBar"
-                    placeholder="Adventure location"
+                    :label="text['Location']"
+                    placeholder=""
                     prepend-icon="room"
                     types=""
                     required
@@ -116,13 +117,13 @@
                       prepend-icon="date_range"
                       required
                       slot="activator"
-                      label="Check In"
+                      :label="text['Check In']"
                       v-model="dateFormatted"
                       solo
                       @blur="date = parseDate(dateFormatted)"
                     ></v-text-field>
                     <v-date-picker v-model="date" @input="dateFormatted = formatDate($event)" 
-                      :min="allowedIn.min" :max="allowedIn.max" @change="menu = !menu">
+                      :min="allowedIn.min" :max="allowedIn.max" @change="menu = !menu" color="blue-grey darken-2" :locale="locale">
                     </v-date-picker>
                   </v-dialog>
                 </v-flex>
@@ -137,20 +138,20 @@
                       prepend-icon="date_range"
                       required
                       slot="activator"
-                      label="Check Out"
+                      :label="text['Check Out']"
                       v-model="dateFormatted2"
                       solo
                       @blur="date = parseDate(dateFormatted2)"
                     ></v-text-field>
                     <v-date-picker v-model="date2" @input="dateFormatted2 = formatDate($event)"
-                      :min="allowedOut.min" :max="allowedOut.max" @change="menu2 = !menu2">
+                      :min="allowedOut.min" :max="allowedOut.max" @change="menu2 = !menu2" color="blue-grey darken-2" :locale="locale">
                     </v-date-picker>
                   </v-dialog>
                 </v-flex>
                 <v-flex xs12 sm4 md3 lg2>
                   <v-select
                     prepend-icon="vpn_key"
-                    label="Rooms"
+                    :label="text['Rooms']"
                     v-model="rooms"
                     :items="[1, 2, 3, 4, 5]"
                     required
@@ -162,9 +163,9 @@
                     :dark="destLocation !== null"
                     block
                     :disabled="destLocation === null"
-                    color="brown darken-2"
+                    color="blue-grey darken-2"
                     @click="searchPage"
-                  >Search</v-btn>
+                  >{{ text['Search'] }}</v-btn>
                 </v-flex>
               </v-layout>
             </v-form>
@@ -206,6 +207,25 @@
           }
         }
         return this.allowedIn
+      },
+      text () {
+        return this.$store.getters.text
+      },
+      locale () {
+        var language = this.$store.getters.selectedLanguage
+        if (language === 'Español') {
+          return 'es-419'
+        } else if (language === '國語') {
+          return 'zh-tw'
+        } else if (language === 'عربي') {
+          return 'ar-sa'
+        } else if (language === 'Tiếng Việt') {
+          return 'vi-vn'
+        } else if (language === 'Czech') {
+          return 'cs-cz'
+        } else {
+          return 'en-us'
+        }
       }
     },
     watch: {

@@ -74,6 +74,9 @@
     computed: {
       error () {
         return this.$store.getters.bookingError
+      },
+      text () {
+        return this.$store.getters.text
       }
     },
     components: {

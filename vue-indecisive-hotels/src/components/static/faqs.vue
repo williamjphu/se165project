@@ -4,7 +4,7 @@
       <v-container d-flex class="text-xs-center">
         <v-layout row wrap align-center>
           <v-flex xs12>
-            <v-card class="primary--text" color="brown darken-2 flat" >
+            <v-card class="primary--text" color="blue-grey darken-2 flat" >
               <v-card-text class="text-xs-center headline" style="text-shadow: 1px 1px #111111; color:white;">
                  You Have Questions. <v-icon x-large left color="white">help</v-icon> We Have Answers.
               </v-card-text>

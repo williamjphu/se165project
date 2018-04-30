@@ -4,7 +4,7 @@
       <v-flex d-flex xs12>
         <v-container fluid>
           <v-layout row wrap>
-            <v-flex xs12 d-flex v-if="!authenticated">
+            <v-flex xs12 v-if="!authenticated">
               <v-btn icon outline color="grey darken-1" @click="onBackClicked"><v-icon>keyboard_arrow_left</v-icon></v-btn>
               <v-container style="max-width: 350px">
                 <login-dialog></login-dialog>
@@ -16,7 +16,7 @@
                   <v-layout row wrap>
                     <v-flex xs12>
                       <v-btn icon outline color="grey darken-1" @click="onBackClicked"><v-icon>keyboard_arrow_left</v-icon></v-btn>
-                      <h3 class="title text-xs-center" style="margin-bottom: 0.3em">Your Booking Summary</h3>
+                      <h3 class="title text-xs-center" style="margin-bottom: 0.3em">{{ text['Your booking summary'] }}</h3>
                     </v-flex>
                     <v-flex xs5 lg4 offset-lg2>
                       <v-card-media :src="booking.photo" height="200"></v-card-media>
@@ -34,14 +34,15 @@
                       <v-divider></v-divider>
                     </v-flex>
                     <v-flex xs12 lg8 offset-lg2>
-                      <h3 class="title text-xs-center">Reward Points</h3>
+                      <h3 class="title text-xs-center">{{ text['Reward points'] }}</h3>
+                      <rewards></rewards>
                       <v-btn @click="redeemPoints" color="primary" :disabled="discount || !rewardEligible" block>{{ redeemBtnText }}</v-btn> 
                     </v-flex>
                     <v-flex xs12 lg8 offset-lg2>
                       <v-divider></v-divider>
                     </v-flex>
                     <v-flex xs12>
-                      <h3 class="title text-xs-center">Checkout</h3>
+                      <h3 class="title text-xs-center">{{ text['Checkout'] }}</h3>
                     </v-flex>
                     <v-flex xs8 sm5 lg3 offset-sm2 offset-lg4>
                       <p>Price per night:</p>
@@ -85,12 +86,15 @@
     },
     props: ['booking'],
     computed: {
+      text () {
+        return this.$store.getters.text
+      },
       rewardEligible () {
-        return this.$store.getters.redeemPointsElibile
+        return this.$store.getters.redeemPointsEligible
       },
       redeemBtnText () {
         return this.discount ? 'Free Night Redeemed' : (this.rewardEligible ? 'Redeem Free Night'
-            : this.$store.getters.rewardPoints + ' of ' + this.$store.getters.redeemAmount + ' Rewrd Points Needed')
+            : 'You do not have enough points!')
       },
       authenticated () {
         return this.$store.getters.user !== null && this.$store.getters.user !== undefined
@@ -143,7 +147,7 @@
                 alert('You payment could not be processed at this time... Please time again!')
                 console.log('ERROR: Payment was NOT succesfully logged into Stripe')
                 console.log(JSON.stringify(err, null, 2))
-                commit('setBookingError', err)
+                this.$store.commit('setBookingError', err)
                 console.log(err)
               })
             }).catch(err => {
