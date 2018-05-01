@@ -41,7 +41,7 @@
                 "id": 1,
                 "text": "You need to follow these instructions:",
                 "options": [
-                  "Click the “Contact Us” button on the left of navigation bar",
+                  "Click the “About Us” button on the left of navigation bar",
                   "View our company’s information"
                 ]
               }
@@ -380,7 +380,7 @@
                 "id": 1,
                 "text": "",
                 "options": [
-                  "Click the “Contact Us” button on the left of navigation bar",
+                  "Click the “About Us” button on the left of navigation bar",
                   "Scroll down to Customer Service"
                 ]
               }
