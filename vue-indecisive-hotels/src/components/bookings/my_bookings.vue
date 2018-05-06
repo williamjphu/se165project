@@ -1,13 +1,26 @@
 <template>
   <v-container style="max-width: 1200px" px-0 class="text-xs-center">
     <v-layout row wrap align-center>
-      <h3 class="display-2">Cameron :)</h3>
       <br><br><br>
       <v-flex xs12>
         <h3 class="display-2">Upcoming Bookings</h3>
         <v-container fluid px-0 grid-list-lg align-center>
           <v-layout row wrap>
+             <v-flex v-if = "bookings.length == 0">
+                <v-card >
+                <v-card-media  height="250px">
+                </v-card-media>
+                
+                <v-card-actions>
+                  <v-btn flat color="dark-blue darken-2" >Hotel Details</v-btn>
+                  
+                </v-card-actions>
+              </v-card>
+             </v-flex>
+
             <v-flex d-flex xs12 md4 v-for="(booking, i) in bookings" :key="i" :offset-md1="bookings.length == 2" :offset-md4="bookings.length == 1">
+              
+               
               <v-card >
                 <v-card-media :src="booking.bookingDetails.photo" height="250px">
                 </v-card-media>
@@ -23,9 +36,9 @@
                   </div>
                 </v-card-title>
                 <v-card-actions>
-                  <v-btn flat color="brown darken-2" @click = "bookingInformation" >Hotel Details</v-btn>
-                  <v-btn flat color="brown darken-2" @click = "onDetailsClicked" :book='booking'>Modify</v-btn>
-                  <v-btn flat color="brown darken-2" @click="onDelete(booking.id)">Delete</v-btn>
+                  <v-btn flat color="dark-blue darken-2" @click = "bookingInformation" >Hotel Details</v-btn>
+                  <v-btn flat color="dark-blue darken-2" @click = "onDetailsClicked" :book='booking'>Modify</v-btn>
+                  <v-btn flat color="dark-blue darken-2" @click="onDelete(booking.id)">Delete</v-btn>
                 </v-card-actions>
               </v-card>
             </v-flex>
@@ -49,9 +62,9 @@
                     <div> Trip Dates: {{booking.bookingDetails.dateIn}} to {{booking.bookingDetails.dateOut}} </div>
                   </div>
                 </v-card-title>
-                <v-card-actions>
-                  <v-btn @click = 'bookingInformation' flat color="brown darken-2">Hotel Details</v-btn>
-                </v-card-actions>
+                <!-- <v-card-actions>
+                  <v-btn @click = 'bookingInformation' flat color="dark-blue darken-2">Hotel Details</v-btn>
+                </v-card-actions> -->
               </v-card>
             </v-flex>
           </v-layout>
