@@ -6,15 +6,15 @@
         <h3 class="display-2">Upcoming Bookings</h3>
         <v-container fluid px-0 grid-list-lg align-center>
           <v-layout row wrap>
-             <v-flex v-if = "bookings.length == 0">
-                <v-card >
-                <v-card-media  height="250px">
-                </v-card-media>
+             <v-flex align-center v-if = "bookings.length == 0">
+                <v-card>
+                <img  height = "250px" src = "@/assets/logo.png">
+
+
+                <v-flex align-center>
                 
-                <v-card-actions>
-                  <v-btn flat color="dark-blue darken-2" >Hotel Details</v-btn>
-                  
-                </v-card-actions>
+                  <v-btn  flat color="dark-blue darken-2" @click = "home" >Book Now</v-btn>
+                </v-flex>
               </v-card>
              </v-flex>
 
@@ -45,7 +45,7 @@
           </v-layout>
         </v-container>
       </v-flex>
-      <br><br>
+      <br><br><br>
       <v-flex xs12>
         <h3 class="display-2">Past Bookings</h3>
         <v-container fluid px-0 grid-list-lg align-center>
@@ -98,6 +98,10 @@
       onDelete (payload) {
         this.$store.dispatch('deleteBooking', payload)
         this.$store.dispatch('retrieveBookings')
+      },
+      home ()
+      {
+        this.$router.replace('/')
       }
     }
   }
