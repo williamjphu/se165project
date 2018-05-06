@@ -13,7 +13,7 @@
 
                 <v-flex align-center>
                 
-                  <v-btn  flat color="dark-blue darken-2" @click = "home" >Book Now</v-btn>
+                  <v-btn  flat color="blue-grey darken-2" @click = "home" >Book Now</v-btn>
                 </v-flex>
               </v-card>
              </v-flex>
@@ -36,9 +36,9 @@
                   </div>
                 </v-card-title>
                 <v-card-actions>
-                  <v-btn flat color="dark-blue darken-2" @click = "bookingInformation" >Hotel Details</v-btn>
-                  <v-btn flat color="dark-blue darken-2" @click = "onDetailsClicked" :book='booking'>Modify</v-btn>
-                  <v-btn flat color="dark-blue darken-2" @click="onDelete(booking.id)">Delete</v-btn>
+                  <v-btn flat color="blue-grey darken-2" @click = "bookingInformation" >Hotel Details</v-btn>
+                  <v-btn flat color="blue-grey darken-2" @click = "onDetailsClicked" :book='booking'>Modify</v-btn>
+                  <v-btn flat color="blue-grey darken-2" @click="onDelete(booking.id)">Delete</v-btn>
                 </v-card-actions>
               </v-card>
             </v-flex>
@@ -63,7 +63,7 @@
                   </div>
                 </v-card-title>
                 <!-- <v-card-actions>
-                  <v-btn @click = 'bookingInformation' flat color="dark-blue darken-2">Hotel Details</v-btn>
+                  <v-btn @click = 'bookingInformation' flat color="blue-grey darken-2">Hotel Details</v-btn>
                 </v-card-actions> -->
               </v-card>
             </v-flex>
