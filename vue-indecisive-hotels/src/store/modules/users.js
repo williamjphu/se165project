@@ -84,7 +84,7 @@ const actions = {
             if (snapshot.hasChild(result.user.uid)) {
               var currUser = snapshot.child(result.user.uid).val()
               currUser.id = result.user.uid
-              commit('setUser', currUser)
+              // commit('setUser', currUser)
             } else {
               const newUser = {
                 id: result.user.uid,
@@ -128,7 +128,7 @@ const actions = {
             if (snapshot.hasChild(result.user.uid)) {
               var currUser = snapshot.child(result.user.uid).val()
               currUser.id = result.user.uid
-              commit('setUser', currUser)
+              // commit('setUser', currUser)
             } else {
               const newUser = {
                 id: result.user.uid,
@@ -172,7 +172,7 @@ const actions = {
             if (snapshot.hasChild(result.user.uid)) {
               var currUser = snapshot.child(result.user.uid).val()
               currUser.id = result.user.uid
-              commit('setUser', currUser)
+              // commit('setUser', currUser)
             } else {
               const newUser = {
                 id: result.user.uid,
@@ -213,7 +213,7 @@ const actions = {
         user => {
           firebase.database().ref('users/').once('value', function (snapshot) {
             var currUser = snapshot.child(user.uid).val()
-            commit('setUser', currUser)
+            // commit('setUser', currUser)
             commit('setLoading', false)
           })
         }
