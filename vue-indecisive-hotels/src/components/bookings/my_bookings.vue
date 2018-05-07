@@ -3,10 +3,13 @@
     <v-layout row wrap align-center>
       <br><br><br>
       <v-flex xs12 py-0>
-        <v-dialog v-model="confirmDialog" max-width="300">
+        <v-dialog v-model="confirmDialog" max-width="500">
           <v-card>
+             <v-toolbar color="blue-grey darken-2" dense dark flat>
+              <v-toolbar-title>{{ text['Cancel booking'] }}</v-toolbar-title>
+            </v-toolbar>
             <v-card-title class="headline">Do you really want to cancel your booking?</v-card-title>
-            <v-card-text>You cannot undo this action.</v-card-text>
+            <v-card-text>Note: You cannot undo this action.</v-card-text>
             <v-card-actions>
               <v-spacer></v-spacer>
               <v-btn color="secondary" @click.native="confirmDialog = false">No</v-btn>
@@ -71,9 +74,9 @@
                     <h3 class="headline mb-0">{{booking.bookingDetails.name}}</h3>
                     <div>{{booking.bookingDetails.address}} </div>
                     <br>
-                    <div> Check In: {{booking.bookingDetails.dateIn}} </div>
-                    <div> Check Out: {{booking.bookingDetails.dateOut}} </div>
-                    <div> Rooms: {{booking.bookingDetails.rooms}} </div>
+                    <div> {{ text['Check In'] }}: {{booking.bookingDetails.dateIn}} </div>
+                    <div> {{ text['Check Out'] }}: {{booking.bookingDetails.dateOut}} </div>
+                    <div> {{ text['Rooms'] }}: {{booking.bookingDetails.rooms}} </div>
                     <br>
                     <div> Payment ID: {{booking.bookingDetails.paymentChargeID}} </div>
                   </div>
@@ -81,7 +84,7 @@
                 <v-card-actions>
                   <v-spacer></v-spacer>
                   <v-btn flat color="blue-grey darken-2" @click="onModify(booking.id)">Modify</v-btn>
-                  <v-btn flat color="blue-grey darken-2" @click="onDelete(booking.id)">Delete</v-btn>
+                  <v-btn flat color="blue-grey darken-2" @click="onDelete(booking.id)">Cancel</v-btn>
                 </v-card-actions>
               </v-card>
             </v-flex>

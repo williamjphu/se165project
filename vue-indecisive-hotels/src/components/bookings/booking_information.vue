@@ -79,7 +79,7 @@
                       </v-flex>
                       <v-flex xs12>
                         <p class="title">
-                          Hotel Information
+                          Hotel information
                         </p>
                         <p class="body-1">
                           <b>Address</b><br>{{ hotelDetails.formatted_address }}
@@ -136,6 +136,9 @@
       },
       total () {
         return this.$store.getters.getQuery.nights * this.data.rounded_price * this.$store.getters.getQuery.rooms
+      },
+      text () {
+        return this.$store.getters.text
       },
       weather () {
         // Weather at hotel

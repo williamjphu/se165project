@@ -52,9 +52,15 @@
 		"Login to your account" : "Login to your account",
 		"Password" : "Password",
 		"Confirm password" : "Confirm password",
-		"Logout" : "Sign Out"
+		"Logout" : "Sign Out",
+		"Search again" : "SEARCH AGAIN",
+		"Hotel information": "Hotel information",
+		"Address" : "Address",
+		"Phone number": "Phone number",
+		"Want to explore other hotels?" : "Want to explore other hotels?",
+		"Google Maps details" : "Gogle Maps details"
 	},
-	"國語": {
+	"繁體中文": {
 		"The easiest decision you will ever make" : "將會是你做過最容易的選擇",
 		"Home" : "主頁",
 		"My Bookings" : "我的預訂",
@@ -107,14 +113,21 @@
 		"Login to your account" : "登入你的帳戶",
 		"Password" : "密碼",
 		"Confirm password" : "確認密碼",
-		"Logout" : "登出"
+		"Logout" : "登出",
+		"Search again" : "重新尋找",
+		"Hotel information": "酒店資料",
+		"Address" : "地址",
+		"Phone number": "電話號碼",
+		"Want to explore other hotels?" : "想查詢其他酒店?",
+		"Hotel website": "酒店網站",
+		"Google Maps details" : "谷歌地圖資料"
 	},
 	"Español": {
-		"The easiest decision you will ever make" : "La decision mas facil que podrás hacer",
+		"The easiest decision you will ever make" : "La decisión más fácil que podrás hacer",
 		"Home" : "Inicio",
 		"My Bookings" : "Mis Reservas",
 		"myAccount" : "Mi Cuenta",
-		"FAQs" : "Preguntas más frequentes",
+		"FAQs" : "Preguntas Frequentes",
 		"About Us" : "Quienes somos?",
 		"Book now" : "Reserva ahora",
 		"Location" : "Ubicación",
@@ -162,7 +175,13 @@
 		"Login to your account" : "Ingresar a su cuenta",
 		"Password" : "Contraseña",
 		"Confirm password" : "Confirme su contraseña",
-		"Logout" : "Cerrar session"
+		"Logout" : "C. Session",
+		"Search again" : "NUEVA BÚSQUEDA",
+		"Hotel information": "Información del hotel",
+		"Address" : "Dirección",
+		"Phone number": "Número telefónico",
+		"Want to explore other hotels?" : "Desea explorar más hoteles?",
+		"Google Maps details" : "Detalles de Google Maps"
 	},
 	"عربي": {
 		"The easiest decision you will ever make" : "اسهل قرار ستتخده في اي وقت",
@@ -217,7 +236,13 @@
 		"Login to your account" : "تسجيل الدخول الى حسابك",
 		"Password" : "كلمة السر",
 		"Confirm password" : "تأكيد كلمة السر",
-		"Logout" : "الخروج"
+		"Logout" : "الخروج",
+		"Search again" : "ابحث مرة اخرى",
+		"Hotel information": "معلومات عن الفندق",
+		"Address" : "العنوان",
+		"Phone number": "رقم الهاتف",
+		"Want to explore other hotels?" : "تريد معلومات اخرى عن الفندق؟ تريد ان تراى الخريطة؟",
+		"Google Maps details" : "Gogle Maps details"
 	},
 	"Tiếng Việt": {
 		"The easiest decision you will ever make" : "Đây là sự lựa chọn tốt nhất của Quý vị",
@@ -272,10 +297,16 @@
 		"Login to your account" : "Đăng nhập vào tài khoản",
 		"Password" : "Mật khẩu",
 		"Confirm password" : "Xác nhận mật khẩu",
-		"Logout" : "Đăng xuất"
+		"Logout" : "Đăng xuất",
+		"Search again" : "TÌM KIẾM LẠI",
+		"Hotel information": "Thông tin khách sạn",
+		"Address" : "Địa chỉ",
+		"Phone number": "Số điện thoại",
+		"Want to explore other hotels?" : "Bạn muốn tìm kiếm thêm các khách sạn khác?",
+		"Google Maps details" : "Chi tiết về bản đồ Google"
 	},
 	"فارسی": {
-		"The easiest decision you will ever make" : "ساده ترین تصمیماتی که تا به حال انجام داده ",
+		"The easiest decision you will ever make" : "ساده ترین تصمیماتی که تا به حال انجام داده",
 		"Home" : "خانه",
 		"My Bookings" : "رزرو من",
 		"myAccount" : "حساب من",
@@ -327,7 +358,13 @@
 		"Login to your account" : "وارد حساب کاربری خود شوید",
 		"Password" : "کلمه عبور",
 		"Confirm password" : "رمز عبور را تایید کنید",
-		"Logout" : "خروج"
+		"Logout" : "خروج",
+		"Search again" : "دوباره جستجو کنید",
+		"Hotel information": "اطلاعات هتل",
+		"Address" : "ادرس",
+		"Phone number": "شماره تلفن",
+		"Want to explore other hotels?" : "آیا می خواهید هتل های دیگر را کشف کنید؟",
+		"Google Maps details" : "جزئیات نقشه گوگل"
 	},
 	"русский": {
 		"The easiest decision you will ever make" : "Самое простое решение, которое вы когда-либо сделаете",
@@ -377,11 +414,17 @@
 		"Your booking summary" : "Ваше бронирование ",
 		"Reward points" : "Бонусы",
 		"Continue" : "Продолжать",
-		"Sign up" : "зарегистрироваться",
-		"Sign in" : "войти в систему",
-		"Login to your account" : "Войдите в свой аккаунт",
+		"Sign up" : "регистрировать",
+		"Sign in" : "логин",
+		"Login to your account" : "логин",
 		"Password" : "пароль",
 		"Confirm password" : "Подтвердите Пароль",
-		"Logout" : "Выйти"
+		"Logout" : "выйти",
+		"Search again" : "Искать снова",
+		"Hotel information": "Информация об отеле",
+		"Address" : "Адрес",
+		"Phone number": "номер телефона",
+		"Want to explore other hotels?" : "хотите исследовать другие отели?",
+		"Google Maps details" : "Сведения о карте"
 	}
 }

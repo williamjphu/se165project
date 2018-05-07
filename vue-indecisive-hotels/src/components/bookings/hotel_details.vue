@@ -109,28 +109,28 @@
                       </v-flex>
                       <v-flex xs12>
                         <p class="title">
-                          Hotel Information
+                          {{ text['Hotel information'] }}
                         </p>
                         <p class="body-1">
-                          <b>Address</b><br>{{ hotelDetails.formatted_address }}
+                          <b>{{ text['Address'] }}</b><br>{{ hotelDetails.formatted_address }}
                         </p>
                         <p class="body-1">
-                          <b>Phone number</b><br>{{ hotelDetails.international_phone_number }}
+                          <b>{{ text['Phone number'] }}</b><br>{{ hotelDetails.international_phone_number }}
                         </p>
                         <p class="body-1">
-                          <a :href="hotelDetails.website" target="_blank"><b>Hotel Website</b></a>
+                          <a :href="hotelDetails.website" target="_blank"><b>{{ text['Hotel website'] }}</b></a>
                         </p>
                         <p class="body-1" v-if="hotelDetails.openingHours !== null && hotelDetails.openingHours !== undefined">
                           <b>Opening Hours:</b><br>
                           <span v-for="(day, i) in hotelDetails.opening_hours.weekday_text" :key="i"> {{ day }}<br></span>
                         </p>
                         <p class="body-1">
-                          <a :href="hotelDetails.url" target="_blank"><b>Google Maps Details</b></a>
+                          <a :href="hotelDetails.url" target="_blank"><b>{{ text['Google Maps Details'] }}</b></a>
                         </p>
                       </v-flex>
                       <v-flex xs12 class="body-1 text-xs-center" v-if="!$store.getters.bookingError">
-                        Want to explore other hotels?
-                        <v-btn block dark color="grey darken-1" @click="onBackClicked">SEARCH AGAIN</v-btn>
+                        {{ text['Want to explore other hotels?'] }}
+                        <v-btn block dark color="grey darken-1" @click="onBackClicked">{{ text['Search again'] }}</v-btn>
                       </v-flex>
                     </v-layout>
                   </v-container>
