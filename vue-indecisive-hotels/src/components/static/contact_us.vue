@@ -305,7 +305,7 @@
             </div>
             <div class="TeamCard" v-if="i==12">
                 <div class="front">
-                        <img class="img-circle" src="~@/assets/0.jpeg" >
+                        <img class="img-circle" src="https://www.flaticon.com/premium-icon/icons/svg/145/145857.svg" >
                     <div class="backpanel">
                         <div class="content">
                             <div class="main" >
