@@ -2,13 +2,13 @@
   <v-container style="max-width: 1200px" py-0 px-0>
     <v-stepper v-model="currentStep">
       <v-stepper-header>
-        <v-stepper-step editable step="1" :complete="currentStep > 1">Find a hotel</v-stepper-step>
+        <v-stepper-step editable step="1" :complete="currentStep > 1"></v-stepper-step>
         <v-divider></v-divider>
-        <v-stepper-step step="2" :complete="currentStep > 2">View Hotel Details</v-stepper-step>
+        <v-stepper-step step="2" :complete="currentStep > 2"></v-stepper-step>
         <v-divider></v-divider>
-        <v-stepper-step step="3" :complete="currentStep > 3">Payment Details</v-stepper-step>
+        <v-stepper-step step="3" :complete="currentStep > 3"></v-stepper-step>
         <v-divider></v-divider>
-        <v-stepper-step step="4">Booking Confirmation</v-stepper-step>
+        <v-stepper-step step="4"></v-stepper-step>
       </v-stepper-header>
       <v-stepper-items>
         <v-stepper-content step="1">
@@ -102,6 +102,11 @@
       },
       onDismissed () {
         console.log('Alert dismissed!')
+        this.$store.dispatch('clearBookingError')
+      }
+    },
+    watch: {
+      currentStep () {
         this.$store.dispatch('clearBookingError')
       }
     }

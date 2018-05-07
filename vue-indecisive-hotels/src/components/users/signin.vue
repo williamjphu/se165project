@@ -121,8 +121,7 @@
         var loginArr = loginText.split(' ')
         if (this.$store.getters.selectedLanguage === 'Vietnamese') {
           return loginArr[0] + ' ' + loginArr[1]
-        }
-        else {
+        } else {
           return loginArr[0]
         }
       },
@@ -131,8 +130,7 @@
         var loginArr = loginText.split(' ')
         if (this.$store.getters.selectedLanguage === 'Vietnamese') {
           return loginText.replace(loginArr[0] + ' ' + loginArr[1], '')
-        }
-        else {
+        } else {
           return loginText.replace(loginArr[0], '')
         }
       }

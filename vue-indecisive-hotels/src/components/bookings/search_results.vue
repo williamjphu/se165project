@@ -4,7 +4,7 @@
     <section>
       <v-container class="text-xs-center" py-0 px-0>
         <v-layout row wrap>
-          <v-flex xs12 md3 :pr-4="!$vuetify.breakpoint.smAndDown">
+          <v-flex xs12 md3 v-if="!loading" :pr-4="!$vuetify.breakpoint.smAndDown">
             <v-card flat>
               <search-filter></search-filter>
             </v-card>
@@ -15,7 +15,7 @@
               <search-card @hotelSelected="onHotelSelected" v-for="(hotel, i) in hotels" :key="i" :hotel="hotel"></search-card>
             </v-card>
           </v-flex>
-          <v-flex xs12 md9 v-if="loading">
+          <v-flex xs12 v-if="loading">
             <v-progress-linear indeterminate color="brown darken-2"></v-progress-linear>
           </v-flex>
         </v-layout>

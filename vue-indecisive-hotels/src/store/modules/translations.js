@@ -14,7 +14,7 @@ const getters = {
   },
   languages () {
     var keys = []
-    for(var k in translations) {
+    for (var k in translations) {
       keys.push(k)
     }
     console.log(keys)

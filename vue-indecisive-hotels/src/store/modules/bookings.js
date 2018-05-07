@@ -1,5 +1,5 @@
 import * as firebase from 'firebase'
-
+/* eslint-disable */
 const state = {
   bookings: [],
   bookingLoading: false,
@@ -129,12 +129,12 @@ const actions = {
     console.log(this.getters.bookings)
   },
   editBooking ({ commit }, payload) {
-    var bookingId // set the booking id here
-    var bookingRef = firebase.database.ref('bookings').child(this.getters.user.id).child(bookingId)
-    bookingRef.transaction('value', function (booking) {
-      booking.bookingDetails = payload.bookingDetails
-      booking.updatedAt = new Date().toISOString().substr(0, 10)
-    })
+    var bookingId = payload.id
+    var bookingRef = firebase.database().ref('bookings').child(this.getters.user.id).child(bookingId).child('bookingDetails')
+    bookingRef.set(payload.bookingDetails)
+      .then(booking => {
+        this.dispatch('retrieveBookings')
+      })
   },
   deleteBooking ({ commit }, payload) {
     // change to take payload

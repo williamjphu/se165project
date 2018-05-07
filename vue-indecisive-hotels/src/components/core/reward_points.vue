@@ -6,7 +6,7 @@
           Collect 1 point per night! For every 10 points, get 1 night free!
         </v-container>
       </v-flex>
-      <v-flex xs12 md4 d-flex>
+      <v-flex xs12 md4 d-flex class="text-xs-center">
         <v-progress-circular
           :size="150"
           :width="17"
@@ -14,7 +14,8 @@
           :value="value"
           color="primary"
         >
-          <span class="display-1">{{ value/10 }}</span>
+          <span class="display-1">{{ value/10 }}</span><br>
+          <span class="title blue-grey--text text--darken-1">({{ Math.floor(points / 10) }})</span>
         </v-progress-circular>
       </v-flex>
       <v-flex xs12 md4>

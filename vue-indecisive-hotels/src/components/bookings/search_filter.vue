@@ -35,7 +35,7 @@
         <span>{{ text['Max price']}}</span>
         <vue-slider
           ref="slider"
-          v-model="price"
+          v-model="filters.price.value"
           tooltip="hover"
           tooltip-dir="bottom"
           :min="filters.price.range[0]"
@@ -46,7 +46,7 @@
         <span>{{ text['Max distance']}}</span>
         <vue-slider
           ref="slider2"
-          v-model="distance"
+          v-model="filters.distance.value"
           tooltip="hover"
           tooltip-dir="bottom"
           :min="filters.distance.range[0]"
@@ -58,7 +58,7 @@
         <span>{{ text['Most stars']}}</span>
         <vue-slider
           ref="slider3"
-          v-model="rating"
+          v-model="filters.rating.value"
           tooltip="hover"
           tooltip-dir="bottom"
           :min="filters.rating.range[0]"
@@ -109,29 +109,20 @@
             title: 'Most stars',
             active: false
           }
-        ],
-        filters: {
-          price: {
-            value: [0, 200],
-            range: [0, 200]
-          },
-          distance: {
-            value: [0, 6500],
-            range: [0, 6500]
-          },
-          rating: {
-            value: [1, 5],
-            range: [1, 5]
-          }
-        },
-        price: [0, 200],
-        distance: [0, 6500],
-        rating: [1, 5]
+        ]
       }
     },
     computed: {
       text () {
         return this.$store.getters.text
+      },
+      filters: {
+        set (value) {
+          this.$store.commit('setFilters', value)
+        },
+        get () {
+          return this.$store.getters.getFilters
+        }
       }
     },
     methods: {
@@ -148,23 +139,6 @@
       },
       showMap () {
         this.$store.commit('setShowMap', true)
-      },
-      setFilters () {
-        this.$store.commit('setFilters', this.filters)
-      }
-    },
-    watch: {
-      price () {
-        this.filters.price.value = this.price
-        this.setFilters()
-      },
-      distance () {
-        this.filters.distance.value = this.distance
-        this.setFilters()
-      },
-      rating () {
-        this.filters.rating.value = this.rating
-        this.setFilters()
       }
     }
   }

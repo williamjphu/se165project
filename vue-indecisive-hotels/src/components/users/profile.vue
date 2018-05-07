@@ -1,7 +1,10 @@
 <template>
 
   <v-container style="max-width: 1200px" py-0 px-0>
-    <v-layout row>
+    <v-layout row wrap>
+      <v-flex xs12 sm10 md8 offset-sm1 offset-md2 pa-5>
+        <rewards></rewards>
+      </v-flex>
       <v-flex xs12 sm10 md8 offset-sm1 offset-md2 pa-5>
 
         <v-card>

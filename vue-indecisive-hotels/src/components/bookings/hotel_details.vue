@@ -104,7 +104,8 @@
                             </v-flex>
                           </v-layout>
                         </v-container>
-                        <v-btn block dark color="success" @click="onBookClicked">{{ text['Book now'] }}</v-btn>
+                        <v-btn v-if="!$store.getters.bookingError" block dark color="success" @click="onBookClicked">{{ text['Book now'] }}</v-btn>
+                        <v-btn v-if="$store.getters.bookingError" block dark color="grey darken-1" @click="onBackClicked">Search Again</v-btn>
                       </v-flex>
                       <v-flex xs12>
                         <p class="title">
@@ -127,7 +128,7 @@
                           <a :href="hotelDetails.url" target="_blank"><b>Google Maps Details</b></a>
                         </p>
                       </v-flex>
-                      <v-flex xs12 class="body-1 text-xs-center">
+                      <v-flex xs12 class="body-1 text-xs-center" v-if="!$store.getters.bookingError">
                         Want to explore other hotels?
                         <v-btn block dark color="grey darken-1" @click="onBackClicked">SEARCH AGAIN</v-btn>
                       </v-flex>

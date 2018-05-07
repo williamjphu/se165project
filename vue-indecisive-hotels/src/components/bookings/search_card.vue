@@ -73,7 +73,7 @@
                                   </span>
                                 </v-flex>
                                 <v-flex xs12>
-                                  <span class="caption grey--text text--lighten-1">Nightly rates as low as <br/></span>
+                                  <span class="caption grey--text text--lighten-1"><br/></span>
                                   <span class="subheading grey--text text--lighten-1"><s>${{ originalRate }}</s>
                                   </span>
                                   <span class="display-1 red--text text--lighten-1">${{ lowestRate }}</span>
