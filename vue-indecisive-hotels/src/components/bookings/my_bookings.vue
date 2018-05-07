@@ -164,9 +164,9 @@
       },
       onModifyConfirm () {
         if (this.modifiedBooking.bookingDetails.rooms <= this.$store.getters.bookings.filter(booking => booking.id === this.modifiedBooking.id)[0].bookingDetails.rooms) {
-          console.log(this.modifiedBooking.bookingDetails.rooms)
-          console.log(this.$store.getters.bookings)
-          console.log(this.$store.getters.bookings.filter(booking => booking.id === this.modifiedBooking.id)[0].bookingDetails.rooms)
+          this.modifiedBooking.bookingDetails.totalCharge = this.modifiedBooking.bookingDetails.price * (this.modifiedBooking.bookingDetails.rooms * this.modifiedBooking.bookingDetails.nights - (this.modifiedBooking.bookingDetails.discount ? 1 : 0))
+          this.$store.dispatch('editBooking', this.modifiedBooking)
+          this.editDialog = false
           alert('Your refund will be processed within the next 10 business days.')
           return
         }
@@ -174,7 +174,7 @@
           name: this.modifiedBooking.bookingDetails.name,
           currency: 'USD',
           billingAddress: false,
-          amount: this.modifiedBooking.bookingDetails.price * (this.modifiedBooking.bookingDetails.rooms * this.modifiedBooking.bookingDetails.nights - (this.modifiedBooking.bookingDetails.discount ? 1 : 0)) * 100,
+          amount: (this.modifiedBooking.bookingDetails.price * (this.modifiedBooking.bookingDetails.rooms * this.modifiedBooking.bookingDetails.nights - (this.modifiedBooking.bookingDetails.discount ? 1 : 0)) - this.modifiedBooking.bookingDetails.totalCharge) * 100,
           locale: 'auto',
           panelLabel: 'Pay {{amount}}',
           token: (token) => {

@@ -9,7 +9,7 @@
         <search-hotels v-if="$vuetify.breakpoint.smAndDown"></search-hotels>
       </v-flex>
     </v-layout>
-    <section>
+    <section v-if="false">
       <v-container grid-list-xl>
         <v-layout row justify-space-between>
           <v-flex d-flex xs12>
@@ -18,7 +18,7 @@
         </v-layout>
       </v-container>
     </section>
-    <section>
+    <section v-if="false">
       <v-container grid-list-xl>
         <v-layout row wrap>
           <v-flex d-flex xs12>
