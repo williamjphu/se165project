@@ -3,7 +3,7 @@
     <v-layout row wrap>
       <v-flex xs12 md4>
         <v-container px-0 fill-height>
-          Collect 1 point per night! For every 10 points, get 1 night free!
+          Collect 1 point per reservation! For every 10 points, get 1 night free!
         </v-container>
       </v-flex>
       <v-flex xs12 md4 d-flex class="text-xs-center">
